@@ -1,7 +1,6 @@
 !!Preface
 
-This version of the book is based on the previous version authored by: Andrew P. Black, Stéphane Ducasse, Oscar Nierstrasz,
-Damien Pollet, Damien Cassou and Marcus Denker.
+This version of the book is based on the previous version authored by: Andrew P. Black, Stéphane Ducasse, Oscar Nierstrasz, Damien Pollet, Damien Cassou and Marcus Denker.
 
 !!!What is Pharo?
 
@@ -25,8 +24,8 @@ reference implementation for the Seaside web development framework available at
 Pharo core contains only code that has been contributed under the MIT license.
 The Pharo project started in March 2008 as a fork of Squeak (a modern
 implementation of Smalltalk-80), and the first 1.0 beta version was
-released on July 31, 2009. The current version is Pharo 5.0, released in May
-2016. Pharo 6.0 is in alpha development and planned for release in April 2017.
+released on July 31, 2009. The current version is Pharo 8.0, released in XXX
+2020. 
 
 Pharo is highly portable. Pharo can run on OS X, Windows, Linux, Android, iOS,
 and Raspberry Pi. Its virtual machine is written entirely in a subset of Pharo
@@ -49,9 +48,10 @@ world. You can have an impact on Pharo too!
 
 !!!Who should read this book?
 
-The previous revision of this book was based on Pharo 1.4. This revision has
-been liberally updated to align with Pharo 5.0. Various aspects of Pharo are
+The previous revision of this book was based on Pharo 5.0 This revision has
+been liberally updated to align with Pharo 8.0. Various aspects of Pharo are
 presented, starting with the basics then proceeding to intermediate topics.
+
 Advanced topics are presented in ""Deep into Pharo"", a book on the internals of
 Pharo that is freely available at *http://books.pharo.org*. In addition for
 readers interested in web development, a new book ""Enterprise Pharo: a Web
@@ -91,7 +91,7 @@ This book is an open book in the following senses:
 
 - This book just describes the core of Pharo. We encourage others to contribute chapters on the parts of Pharo that we have not described. If you would like to participate in this effort, please contact us. We would like to see more books around Pharo!
 
-- It is also possible to contribute directly to this book via Github. Just follow the instructions there and ask any question on the mailing list. You can find the Github repo at *https://github.com/SquareBracketAssociates/UpdatedPharoByExample>https://github.com/SquareBracketAssociates/UpdatedPharoByExample*
+- It is also possible to contribute directly to this book via Github. Just follow the instructions there and ask any question on the mailing list. You can find the Github repo at *https://github.com/SquareBracketAssociates/PharoByExample80>https://github.com/SquareBracketAssociates/PharoByExample80*
 
 !!!The Pharo community
 
@@ -99,9 +99,14 @@ The Pharo community is friendly and active. Here is a short list of resources
 that you may find useful:
 
 - *http://www.pharo.org>http://www.pharo.org* is the main web site of Pharo.
-- On IRC, you can find us on the freenode.net server, channel "pharo".
-- SmalltalkHub (*http://www.smalltalkhub.com/>http://www.smalltalkhub.com/*) is the equivalent of SourceForge/Github for Pharo projects. Many extra packages and projects for Pharo live there.
-- Pharo is also active on Slack - a platform for chat based on IRC (*http://pharoproject.slack.com*), just ask for an invitation on Pharo's website *http://pharo.org/community*, in the slack section. Everybody is welcomed.
+- *http://www.github.com>http://www.github.com* is the main github account for Pharo.
+
+- Pharo has an active on Discord server - a platform for chat based on IRC, just ask for an invitation on Pharo's website *http://pharo.org/community*, in the discord section. Everybody is welcomed.
+- Pharoers started a wiki on Pharo *https://github.com/pharo-open-documentation/pharo-wiki>https://github.com/pharo-open-documentation/pharo-wiki*
+- An Awesome catalog is maintained with projects: *https://github.com/pharo-open-documentation/awesome-pharo>https://github.com/pharo-open-documentation/awesome-pharo*
+
+- If you hear about SmalltalkHub (*http://www.smalltalkhub.com/>http://www.smalltalkhub.com/*) was the equivalent of SourceForge/Github for Pharo projects. Many extra packages and projects for Pharo lived there.
+Now the community is mainly using git repositories such as github.com, gitlab and bitbucket.
 
 !!!Examples and exercises
 
