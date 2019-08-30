@@ -10,21 +10,25 @@ smalltalk:
 # Unit tests run the normal pillar tests
 # Integration tests test that pillar itself can interact with generated files, pdf generation, etc.
 # System tests test that we can install and use pillar as a black box
+env:
+  matrix:
+  - JOB=test TYPE=System ARCHETYPE=book OUTPUT=pdf
 
 install:
   # Pillar installation
-  - git clone https://github.com/pillar-markup/pillar.git -b v7.4.1 
-  - cd pillar && ./scripts/build.sh && cd ..                      
-  - . pillar/scripts/ci/ensure_latex.sh                                   
-  - ./pillar/scripts/ci/ensure_book_dependencies.sh                       
+  - git clone https://github.com/pillar-markup/pillar.git -b v7.4.1 # Clone pillar before it was dev-7 and worked
+  - git checkout -b v7.4.1
+  - cd pillar && ./scripts/build.sh && cd ..                              # Run pillar build script. Pillar will be built in `pwd`/build!
+  - . pillar/scripts/ci/ensure_latex.sh                                   # Install latex
+  - ./pillar/scripts/ci/ensure_book_dependencies.sh                       # Install latex dependencies required by pillar
   
 script:
   - ./pillar/build/pillar build pdf
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - mv _result/pdf/index.pdf pbe8-wip.pdf
-  - bash upload.sh pbe8-wip.pdf
+  - mv _result/pdf/index.pdf TestingInPharo-wip.pdf
+  - bash upload.sh TestingInPharo-wip.pdf
 
 branches:
   except:
