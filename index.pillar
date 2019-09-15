@@ -1,5 +1,5 @@
 
 ${inputFile:path=Chapters/Preface/Preface.pillar}$
-
+${inputFile:path=Chapters/PharoTour/PharoTour.pillar}$
 
 
