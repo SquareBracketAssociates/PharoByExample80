@@ -1,4 +1,4 @@
-{ "title": "A first application" }
+!!A first application
 @cha:firstApp
 
 In this chapter, we will develop a simple game: LightsOut
@@ -17,7 +17,7 @@ you how you can be really productive.
 
 +The Lights Out game board>file://figures/gameLO.png|width=30|label=fig:gameLO+
 
-!!The Lights Out game
+!!!The Lights Out game
 
 To show you how to use Pharo's programming tools, we will build a simple game
 called ""Lights Out"". The game board consists of a rectangular array of light
@@ -30,7 +30,7 @@ and 100 individual cell objects. The Pharo code to implement the game will
 contain two classes: one for the game and one for the cells. We will now show
 you how to define these classes using the Pharo programming tools.
 
-!!Creating a new Package
+!!!Creating a new Package
 @fstApp:Packages
 
 We have already seen the browser in Chapter
@@ -53,7 +53,7 @@ the other ones (See Figure *@fig:createPackageFiltered*).
 +Filtering our package to work more efficiently>file://figures/createPackageFullFiltered.png|width=90|label=fig:createPackageFiltered+
 
 
-!!Defining the class ==LOCell==
+!!!Defining the class ==LOCell==
 
 At this point there are, of course, no classes in the new package. However, the
 main editing pane displays a template to make it easy to create a new class (see
@@ -156,7 +156,7 @@ term ""package"". The Pharo package is also what you will be using to version
 your source code using the TODO:Monticello/Iceberg versioning tool.
 
 
-!!Adding methods to a class
+!!!Adding methods to a class
 
 Now let's add some methods to our class. Select the ==Inst. side method==
 tab next to the class definition tab. You will see a template for method creation in the editing
@@ -230,7 +230,7 @@ Notice that there is a little green arrow next to your method (see
 Figure *@fig:initialize*). This means the method exists in the superclass and is
 overridden in your class.
 
-!!Inspecting an object
+!!!Inspecting an object
 
 You can immediately test the effect of the code you have written by creating a
 new ==LOCell== object and inspecting it: Open a ==Playground==, type the
@@ -268,7 +268,7 @@ the brown (next to top-right) handle and resize it with the yellow
 change. (You may have to click refresh to see the new bounds value.) Delete the
 cell by clicking on the ==x== in the pink handle.
 
-!!Defining the class ==LOGame==
+!!!Defining the class ==LOGame==
 
 Now let's create the other class that we need for the game, which we will name
 ==LOGame==.
@@ -427,7 +427,7 @@ n X n two dimensional array (matrix) and initializes its elements. The initial v
 will depend on its coordinates. The (i,j)^^th^^ element will be initialized to
 the result of evaluating ==self newCellAt: i at: j.==
 
-!!Organizing methods into protocols
+!!!Organizing methods into protocols
 
 Before we define any more methods, let's take a quick look at the third pane at
 the top of the browser. In the same way that the first pane of the browser lets
@@ -468,7 +468,7 @@ browser, you don't have to type the class name or the ==>>==; instead, you just
 make sure that the appropriate class is selected in the class pane.
 
 
-!! Finishing the game
+!!! Finishing the game
 
 Now let's define the other method that are used by ==LOGame >> initialize==.
 Let's define ==LOGame >> newCellAt: at:== in the ==initialization== protocol.
@@ -569,7 +569,7 @@ toggling all the neighbours of a cell and we assigned this block to the
 ==mouseAction== of the cell. Therefore sending the ==value== message causes this
 block to be evaluated, and consequently the state of the cells will toggle.
 
-!!Let's try our code
+!!!Let's try our code
 
 That's it: the Lights Out game is complete! If you have followed all of the
 steps, you should be able to play the game, consisting of just 2 classes and 7
@@ -660,7 +660,7 @@ it in another image. Now when we are in development mode the debugger is
 available to let us go as fast as possible. In production system, developers
 often control the debugger to hide their mistakes from their clients.
 
-!!Saving and sharing Pharo code
+!!!Saving and sharing Pharo code
 
 Now that you have ""Lights Out"" working, you probably want to save it somewhere
 so that you can archive it and share it with your friends. Of course, you can
@@ -844,7 +844,7 @@ In this example, we used Iceberg to version our project using git. Have in mind 
 In order to connect your local repository, to remote repository (eg. GitHub) you need to add it, you can do that by selecting ==Repositories== on the Working copy dialog (Figure *@fig:icebergWorkingCopy*).
 This will be covered later on.
 
-!!Chapter summary
+!!!Chapter summary
 
 In this chapter you have seen how to create packages, classes and methods. In
 addition, you have learned how to use the System browser, the inspector, the
