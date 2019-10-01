@@ -1,4 +1,4 @@
-{ "title": "A quick tour of Pharo" }
+!!A quick tour of Pharo
 @cha:tour
 
 This chapter will take you on a high level tour of Pharo, to help you get
@@ -16,9 +16,9 @@ use it. However, since this book is written for Pharo 5.0, if you notice
 differences between the appearance or behaviour of your system and what is
 described here, do not be surprised.
 
-!!Installing Pharo
+!!!Installing Pharo
 
-!!!Downloading Pharo
+!!!!Downloading Pharo
 
 Pharo is available as a free download from
 *http://pharo.org/download>http://pharo.org/download*. You can download Pharo either by using Pharo Launcher
@@ -50,7 +50,7 @@ are ready to launch Pharo. In case of Ubuntu Linux, there is also the extra
 option of installing Pharo via the Pharo PPA. Pharo can be also installed via
 the command line.
 
-!!Pharo: File Components
+!!!Pharo: File Components
 
 Pharo consists of four main component files.
 Although you do not need to deal with them directly for the purposes
@@ -115,7 +115,7 @@ separate directory where everyone has read-only access to them.
 
 Do whatever works best for your style of working and your operating system.
 
-!!Launching Pharo
+!!!Launching Pharo
 
 To start Pharo, if you're using Pharo Launcher, select the image you wish to use and press launch.
 Or if you are using standalone version do whatever your operating system expects: drag the .image file
@@ -172,7 +172,7 @@ For Windows, assuming that you're in the unzipped ==Pharo8.0== folder:
 Pharo.exe Pharo8.0.image
 ]]]
 
-!!Pharo Launcher
+!!!Pharo Launcher
 
 ""PharoLauncher"" is a tool that helps you download and manage Pharo images. It
 is very useful for getting new versions of Pharo (as well as updates to the
@@ -206,7 +206,7 @@ associated .changes files are placed in a folder (with the same name as your
 image) in your default image location. You can find the location in the
 ""PharoLauncher"" settings.
 
-!!The World Menu
+!!!The World Menu
 
 Once Pharo is running, you should see a single large window, possibly containing
 some open playground windows (see Figure *@fig:worldMenu*). You might notice a
@@ -249,7 +249,7 @@ Windows or Linux) or ==Shift-Option== (on OS X) while clicking.
 
 +Meta-Clicking on a window opens the Halos>file://figures/addHalo.png|width=100|label=fig:halos+
 
-!!Sending Messages
+!!!Sending Messages
 
 In the Pharo window, click on an open space to open the ""World Menu"", and then
 in the ""Tools"" submenu select the ""Playground"" menu option. 
@@ -291,7 +291,7 @@ as simple as possible without losing flexibility.
 How to find the available messages for each object is something we will explore
 later on.
 
-!!Saving, Quitting and Restarting a Pharo Session
+!!!Saving, Quitting and Restarting a Pharo Session
 
 You can exit Pharo at any point, by closing the Pharo window as you do any other
 application window. Additionally you can use the ""World Menu"" and select
@@ -331,7 +331,7 @@ if you need to persist objects, you can use several systems such as ==Fuel== (a
 fast object binary serializer), ==STON== (a textual object serializer) or a
 database.
 
-!!Playgrounds and Transcripts
+!!!Playgrounds and Transcripts
 
 Let us start with some exercises:
 
@@ -370,7 +370,7 @@ text "hello world" appears in the transcript window (See Figure
 
 +Executing an expresssion: displaying a string in the Transcript.>file://figures/HelloWorld_new.png|width=100|label=fig:HelloWorld+
 
-!!Keyboard Shortcuts
+!!!Keyboard Shortcuts
 
 If you want to evaluate an expression, you do not always have to right click.
 Instead, you can use keyboard shortcuts shown in menu items. Even though Pharo
@@ -453,7 +453,7 @@ Other right-click options that may be used are the following:
 - ==Code search== offers several options provided by System Browser, such as browsing the source code of an expression, searching for senders and implementors, and so on.
 
 
-!!The System Browser
+!!!The System Browser
 
 The ==System Browser==, also known as "Class Browser", is one of the key tools
 used for programming. As we shall see, there are several interesting browsers
@@ -526,7 +526,7 @@ shared by all objects in the system (except those that override it).
 
 There are much better way to find a method and we will look at them now.
 
-!!Finding Classes
+!!!Finding Classes
 
 There are several ways to find a class in Pharo. The first, as we have just
 seen above, is to know (or guess) what package it is in, and to navigate to it
@@ -635,7 +635,7 @@ in the right combo box. It is less efficient than using ""Spotter"" or the
 SystemBrowser as explained above. The Finder is more useful for other types of
 code searches such as find methods based on examples, as we will show later.
 
-!!Finding Methods
+!!!Finding Methods
 
 Sometimes you can guess the name of a method, or at least part of the name of a
 method, more easily than the name of a class. For example, if you are interested
@@ -851,7 +851,7 @@ tests ran with no failures and no errors. When you get to a green bar, it's a
 good idea to save your work by saving the image (==World Menu > Pharo > Save==), and
 take a break. So, do that right now!
 
-!!Chapter Summary
+!!!Chapter Summary
 
 This chapter has introduced you to the Pharo environment and shown you how to
 use some of the major tools, such as the System Browser, Spotter, the Finder,
