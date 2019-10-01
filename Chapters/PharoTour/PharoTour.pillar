@@ -710,7 +710,7 @@ factor of two integers, you might try ==25 . 35 . 5== as an example. You can
 also give the method finder multiple examples to narrow the search space; the
 help text in the bottom pane explains how.
 
-!!Defining a New Method
+!!!Defining a New Method
 
 The advent of Test Driven Development (TDD) has changed the way we write
 code. The idea behind TDD is that we write a test that defines the desired
