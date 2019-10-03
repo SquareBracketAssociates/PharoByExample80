@@ -1,6 +1,6 @@
 !!Preface
 
-This version of the book is based on the previous version authored by: Andrew P. Black, Stéphane Ducasse, Oscar Nierstrasz, Damien Pollet, Damien Cassou and Marcus Denker.
+This version of the book is based on the previous version authored by: Andrew P. Black, Stéphane Ducasse, Oscar Nierstrasz, Damien Pollet, Damien Cassou and Marcus Denker called, ''Pharo by Example''. It is also built on the version that was issued for Pharo 50 named ''Updated Pharo by Example'' authored by: Stéphane Ducasse Dmitri Zagidulin, Nicolai Hess, and Dimitris Chloupis.
 
 !!!What is Pharo?
 
@@ -24,8 +24,9 @@ reference implementation for the Seaside web development framework available at
 Pharo core contains only code that has been contributed under the MIT license.
 The Pharo project started in March 2008 as a fork of Squeak (a modern
 implementation of Smalltalk-80), and the first 1.0 beta version was
-released on July 31, 2009. The current version is Pharo 8.0, released in XXX
-2020. 
+released on July 31, 2009. Since then Pharo got a new version each year or year and an half. 
+The current version is Pharo 8.0, released in XXX 2020. 
+%[upbe8]
 
 Pharo is highly portable. Pharo can run on OS X, Windows, Linux, Android, iOS,
 and Raspberry Pi. Its virtual machine is written entirely in a subset of Pharo
@@ -43,7 +44,8 @@ experimenting with important new features and libraries. This facilitates
 contributions and rapid feedback from the community, on which Pharo relies on
 for its success. Finally Pharo is not read-only, Pharo integrates changes made
 by the community, daily. Pharo has around 100 contributors, based all over the
-world. You can have an impact on Pharo too!
+world. You can have an impact on Pharo too! 
+Check *http://github.com/pharo-project/pharo*.
 
 
 !!!Who should read this book?
@@ -59,9 +61,14 @@ Perspective"" is freely available at *http://books.pharo.org*.
 
 This book will not teach you how to program. The reader should have some
 familiarity with programming languages. Some background with object-oriented
-programming would also be helpful.
+programming would also be helpful. 
+To learn more about object-oriented programming, you can read another book called ''Learning OOP design with TDD in Pharo''.
+This book is freely available at: *http://books.pharo.org*.
 
-This book will introduce the Pharo programming environment, the language and the
+In addition, ''Pharo with Style'' is another small book that discusses how to write good and readable Pharo code. It in available at: 
+*http://books.pharo.org*.
+
+The current book will introduce the Pharo programming environment, the language and the
 associated tools. You will be exposed to common idioms and practices, but the
 focus is on the technology, not on object-oriented design. Wherever possible,
 we will show you lots of examples.
@@ -136,10 +143,8 @@ We would also like to thank Hilaire Fernandes and Serge Stinckwich who allowed
 us to translate parts of their columns on Smalltalk, and Damien Cassou for
 contributing the chapter on Streams. We especially thank Alexandre Bergel, Orla
 Greevy, Fabrizio Perin, Lukas Renggli, Jorge Ressia and Erwann Wernli for their
-detailed reviews.
-
-We thank the University of Bern, Switzerland, for graciously supporting this
-open-source project and for hosting the web site of this book.
+detailed reviews. We thank the University of Bern, Switzerland, for graciously supporting this
+open-source project and for hosting the web site of this book during some years.
 
 We also thank the Pharo community for their enthusiastic support of this book
 project, as well as for all the translations of the first edition of ""Pharo by
@@ -160,3 +165,6 @@ financial support, and the RMoD team members for the constant energy pushing
 Pharo forward.
 
 Super special thanks to Damien Pollet for this great book template.
+
+
+S. Ducasse and S. Kaplar
