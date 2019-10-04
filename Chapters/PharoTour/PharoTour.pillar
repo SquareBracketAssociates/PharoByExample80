@@ -18,6 +18,13 @@ described here, do not be surprised.
 
 !!!Installing Pharo
 
+Pharo does not need to install anything in your system, as it's perfectly
+capable of running standalone. Depending on your platform, download the
+appropriate zip file, uncompress it in a directory of your choice and now you
+are ready to launch Pharo. In case of Ubuntu Linux, there is also the extra
+option of installing Pharo via the Pharo PPA. Pharo can be also installed via
+the command line.
+
 !!!!Downloading Pharo
 
 Pharo is available as a free download from
@@ -30,7 +37,7 @@ operating system to download the appropriate Pharo Launcher, it contains everyth
 For standalone version download the appropriate ==.zip== file. Once that file is unzipped, it will contain everything you need to run
 Pharo (this includes the VM, the image, and the sources, as explained below).
 
-!!!!!!Using handy scripts.
+!!!!Using handy scripts
 
 *http://files.pharo.org/get/* offers a collection of scripts to download
 specific versions of Pharo. This is really handy to automate the process.
@@ -41,14 +48,12 @@ To download the latest 8.0 full system, use the following snippet.
 wget -O- get.pharo.org/80+vm | bash
 ]]]
 
-!!!Installing Pharo
+Then you can execute the following
+[[[
+./pharo-ui Pharo.image
+]]]
 
-Pharo does not need to install anything in your system, as it's perfectly
-capable of running standalone. Depending on your platform, download the
-appropriate zip file, uncompress it in a directory of your choice and now you
-are ready to launch Pharo. In case of Ubuntu Linux, there is also the extra
-option of installing Pharo via the Pharo PPA. Pharo can be also installed via
-the command line.
+
 
 !!!Pharo: File Components
 
@@ -91,7 +96,7 @@ given point. An image is a virtual object container. The file is named for the
 release (like ==Pharo8.0.image==) and it is synched with the
 ==Pharo8.0.changes== file.
 
-!!!Image/Changes Pair
+!!!!Image/Changes Pair
 
 The ==.image== and ==.changes== files provided by a Pharo release are the
 starting point for a live environment that you adapt to your needs. As you work
@@ -107,7 +112,7 @@ your code. However, the most efficient way for backing up code is to use a
 version control system that will provide an easier and powerful way to back up
 and track your changes.
 
-!!!Common Setup
+!!!!Common Setup
 
 The four main component files above can be placed in the same directory,
 but it's a common practice to put the Virtual Machine and sources file in a
