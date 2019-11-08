@@ -30,7 +30,7 @@ The following terminology will help us:
 A message is always sent to a receiver, which can be a single literal, a block or a variable or the result of evaluating another message.
 To help you identify the receiver of a message, we will underline it for you. We will also surround each message send with an ellipse and number message sends starting from the first one that will be sent to help you see the order in which messages are sent.
 
-Figure *fig:ellipse* represents two message sends, ==Color yellow== and ==aMorph color: Color yellow==, hence there are two ellipses. The message send ==Color yellow== is executed first so its ellipse is numbered ==1==.  There are two receivers: ==aMorph== which receives the message ==color: ...== and ==Color== which receives the message ==yellow==. Both receivers are underlined.
+Figure *@fig:ellipse* represents two message sends, ==Color yellow== and ==aMorph color: Color yellow==, hence there are two ellipses. The message send ==Color yellow== is executed first so its ellipse is numbered ==1==.  There are two receivers: ==aMorph== which receives the message ==color: ...== and ==Color== which receives the message ==yellow==. Both receivers are underlined.
 
 A receiver can be the first element of a message, such as ==100== in the message send ==100 + 200== or ==Color== in the message send ==Color yellow==. However, a receiver can also be the result of other messages. For example in the message ==Pen new go: 100==, the receiver of the message ==go: 100== is the object returned by the message send ==Pen new==. In all the cases, a message is sent to an object called the ''receiver'' which may be the result of another message send.
 
@@ -61,13 +61,34 @@ Unary messages are messages that do not require any argument.
 They follow the syntactic template: ==receiver messageName==.
 The selector is simply made up of a succession of characters not containing ==:== (''e.g.'', ==factorial==, ==open==, ==class==).
 
-[[[
-89 sin           --> 0.860069405812453
-3 sqrt           --> 1.732050807568877
-Float pi         --> 3.141592653589793
-'blop' size     --> 4
-true not        --> false
-Object class --> Object class  "The class of Object is Object class (BANG)"
+[[[example=true
+89 sin
+>>> 0.860069405812453
+]]]
+
+[[[example=true
+3 sqrt
+>>> 1.732050807568877
+]]]
+
+[[[example=true
+Float pi
+>>> 3.141592653589793
+]]]
+
+[[[example=true
+'blop' size
+>>> 4
+]]]
+
+[[[example=true
+true not
+>>> false
+]]]
+
+[[[example=true
+Object class 
+>>> Object class  "The class of Object is Object class (BANG)"
 ]]]
 
 They follow the syntactic template: receiver ""selector""
@@ -78,12 +99,33 @@ Binary messages are messages that require exactly one argument ''and'' whose sel
 Note that ==\-\-== is not allowed for parsing reasons.
 
 [[[
-100@100      --> 100@100  "creates a Point object"
-3 + 4              --> 7
-10 - 1            --> 9
-4 <= 3            --> false
-(4/3) * 3 == 4  --> true  "equality is just a binary message, and Fractions are exact"
-(3/4) == (3/4) --> false  "two equal Fractions are not the same object"
+100@100
+>>> 100@100  "creates a Point object"
+]]]
+
+[[[example=true
+3 + 4
+>>> 7
+]]]
+
+[[[example=true
+10 - 1
+>>> 9
+]]]
+
+[[[example=true
+4 <= 3
+>>> false
+]]]
+
+[[[example=true
+(4/3) * 3 == 4  
+>>> true  "equality is just a binary message, and Fractions are exact"
+]]]
+
+[[[example=true
+(3/4) == (3/4) 
+>>> false  "two equal Fractions are not the same object"
 ]]]
 
 They follow the syntactic template: receiver ""selector"" argument
@@ -99,12 +141,22 @@ In Java or C++, the Pharo method invocation ==Color r: 1 g: 0 b: 0== would be wr
 
 [[[
 1 to: 10                        --> (1 to: 10)  "creates an interval"
-Color r: 1 g: 0 b: 0       --> Color red  "creates a new color"
-12 between: 8 and: 15 --> true
+]]]
 
+[[[example=true
+Color r: 1 g: 0 b: 0       --> Color red  "creates a new color"
+]]]
+
+[[[example=true
+12 between: 8 and: 15 --> true
+]]]
+
+[[[
+| nums |
 nums := Array newFrom: (1 to: 5).
 nums at: 1 put: 6.
-nums --> #(6 2 3 4 5)
+nums
+>>> #(6 2 3 4 5)
 ]]]
 
 Keyword based  messages are messages that require one or more arguments. Their selector consists of one or more keywords each ending in a colon (==:==). They follow the syntactic template: receiver ""selectorWordOne"" argumentOne ""wordTwo"" argumentTwo
@@ -118,7 +170,7 @@ The three kinds of messages each have different precedence, which allows them to
 -Messages of the same kind are evaluated from left to right.
 
 These rules lead to a very natural reading order.
-Now if you want to be sure that your messages are sent in the order that you want you can always put more parentheses as shown in Figure *fig:uKeyUn*.
+Now if you want to be sure that your messages are sent in the order that you want you can always put more parentheses as shown in Figure *@fig:uKeyUn*.
 In this  figure, the message ==yellow== is an unary message and the message ==color:== a keyword message, therefore the message send ==Color yellow== is sent first.
 However as message sends in parentheses are sent first, putting (unnecessary) parentheses around ==Color yellow== just emphasizes that it will be sent first.
 The rest of the section illustrates each of these points.
@@ -134,20 +186,32 @@ We also say that unary messages have a higher  priority over the other kinds of 
 
 As these examples show, Pharo's syntax rules generally ensure that message sends can be read in a natural way:
 [[[
-1000 factorial / 999 factorial --> 1000
-2 raisedTo: 1 + 3 factorial     --> 128
+1000 factorial / 999 factorial 
+>>> 1000
+]]]
+
+[[[example=true
+2 raisedTo: 1 + 3 factorial
+>>> 128
 ]]]
 
 
 Unfortunately the rules are a bit too simplistic for arithmetic message sends, so you need to introduce parentheses whenever you want to impose a priority over binary operators:
-[[[
-1 + 2 * 3   --> 9
-1 + (2 * 3) --> 7
+[[[example=true
+1 + 2 * 3
+>>> 9
+]]]
+
+[[[example=true
+1 + (2 * 3)
+>>> 7
 ]]]
 
 The following example, which is a bit more complex (!), offers a nice illustration that even complicated \st expressions can be read in a natural way:
+
 [[[
-[:aClass | aClass methodDict keys select: [:aMethod | (aClass>>aMethod) isAbstract ]] value: Boolean --> an IdentitySet(#or: #| #and: #& #ifTrue: #ifTrue:ifFalse: #ifFalse: #not #ifFalse:ifTrue:)
+[:aClass | aClass methodDict keys select: [:aMethod | (aClass>>aMethod) isAbstract ]] value: Boolean 
+>>> an IdentitySet(#or: #| #and: #& #ifTrue: #ifTrue:ifFalse: #ifFalse: #not #ifFalse:ifTrue:)
 ]]]
 
 Here we want to know which methods of the ==Boolean== class are abstract\footnote.In fact, we could also have written the equivalent but simpler expression: ==Boolean methodDict select: #isAbstract thenCollect: #selector==. We ask some argument class, ==aClass==, for the keys of its method dictionary, and select those methods of that class that are abstract. Then we bind the argument ==aClass== to the concrete value ==Boolean==. We need parentheses only to send the binary message ==\>\>==, which selects a method from a class, before sending the unary message \mbox{==isAbstract==} to that method. The result shows us which methods must be implemented by ==Boolean=='s concrete subclasses ==True== and ==False==.
@@ -163,7 +227,7 @@ Figure *fig:uKeyUn* shows graphically how messages are sent.
 Decomposing the evaluation of aPen color: Color yellow
         aPen color: Color yellow
 (1)                       Color yellow        "unary message is sent first"
-                        --> aColor
+                        >>> aColor
 (2)   aPen color: aColor                 "keyword message is sent next"
 ]]]
 
@@ -173,7 +237,7 @@ Decomposing the evaluation of aPen color: Color yellow
 [[[ Decomposing aPen go: 100 + 20
       aPen go: 100 + 20
 (1)                 100 + 20           "binary message first"
-                   -->   120
+                   >>>   120
 (2)  aPen go: 120                   "then keyword message"
 
 ]]]
@@ -185,7 +249,7 @@ Decomposing the evaluation of aPen color: Color yellow
 
 
 !!!!!!Example
- As an exercise we let you decompose the evaluation of the message ==Pen new go: 100 + 20== which is composed of one unary, one keyword and one binary message (see Figure *fig:unKeyBin*).
+ As an exercise we let you decompose the evaluation of the message ==Pen new go: 100 + 20== which is composed of one unary, one keyword and one binary message (see Figure *@fig:unKeyBin*).
 
 !!!!Parentheses first
 
@@ -193,10 +257,19 @@ Decomposing the evaluation of aPen color: Color yellow
 
 ""(Msg) > Unary > Binary > Keyword""
 
-[[[
-1.5 tan rounded asString = (((1.5 tan) rounded) asString) --> true    "parentheses not needed here"
-3 + 4 factorial   --> 27    "(not 5040)"
-(3 + 4) factorial --> 5040
+[[[example=true
+1.5 tan rounded asString = (((1.5 tan) rounded) asString) 
+>>> true    "parentheses not needed here"
+]]]
+
+[[[example=true
+3 + 4 factorial
+>>> 27    "(not 5040)"
+]]]
+
+[[[example=true
+(3 + 4) factorial
+>>> 5040
 ]]]
 
 Here we need the parentheses to force sending ==lowMajorScaleOn:== before ==play==.
@@ -218,13 +291,13 @@ The message ==(65@325 extent: 134@100) center== returns the center of a rectangl
 Example of Parentheses.
       (65@325 extent: 134@100) center
 (1)   65@325                                                    "binary"
-    --> aPoint
+    >>> aPoint
 (2)                                134@100                     "binary"
                                  --> anotherPoint
 (3)   aPoint extent: anotherPoint                       "keyword"
-      --> aRectangle
+      >>> aRectangle
 (4)   aRectangle center                                     "unary"
-      --> 132@375
+      >>> 132@375
 ]]]
 
 !!!!From left to right
@@ -235,7 +308,7 @@ Now we know how messages of different kinds or priorities are handled. The final
 
 !!!!!!Example.
 
-In the message sends ==Pen new down== all messages are unary messages, so the leftmost one, ==Pen new==, is sent first. This returns a newly created pen to which the second message ==down== is sent, as shown in Figure *fig:unaryMessages*.
+In the message sends ==Pen new down== all messages are unary messages, so the leftmost one, ==Pen new==, is sent first. This returns a newly created pen to which the second message ==down== is sent, as shown in Figure *@fig:unaryMessages*.
 
 !!!!Arithmetic inconsistencies
 
@@ -243,12 +316,33 @@ The message composition rules are simple but they result in inconsistency for th
 
 
 [[[
-3 + 4 * 5      --> 35    "(not 23)  Binary messages sent from left to right"
-3 + (4 * 5)    --> 23
-1 + 1/3         --> (2/3)    "and not 4/3"
-1 + (1/3)       --> (4/3)
-1/3 + 2/3       --> (7/9)    "and not 1"
-(1/3) + (2/3)  --> 1
+3 + 4 * 5
+>>> 35    "(not 23)  Binary messages sent from left to right"
+]]]
+
+[[[example=true
+3 + (4 * 5)
+>>> 23
+]]]
+
+[[[example=true
+1 + 1/3
+>>> (2/3)    "and not 4/3"
+]]]
+
+[[[example=true
+1 + (1/3)
+>>> (4/3)
+]]]
+
+[[[example=true
+1/3 + 2/3       
+>>> (7/9)    "and not 1"
+]]]
+
+[[[example=true
+(1/3) + (2/3)
+>>> 1
 ]]]
 
 !!!!!!Example
@@ -259,8 +353,8 @@ In the message sends ==20 \+ 2 \* 5==, there are only binary messages ==\+== and
 "As there is no priority among binary messages, the leftmost message + is evaluated first even if by the rules of arithmetic the * should be sent first."
 
       20 + 2 * 5
-(1)  20 + 2 --> 22
-(2)  22       * 5 --> 110
+(1)  20 + 2 >>> 22
+(2)  22       * 5 >>> 110
 
 ]]]
 
@@ -274,8 +368,8 @@ Decomposing 20 + (2 * 5)
 "The messages surrounded by parentheses are evaluated first therefore * is sent prior to + which produces the correct behaviour."
 
     20 + (2 * 5)
-(1)        (2 * 5) --> 10
-(2) 20 + 10      --> 30
+(1)        (2 * 5) >>> 10
+(2) 20 + 10      >>> 30
 ]]]
 
 
@@ -364,7 +458,8 @@ The values returned by all the expressions except the last one are ignored. Note
 [[[
 | box |
 box := 20@30 corner: 60@90.
-box containsPoint: 40@50 --> true
+box containsPoint: 40@50 
+>>> true
 ]]]
 
 !!!Cascaded messages
@@ -395,8 +490,9 @@ In the following example, the first cascaded message is ==setX:setY== since it i
 The receiver of the cascaded message ==setX:setY:== is the newly created point resulting from the evaluation of ==Point new==, and ''not'' ==Point==.
 The subsequent message ==isZero== is sent to that same receiver.
 
-[[[
-Point new setX: 25 setY: 35; isZero --> false
+[[[example=true
+Point new setX: 25 setY: 35; isZero
+>>> false
 ]]]
 
 !!!Chapter summary
