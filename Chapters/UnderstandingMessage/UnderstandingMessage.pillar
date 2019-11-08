@@ -1,8 +1,8 @@
 !!Understanding message syntax
-
 @chapterUnderstandingMessage
 
-Although Smalltalk's message syntax is extremely simple, it is unconventional and can take some time getting used to.
+Although Pharo's message syntax is extremely simple, it is unconventional and can take some time getting used to.
+Pharo syntax is closed from the one of Smalltalk.
 This chapter offers some guidance to help you get acclimatized to this special syntax for sending messages.
 If you already feel comfortable with the syntax, you may choose to skip this chapter, or come back to it later.
 
@@ -12,20 +12,20 @@ In Pharo, except for the syntactic elements listed in Chapter *chapterSyntaxNuts
 As in C\+\+, you can define operators like ==\+== for your own classes, but all operators have the same precedence.
 Moreover, you cannot change the arity of a method. "-" is always a binary message; there is no way to have a unary ''==\-=='' with a different overloading.
 
-In Smalltalk the order in which messages are sent is determined by the kind of message.
+In Pharo, the order in which messages are sent is determined by the kind of message.
 There are just three kinds of messages: ""unary , binary, and keyword messages"".
 Unary messages are always sent first, then binary messages and finally keyword ones.
 As in most languages, parentheses can be used to change the order of evaluation.
-These rules make Smalltalk code as easy to read as possible. And most of the time you do not have to think about the rules.
+These rules make Pharo code as easy to read as possible. And most of the time you do not have to think about the rules.
 
 As most computation in Pharo is done by message passing, correctly identifying messages is crucial.
 The following terminology will help us:
 
 -A message is composed of the message ""selector"" and the optional message arguments.
 -A message is sent to a ""receiver"".
--The combination of a message and its receiver is called a ''message'' \emphsubind{message}{send} as shown in Figure *fig:firstScriptMessage*.
+-The combination of a message and its receiver is called a ''message'' as shown in Figure *fig:firstScriptMessage*.
 
-+Two messages composed of a receiver, a method selector, and a set of arguments.\figlabel{firstScriptMessage>file://figures/message.png|label=fig:ellipse+
++Two messages composed of a receiver, a method selector, and a set of arguments.>file://figures/message.png|label=fig:ellipse+
 
 A message is always sent to a receiver, which can be a single literal, a block or a variable or the result of evaluating another message.
 To help you identify the receiver of a message, we will underline it for you. We will also surround each message send with an ellipse and number message sends starting from the first one that will be sent to help you see the order in which messages are sent.
@@ -42,13 +42,14 @@ A receiver can be the first element of a message, such as ==100== in the message
 |==Pen new  go: 100== | unary and keyword | creat and move pen 100 pixels.
 |==aPen go: 100 + 20== | keyword and binary | pen moves forward 120 pixels.
 
-The Table shows several examples of message sends. You should note that not all message sends have arguments. Unary messages like ==open== do not have arguments.
+The table shows several examples of message sends. You should note that not all message sends have arguments. Unary messages like ==open== do not have arguments.
 Single keyword and binary messages like ==go: 100== and ==+ 20== each have one argument.
 There are also simple messages and composed ones. ==Color yellow== and ==100 + 20== are  simple:  a message is sent to an object, while the message send ==aPen go: 100 + 20== is composed of two messages: ==+ 20== is sent to ==100== and ==go:== is sent to ==aPen== with the argument being the result of the first message. A receiver can be an expression (such as an assignment, a message send or a literal) which returns an object. In ==Pen new go: 100==, the message ==go: 100== is sent to the object that results from the execution of the message send ==Pen new==.
 
 !!!Three kinds of messages
 
-Smalltalk defines a few simple rules to determine the order in which the messages are sent. These rules are based on the distinction between 3 different kinds of messages:
+Pharo defines a few simple rules to determine the order in which the messages are sent.
+These rules are based on the distinction between 3 different kinds of messages:
 -''Unary messages'' are messages that are sent to an object without any other information. For example in ==3 factorial==, ==factorial== is a unary message.
 -''Binary messages'' are messages consisting of operators (often arithmetic).
 They are binary because they always involve only two objects: the receiver and the argument object. For example in ==10 + 20==, ==+== is a binary message sent to the receiver ==10== with argument ==20==.
@@ -94,7 +95,7 @@ Keyword messages follow the syntactic template: receiver ""selectorWordOne"" arg
 
 Each keyword takes an argument. Hence ==r:g:b:== is a method with three arguments, ==playFileNamed:== and ==at:== are methods with one argument, and ==at:put:== is a method with two arguments. To create an instance of the class ==Color== one can use the method ==r:g:b:== as in ==Color r: 1 g: 0 b: 0==, which creates the color red. Note that the colons are part of the selector.
 
-In Java or C++, the Smalltalk method invocation ==Color r: 1 g: 0 b: 0== would be written ==Color.rgb(1,0,0)==.
+In Java or C++, the Pharo method invocation ==Color r: 1 g: 0 b: 0== would be written ==Color.rgb(1,0,0)==.
 
 [[[
 1 to: 10                        --> (1 to: 10)  "creates an interval"
@@ -131,7 +132,7 @@ We also say that unary messages have a higher  priority over the other kinds of 
 
  Unary messages are sent first, then binary messages, and finally keyword based messages.==Unary > Binary > Keyword==
 
-As these examples show, Smalltalk's syntax rules generally ensure that message sends can be read in a natural way:
+As these examples show, Pharo's syntax rules generally ensure that message sends can be read in a natural way:
 [[[
 1000 factorial / 999 factorial --> 1000
 2 raisedTo: 1 + 3 factorial     --> 128
@@ -281,7 +282,7 @@ Decomposing 20 + (2 * 5)
 +>file://figures/ucompoNumberBracket.png+
 
 
-""In Smalltalk, arithmetic operators such as ==\+== and ==\*== do not have different priority. ==\+== and ==\*== are just binary messages, therefore ==\*== does not have priority over ==\+==. Use parentheses to obtain the desired result.""
+""In Pharo, arithmetic operators such as ==\+== and ==\*== do not have different priority. ==\+== and ==\*== are just binary messages, therefore ==\*== does not have priority over ==\+==. Use parentheses to obtain the desired result.""
 
 +Equivalent messages using parentheses.>file://figures/uKeyUnBinPar.png+
 +Equivalent messages using parentheses.>file://figures/uunKeyBinPar.png+
@@ -407,4 +408,4 @@ Point new setX: 25 setY: 35; isZero --> false
 -""Rule One."" Unary messages are sent first, then binary messages, and finally keyword messages.
 -""Rule Two."" Messages in parentheses are sent before any others.
 -""Rule Three."" When the messages are of the same kind, the order of evaluation is from left to right.
-- In Smalltalk, traditional arithmetic operators such as \+ and \* have the same priority. ==\+== and ==\*== are just binary messages, therefore ==\*== does not have priority over ==\+==. You must use parentheses to obtain a different result.
+- In Pharo, traditional arithmetic operators such as \+ and \* have the same priority. ==\+== and ==\*== are just binary messages, therefore ==\*== does not have priority over ==\+==. You must use parentheses to obtain a different result.
