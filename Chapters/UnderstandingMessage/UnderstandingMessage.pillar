@@ -2,8 +2,7 @@
 @chapterUnderstandingMessage
 
 Although Pharo's message syntax is extremely simple, it is unconventional and can take some time getting used to.
-Pharo syntax is closed from the one of Smalltalk.
-This chapter offers some guidance to help you get acclimatized to this special syntax for sending messages.
+This chapter offers some guidance to help you get acclimatized to the syntax for sending messages.
 If you already feel comfortable with the syntax, you may choose to skip this chapter, or come back to it later.
 
 !!!Identifying messages
@@ -25,7 +24,7 @@ The following terminology will help us:
 -A message is sent to a ""receiver"".
 -The combination of a message and its receiver is called a ''message'' as shown in Figure *fig:firstScriptMessage*.
 
-+Two messages composed of a receiver, a method selector, and a set of arguments.>file://figures/message.png|label=fig:ellipse+
++Two messages composed of a receiver, a method selector, and a set of arguments.>file://figures/message.png|label=fig:ellipse|width=80+
 
 A message is always sent to a receiver, which can be a single literal, a block or a variable or the result of evaluating another message.
 To help you identify the receiver of a message, we will underline it for you. We will also surround each message send with an ellipse and number message sends starting from the first one that will be sent to help you see the order in which messages are sent.
@@ -373,13 +372,13 @@ Decomposing 20 + (2 * 5)
 ]]]
 
 
-+>file://figures/ucompoNumberBracket.png+
++>file://figures/ucompoNumberBracket.png|width=60+
 
 
 ""In Pharo, arithmetic operators such as ==\+== and ==\*== do not have different priority. ==\+== and ==\*== are just binary messages, therefore ==\*== does not have priority over ==\+==. Use parentheses to obtain the desired result.""
 
-+Equivalent messages using parentheses.>file://figures/uKeyUnBinPar.png+
-+Equivalent messages using parentheses.>file://figures/uunKeyBinPar.png+
++Equivalent messages using parentheses.>file://figures/uKeyUnBinPar.png|width=60+
++Equivalent messages using parentheses.>file://figures/uunKeyBinPar.png|width=60+
 
 ""Table : Message sends and their fully parenthesized equivalents""
 
