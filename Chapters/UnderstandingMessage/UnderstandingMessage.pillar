@@ -269,7 +269,7 @@ Here we compute tangent of 1.5, then we round it and convert it as a string.
 >>> true    "parentheses not needed here"
 ]]]
 
-The second example shows that ==factorial is executed prior to the sum and if we want to first perform the sum of 3 and 4 we should use parentheses as shown below.
+The second example shows that ==factorial== is executed prior to the sum and if we want to first perform the sum of 3 and 4 we should use parentheses as shown below.
 [[[example=true
 3 + 4 factorial
 >>> 27    "(not 5040)"
@@ -383,7 +383,7 @@ Decomposing 20 + (2 * 5)
 
 +Changing default execution order using parentheses.>file://figures/ucompoNumberBracket.png|width=60+
 
-@@Note ""In Pharo, arithmetic operators such as ==\+== and ==\*== do not have different priority. ==\+== and ==\*== are just binary messages, therefore ==\*== does not have priority over ==\+==. Use parentheses to obtain the desired result.""
+@@note ""In Pharo, arithmetic operators such as ==\+== and ==\*== do not have different priority. ==\+== and ==\*== are just binary messages, therefore ==\*== does not have priority over ==\+==. Use parentheses to obtain the desired result.""
 
 +Equivalent messages using parentheses.>file://figures/uKeyUnBinPar.png|width=75+
 
