@@ -1,7 +1,6 @@
 !!Understanding message syntax
 @chapterUnderstandingMessage
-
-#stef did several passes
+%stef did several passes
 
 Although Pharo's message syntax is extremely simple, it is unconventional and can take some time getting used to.
 This chapter offers some guidance to help you get acclimatized to the syntax for sending messages.
@@ -27,12 +26,12 @@ The following terminology will help us:
 -A message is sent to a ""receiver"".
 -The combination of a message and its receiver is called a ''message'' as shown in Figure *@fig:firstScriptMessage*.
 
-+Two messages composed of a receiver, a method selector, and a set of arguments.>file://figures/message.png|label=fig:firstScriptMessage|width=60+
++Two messages composed of a receiver, a method selector, and a set of arguments.>file://figures/message.png|label=fig:firstScriptMessage|width=65+
 
 A message is always sent to a receiver, which can be a single literal, a block or a variable or the result of evaluating another message.
 To help you identify the receiver of a message, we will underline it for you. We will also surround each message send with an ellipse and number message sends starting from the first one that will be sent to help you see the order in which messages are sent.
 
-+Two messages: ==Color yellow== and ==aMorph color: Color yellow==.>/figures/uKeyUnOne.png|label=fig:ellipse+
++Two messages: ==Color yellow== and ==aMorph color: Color yellow==.>/figures/uKeyUnOne.png|label=fig:ellipse|width=50+
 
 Figure *@fig:ellipse* represents two message sends, ==Color yellow== and ==aMorph color: Color yellow==, hence there are two ellipses. The message send ==Color yellow== is executed first so its ellipse is numbered ==1==.  There are two receivers: ==aMorph== which receives the message ==color: ...== and ==Color== which receives the message ==yellow==. Both receivers are underlined.
 
@@ -97,7 +96,7 @@ Object class
 >>> Object class  "The class of Object is Object class (BANG)"
 ]]]
 
-They follow the syntactic template: receiver ""selector""
+@@important Unary messages follow the syntactic template: receiver ""selector""
 
 !!!!Binary messages
 
@@ -134,31 +133,34 @@ Note that ==\-\-== is not allowed for parsing reasons.
 >>> false  "two equal Fractions are not the same object"
 ]]]
 
-They follow the syntactic template: receiver ""selector"" argument
+@@important Binary messages follow the syntactic template: receiver ""selector"" argument
 
 !!!!Keyword messages
 
 Keyword messages are messages that require one or more arguments and whose selector consists of one or more keywords each ending in ==\:==.
-Keyword messages follow the syntactic template: receiver ""selectorWordOne"" argumentOne ""wordTwo"" argumentTwo
+
+The following message ==between:and:== is composed of two keywords: ==between:== and ==and:==. The full message is ==between:and:== and it is sent to number.
+
+[[[example=true
+2 between: 0 and: 10
+>>> true
+]]]
 
 Each keyword takes an argument. Hence ==r:g:b:== is a method with three arguments, ==playFileNamed:== and ==at:== are methods with one argument, and ==at:put:== is a method with two arguments. To create an instance of the class ==Color== one can use the method ==r:g:b:== as in ==Color r: 1 g: 0 b: 0==, which creates the color red. Note that the colons are part of the selector.
-
-In Java or C++, the Pharo method invocation ==Color r: 1 g: 0 b: 0== would be written ==Color.rgb(1,0,0)==.
-
-[[[
-1 to: 10
->>> (1 to: 10)  "creates an interval"
-]]]
 
 [[[example=true
 Color r: 1 g: 0 b: 0
 >>> Color red  "creates a new color"
 ]]]
 
+
+In Java or C++, the Pharo method invocation ==Color r: 1 g: 0 b: 0== would be written ==Color.rgb(1,0,0)==.
+
 [[[example=true
-12 between: 8 and: 15 
->>> true
+1 to: 10
+>>> (1 to: 10)  "creates an interval"
 ]]]
+
 
 [[[
 | nums |
@@ -168,15 +170,15 @@ nums
 >>> #(6 2 3 4 5)
 ]]]
 
-Keyword based  messages are messages that require one or more arguments. Their selector consists of one or more keywords each ending in a colon (==:==). They follow the syntactic template: receiver ""selectorWordOne"" argumentOne ""wordTwo"" argumentTwo
+@@important Keyword messages follow the syntactic template: receiver ""selectorWordOne:"" argumentOne ""wordTwo:"" argumentTwo
 
 !!!Message composition
 
 The three kinds of messages each have different precedence, which allows them to be composed in an elegant way.
 
--Unary messages are always sent first, then binary messages and finally keyword messages.
--Messages in \ind{parentheses} are sent prior to any kind of messages.
--Messages of the same kind are evaluated from left to right.
+- Unary messages are always sent first, then binary messages and finally keyword messages.
+- Messages in parentheses are sent prior to any kind of messages.
+- Messages of the same kind are evaluated from left to right.
 
 These rules lead to a very natural reading order.
 Now if you want to be sure that your messages are sent in the order that you want you can always put more parentheses as shown in Figure *@fig:uKeyUn*.
@@ -191,7 +193,7 @@ The rest of the section illustrates each of these points.
 Unary messages are sent first, then binary messages, and finally keyword messages.
 We also say that unary messages have a higher  priority over the other kinds of messages.
 
- Unary messages are sent first, then binary messages, and finally keyword based messages.==Unary > Binary > Keyword==
+ Unary messages are sent first, then binary messages, and finally keyword based messages. ==Unary > Binary > Keyword==
 
 As these examples show, Pharo's syntax rules generally ensure that message sends can be read in a natural way:
 [[[
@@ -237,7 +239,7 @@ This returns a color object which is passed as argument of the message ==aPen co
 Figure *@fig:uKeyUn* shows graphically how messages are sent.
 
 [[[
-Decomposing the evaluation of aPen color: Color yellow
+Decomposing the execution of aPen color: Color yellow
         aPen color: Color yellow
 (1)                       Color yellow        "unary message is sent first"
                         >>> aColor
@@ -256,24 +258,25 @@ Decomposing the evaluation of aPen color: Color yellow
 ]]]
 
 
- +Binary messages are sent before keyword messages>file://figures/uKeyBin.png|lable=fig:uKeyBin|width=70+
++Binary messages are sent before keyword messages>file://figures/uKeyBin.png|lable=fig:uKeyBin|width=40+
 
-+Decomposing Pen new go: 100 \+ 20>file://figures/uunKeyBin.png|label=fig:uunKeyBin|width=70+
++Decomposing Pen new go: 100 \+ 20>file://figures/uunKeyBin.png|label=fig:uunKeyBin|width=40+
 
 
 !!!!!!Example.
- As an exercise we let you decompose the evaluation of the message ==Pen new go: 100 + 20== which is composed of one unary, one keyword and one binary message (see Figure *@fig:uunKeyBin*).
+ As an exercise we let you decompose the execution of the message ==Pen new go: 100 + 20== which is composed of one unary, one keyword and one binary message (see Figure *@fig:uunKeyBin*).
 
 !!!!Parentheses first
 Parenthesised messages are sent prior to other messages.
 
-@@note ""(Msg) > Unary > Binary > Keyword""
+@@important (Msg) > Unary > Binary > Keyword
 
-Here are some example. The first example show that parentheses are not needed when the order is the one we want. 
+Here are some examples. The first example shows that parentheses are not needed when the order is the one we want. 
 Here we compute tangent of 1.5, then we round it and convert it as a string.
+
 [[[example=true
 1.5 tan rounded asString = (((1.5 tan) rounded) asString) 
->>> true    "parentheses not needed here"
+>>> true
 ]]]
 
 The second example shows that ==factorial== is executed prior to the sum and if we want to first perform the sum of 3 and 4 we should use parentheses as shown below.
@@ -297,10 +300,9 @@ Similarly in the following example, we need the parentheses to force sending ==l
 ]]]
 
 !!!!!!Example.
-
 The message ==(65@325 extent: 134@100) center== returns the center of a rectangle whose top left point is (65, 325) and whose size is 134*100. The following example shows how the message is decomposed and sent. First the message between parentheses is sent: it contains two binary messages ==65@325== and ==134@100== that are sent first and return points, and a keyword message ==extent:== which is then sent and returns a rectangle. Finally the unary message ==center== is sent to the rectangle and a point is returned. Evaluating the message without parentheses would lead to an error because the object ==100== does not understand the message ==center==.
 
-+Decomposing Pen new down>file://figures/ucompoUn.png|label=fig:unaryMessages+
+
 
 [[[
 Example of Parentheses.
@@ -308,7 +310,7 @@ Example of Parentheses.
 (1)   65@325                                                    "binary"
     >>> aPoint
 (2)                                134@100                     "binary"
-                                 --> anotherPoint
+                                 >>> anotherPoint
 (3)   aPoint extent: anotherPoint                       "keyword"
       >>> aRectangle
 (4)   aRectangle center                                     "unary"
@@ -316,18 +318,19 @@ Example of Parentheses.
 ]]]
 
 !!!!From left to right
+Now we know how messages of different kinds or priorities are handled. The final question to be addressed is how messages with the same priority are sent. They are sent from the left to the right. Note that you already saw this behaviour in  the previous example where the two point creation messages (==\@==) were sent first as shown in Figure *@fig:unaryMessages*.
 
-Now we know how messages of different kinds or priorities are handled. The final question to be addressed is how messages with the same priority are sent. They are sent from the left to the right. Note that you already saw this behaviour in  the precious exemple where the two point creation messages (==\@==) were sent first.
++Decomposing Pen new down.>file://figures/ucompoUn.png|label=fig:unaryMessages|width=60+
 
-"" When the messages are of the same kind, the order of evaluation is from left to right.""
+
+@@important When the messages are of the same kind, the order of execution is from left to right.
 
 !!!!!!Example.
-
 In the message sends ==Pen new down== all messages are unary messages, so the leftmost one, ==Pen new==, is sent first. This returns a newly created pen to which the second message ==down== is sent, as shown in Figure *@fig:unaryMessages*.
 
 !!!!Arithmetic inconsistencies
-
-The message composition rules are simple but they result in inconsistency for the execution of arithmetic message sends expressed in terms of binary messages. Here we see the common situations where extra parentheses are needed.
+The message composition rules are simple but they result in inconsistency for the execution of arithmetic message sends expressed in terms of binary messages. 
+Here we see the common situations where extra parentheses are needed.
 
 
 [[[
@@ -361,19 +364,18 @@ The message composition rules are simple but they result in inconsistency for th
 ]]]
 
 !!!!!!Example.
-
 In the message sends ==20 \+ 2 \* 5==, there are only binary messages ==\+== and ==\*==. However in \st there is no specific priority for the operations ==\+== and ==\*==. They are just binary messages, hence ==\*== does not have priority over ==\+==. Here the leftmost message ==\+== is sent first (1) and then the ==\*== is sent to the result as shown in below.
 
-[[[ Decomposing 20 + 2 * 5
+[[[Decomposing 20 + 2 * 5
 "As there is no priority among binary messages, the leftmost message + is evaluated first even if by the rules of arithmetic the * should be sent first."
 
-      20 + 2 * 5
+     20 + 2 * 5
 (1)  20 + 2 >>> 22
 (2)  22       * 5 >>> 110
 
 ]]]
 
-+Default execution order.>file://figures/ucompoNoBracketPar.png|width=60+
++Default execution order.>file://figures/ucompoNoBracketPar.png|width=55+
 
 
 As shown in the previous example the result of this message send is not ==30== but ==110==. This result is perhaps unexpected but follows directly from the rules used to send messages. This is the price to pay for the simplicity of the \st model. To get the correct result, we should use parentheses. When messages are enclosed in parentheses, they are evaluated first. Hence the message send ==20 \+ (2 \* 5)== returns the result as shown.
@@ -388,13 +390,13 @@ Decomposing 20 + (2 * 5)
 ]]]
 
 
-+Changing default execution order using parentheses.>file://figures/ucompoNumberBracket.png|width=60+
++Changing default execution order using parentheses.>file://figures/ucompoNumberBracket.png|width=55+
 
-@@note ""In Pharo, arithmetic operators such as ==\+== and ==\*== do not have different priority. ==\+== and ==\*== are just binary messages, therefore ==\*== does not have priority over ==\+==. Use parentheses to obtain the desired result.""
+@@important In Pharo, arithmetic operators such as ==\+== and ==\*== do not have different priority. ==\+== and ==\*== are just binary messages, therefore ==\*== does not have priority over ==\+==. Use parentheses to obtain the desired result.
 
-+Equivalent messages using parentheses.>file://figures/uKeyUnBinPar.png|width=75+
++Equivalent messages using parentheses.>file://figures/uKeyUnBinPar.png|width=80+
 
-+Equivalent messages using parentheses.>file://figures/uunKeyBinPar.png|width=75+
++Equivalent messages using parentheses.>file://figures/uunKeyBinPar.png|width=80+
 
 ""Table : Message sends and their fully parenthesized equivalents""
 
@@ -481,15 +483,20 @@ box containsPoint: 40@50
 Pharo offers a way to send multiple messages to the same receiver using a semicolon (==\;==).
 This is called the cascade in Pharo jargon.
 
-Expression Msg1 ; Msg2
+Syntactically a cascade is represented as follows:
 
+[[[
+anExpression msg1 ; msg2 ; msg3
+]]]
+
+!!!!!!Examples. 
+You can program in Pharo without using cascades. It just forces you to repeat the receiver of the message.
+The following code snippets are equivalent:
 [[[
 Transcript show: 'Pharo is '.
 Transcript show: 'fun '.
 Transcript cr.
 ]]]
-
-''is equivalent to:''
 
 [[[
 Transcript
@@ -501,7 +508,7 @@ Transcript
 Note that the object receiving the cascaded messages can itself be the result of a message send.
 In fact the receiver of all the cascaded messages is the receiver of the first message involved in a cascade.
 In the following example, the first cascaded message is ==setX:setY== since it is followed by a cascade.
-The receiver of the cascaded message ==setX:setY:== is the newly created point resulting from the evaluation of ==Point new==, and ''not'' ==Point==.
+The receiver of the cascaded message ==setX:setY:== is the newly created point resulting from the execution of ==Point new==, and ''not'' ==Point==.
 The subsequent message ==isZero== is sent to that same receiver.
 
 [[[example=true
@@ -517,5 +524,5 @@ Point new setX: 25 setY: 35; isZero
 - Keyword messages are messages that involve more than one object and that contain at least one colon character (==\:==). They are of the form: receiver ""selectorWordOne:"" argumentOne ""wordTwo:"" argumentTwo
 -""Rule One."" Unary messages are sent first, then binary messages, and finally keyword messages.
 -""Rule Two."" Messages in parentheses are sent before any others.
--""Rule Three."" When the messages are of the same kind, the order of evaluation is from left to right.
+-""Rule Three."" When the messages are of the same kind, the order of execution is from left to right.
 - In Pharo, traditional arithmetic operators such as \+ and \* have the same priority. ==\+== and ==\*== are just binary messages, therefore ==\*== does not have priority over ==\+==. You must use parentheses to obtain a different result.
