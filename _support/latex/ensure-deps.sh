@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# this dependency list is for LaTeX 2019
 xargs tlmgr install <<DEPS
     ctablestack
     environ
