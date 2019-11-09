@@ -1,9 +1,12 @@
 !!Understanding message syntax
 @chapterUnderstandingMessage
 
+#stef did several passes
+
 Although Pharo's message syntax is extremely simple, it is unconventional and can take some time getting used to.
 This chapter offers some guidance to help you get acclimatized to the syntax for sending messages.
 If you already feel comfortable with the syntax, you may choose to skip this chapter, or come back to it later.
+The Pharo's syntax is closed to the one of Smalltalk, so Smalltalk programmers can be familiar with Pharo's syntax.
 
 !!!Identifying messages
 
@@ -11,8 +14,8 @@ In Pharo, except for the syntactic elements listed in Chapter *@chapterSyntaxNut
 As in C\+\+, you can define operators like ==\+== for your own classes, but all operators have the same precedence.
 Moreover, you cannot change the arity of a method. "-" is always a binary message; there is no way to have a unary ''==\-=='' with a different overloading.
 
-In Pharo, the order in which messages are sent is determined by the kind of message.
-There are just three kinds of messages: ""unary , binary, and keyword messages"".
+In Pharo, the order in which messages are sent is determined by the ''kind'' of message.
+There are just three kinds of messages: ''unary'', ''binary'', and ''keyword messages''.
 Unary messages are always sent first, then binary messages and finally keyword ones.
 As in most languages, parentheses are used to change the execution order.
 These rules make Pharo code as easy to read as possible. And most of the time you do not have to think about the rules.
@@ -22,12 +25,14 @@ The following terminology will help us:
 
 -A message is composed of the message ""selector"" and the optional message arguments.
 -A message is sent to a ""receiver"".
--The combination of a message and its receiver is called a ''message'' as shown in Figure *fig:firstScriptMessage*.
+-The combination of a message and its receiver is called a ''message'' as shown in Figure *@fig:firstScriptMessage*.
 
-+Two messages composed of a receiver, a method selector, and a set of arguments.>file://figures/message.png|label=fig:ellipse|width=70+
++Two messages composed of a receiver, a method selector, and a set of arguments.>file://figures/message.png|label=fig:firstScriptMessage|width=60+
 
 A message is always sent to a receiver, which can be a single literal, a block or a variable or the result of evaluating another message.
 To help you identify the receiver of a message, we will underline it for you. We will also surround each message send with an ellipse and number message sends starting from the first one that will be sent to help you see the order in which messages are sent.
+
++Two messages: ==Color yellow== and ==aMorph color: Color yellow==.>/figures/uKeyUnOne.png|label=fig:ellipse+
 
 Figure *@fig:ellipse* represents two message sends, ==Color yellow== and ==aMorph color: Color yellow==, hence there are two ellipses. The message send ==Color yellow== is executed first so its ellipse is numbered ==1==.  There are two receivers: ==aMorph== which receives the message ==color: ...== and ==Color== which receives the message ==yellow==. Both receivers are underlined.
 
@@ -41,9 +46,11 @@ A receiver can be the first element of a message, such as ==100== in the message
 |==Pen new  go: 100== | unary and keyword | creat and move pen 100 pixels.
 |==aPen go: 100 + 20== | keyword and binary | pen moves forward 120 pixels.
 
-The table shows several examples of message sends. You should note that not all message sends have arguments. Unary messages like ==open== do not have arguments.
-Single keyword and binary messages like ==go: 100== and ==+ 20== each have one argument.
-There are also simple messages and composed ones. ==Color yellow== and ==100 + 20== are  simple:  a message is sent to an object, while the message send ==aPen go: 100 + 20== is composed of two messages: ==+ 20== is sent to ==100== and ==go:== is sent to ==aPen== with the argument being the result of the first message. A receiver can be an expression (such as an assignment, a message send or a literal) which returns an object. In ==Pen new go: 100==, the message ==go: 100== is sent to the object that results from the execution of the message send ==Pen new==.
+The table shows several examples of message sends. 
+- You should note that not all message sends have arguments. Unary messages like ==open== do not have arguments.
+- Single keyword and binary messages like ==go: 100== and ==+ 20== each have one argument.
+- There are also simple messages and composed ones. ==Color yellow== and ==100 + 20== are  simple:  a message is sent to an object, while the message send ==aPen go: 100 + 20== is composed of two messages: ==+ 20== is sent to ==100== and ==go:== is sent to ==aPen== with the argument being the result of the first message. 
+- A receiver can be an expression (such as an assignment, a message send or a literal) which returns an object. In ==Pen new go: 100==, the message ==go: 100== is sent to the object that results from the execution of the message send ==Pen new==.
 
 !!!Three kinds of messages
 
@@ -177,7 +184,7 @@ In this  figure, the message ==yellow== is an unary message and the message ==co
 However as message sends in parentheses are sent first, putting (unnecessary) parentheses around ==Color yellow== just emphasizes that it will be sent first.
 The rest of the section illustrates each of these points.
 
-+ Unary messages are sent first so Color yellow is sent. This returns a color object which is passed as argument of the message aPen color:.>/figures/uKeyUn.png|label=fig:uKeyUn+
++Unary messages are sent first so Color yellow is sent. This returns a color object which is passed as argument of the message aPen color:.>/figures/uKeyUn.png|label=fig:uKeyUn+
 
 
 !!!!Unary > Binary > Keywords
