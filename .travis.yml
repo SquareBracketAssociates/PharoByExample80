@@ -15,8 +15,6 @@ env:
     - TEXLIVE_RELEASE=2019
     - TEXLIVE_MIRROR=http://mirror.ctan.org/systems/texlive/tlnet
     - PATH="$HOME/texlive/bin/x86_64-linux:$PWD/build:$PATH"
-  matrix:
-  - JOB=test TYPE=System ARCHETYPE=book OUTPUT=pdf
 
 install:
   - git clone https://github.com/pillar-markup/pillar.git -b dev-7
