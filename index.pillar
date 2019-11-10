@@ -4,3 +4,5 @@ ${inputFile:path=Chapters/PharoTour/PharoTour.pillar}$
 ${inputFile:path=Chapters/FirstApplication/FirstApplication.pillar}$
 ${inputFile:path=Chapters/UnderstandingMessage/UnderstandingMessage.pillar}$
 ${inputFile:path=Chapters/PharoObjectModel/PharoObjectModel.pillar}$
+${inputFile:path=Chapters/SUnit/SUnit.pillar}$
+${inputFile:path=Chapters/BasicClasses/BasicClasses.pillar}$
