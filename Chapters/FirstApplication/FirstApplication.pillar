@@ -673,7 +673,7 @@ out of your Pharo image so that other programmers can bring it into theirs.
 
 +File Out our PBE-LightsOut>file://figures/fileOut.png|width=60|label=fig:fileOut+
 
-!!!Saving plain code
+!!!Saving plain code in a file
 
 The simplest way of doing this is by "filing out" the code. The right-click
 menu in the Package pane will give you the option to ==Extra > File Out== the whole of
@@ -693,118 +693,6 @@ Open a fresh Pharo image and use the ==File Browser== tool (==Tools \-\-> File
 Browser==) to file in the ==PBE-LightsOut.st== fileout (see Figure
 *@fig:fileBrowser*) and ==fileIn==. Verify that the game now works in the new
 image.
-
-!!!Monticello packages
-@fstApp:Monticello
-
-Although fileouts are a convenient way of making a snapshot of the code you have
-written, they are definitevely "old school". Just as most open-source projects
-find it much more convenient to maintain their code in a repository using SVN or
-Git, so Pharo programmers find it more convenient to manage their code using
-Monticello packages. These packages are represented as files with names ending
-in ==.mcz==. They are actually zip-compressed bundles that contain the complete
-code of your package.
-
-Using the Monticello package browser, you can save packages to repositories on
-various types of server, including FTP and HTTP servers. You can also just write
-the packages to a repository in a local file system directory. A copy of your
-package is also always cached on your local disk in the ==package-cache==
-folder. Monticello lets you save multiple versions of your program, merge
-versions, go back to an old version, and browse the differences between
-versions. In fact, Monticello is a distributed revision control system. This
-means it allows developers to save their work on different places, not on a
-single repository as it is the case with CVS or Subversion.
-
-You can also send a ==.mcz== file by email. The recipient will have to place it
-in her ==package-cache== folder; she will then be able to use Monticello to
-browse and load it.
-
-
-+Monticello browser. The package PBE-LightsOut is not save yet>file://figures/monticiello.png|width=100|label=fig:monticello+
-
-!!!! Monticello Browser
-
-Open the Monticello browser from the World menu (see Figure *@fig:monticello*).
-
-In the right-hand pane of the browser is a list of Monticello repositories,
-which will include all of the repositories from which code has been loaded into
-the image that you are using. The top list item is a local directory called the
-==package-cache==. It caches copies of the packages that you have loaded or
-published over the network. This local cache is really handy because it lets you
-keep your own local history. It also allows you to work in places where you do
-not have internet access, or where access is slow enough that you do not want to
-save to a remote repository very frequently.
-
-!!!Saving and loading code with Monticello
-
-On the left-hand side of the Monticello browser is a list of packages that have
-a version loaded into the image. Packages that have been modified since they
-were loaded are marked with an asterisk. (These are sometimes referred to as
-dirty packages.) If you select a package, the list of repositories is restricted
-to just those repositories that contain a copy of the selected package.
-
-Add the ==PBE-LightsOut== package to your Monticello browser using the
-""+ Package"" button and type ==PBE-LightsOut==.
-
-!!!SmalltalkHub: a Github for Pharo
-
-We think that the best way to save your code and share it is to create an
-account for your project in SmalltalkHub. SmalltalkHub is like GitHub:
-it is a web front-end to a HTTP Monticello server that lets you manage your
-projects. There is a public server at
-*http://www.smalltalkhub.com/>http://www.smalltalkhub.com/*.
-
-To be able to use SmalltalkHub you will need an account. Open the site in your
-browser. Then, click on the ""Join"" link and follow the instructions to create
-a new account. Finally, ""login"" to your account. Click on the ""+ New
-project"" to create a new project. Fill in the information requested and click
-""Register project"" button. You will be sent to your profile page, on the right
-side you will see the list of your projects and projects you watch by other
-coders. Click on the project you just created.
-
-Under ""Monticello registration"" title label you will see a box containing a
-smalltalk message similar to
-
-[[[lang=Smalltalk|caption=A repository pattern|label=scr:RepositoryPattern
-MCHttpRepository
-    location: 'http://www.smalltalkhub.com/mc/UserName/ProjectName/main'
-    user: 'YourName'
-    password: 'Optional_Password'
-]]]
-
-Copy the contents and go back to Pharo. Once your project has been created on
-SmalltalkHub, you have to tell your Pharo system to use it. With the
-==PBE-LightsOut== package selected, click the ""+Repository"" button in the
-Monticello browser. You will see a list of the different Repository types that
-are available. To add a SmalltalkHub repository select ==smalltalkhub.com==. You
-will be presented with a dialog in which you can provide the necessary
-information about the server. You should paste the code snippet you have copied
-from SmalltalkHub (see Figure *@fig:createRepository*). This message tells
-Monticello where to find your project online. You can also provide your user
-name and password. If you do not, then Pharo will ask for them each time you try
-to save into your online repository at SmalltalkHub.
-
-+Create your first repository on SmalltalkHub>file://figures/createRepository.png|width=100|label=fig:createRepository+
-
-Once you have accepted, your new repository should be listed on the right-hand
-side of the Monticello browser. Click on the ""Save"" button to save a first
-version of your Lights Out game on SmalltalkHub. Don't forget to put a comment
-so that you, or others, will have an idea of what your commit contains (see
-Figure *@fig:firstCommit*).
-
-+Do your first commit>file://figures/firstCommit.png|width=60|label=fig:firstCommit+
-
-To load a package into your image, open Monticello , select the repository where
-the package is located and click open button. It will open a new window with two
-columns, left one is the Package to be loaded, the right one is the version of
-the package to be loaded. Select the Package and the version you want to load
-and click the load button.
-
-Open the ==PBE-LightsOut== repository you have just saved. You should see the
-package you just saved.
-
-Monticello has many more capabilities, which will be discussed in depth in
-Chapter *: Sharing Code and Source Control>./SharingCode/SharingCode.pillar@cha:sharingCode*.
 
 !!!Iceberg: Pharo and Git
 
@@ -830,7 +718,7 @@ and that you should add packages to it (see Figure *@fig:icebergUpdatedRepositor
 
 Now, in order to add packages, double click on the PBE-LightsOut repository, and in the new dialog press ==Add package== in the toolbar.
 Select checkmark before the ""PBE-LightsOut"" package and press ==Add==, it is also possible to add multiple packages by selecting checkmark before the package name.
-The repository now contains the added package, with the status ""Uncomitted changes"", like in Figure *@fig:icebergWorkingCopy*.
+The repository now contains the added package, with the status ""Uncommitted changes"", like in Figure *@fig:icebergWorkingCopy*.
 
 +Iceberg working copy dialog>file://figures/icebergWorkingCopy.png|width=60|label=fig:icebergWorkingCopy+
 
@@ -859,5 +747,4 @@ debugger and the Monticello browser.
 -The ==initialize== method is automatically executed after an object is created in Pharo. You can put any initialization code there.
 -The debugger provides a high-level GUI to inspect and modify the state of a running program.
 -You can share source code by filing out a package, class or method.
--A better way to share code is to use Monticello to manage an external repository, for example defined as a SmalltalkHub project.
--Using Iceberg and git
+-Using Iceberg and git.

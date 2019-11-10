@@ -1,4 +1,4 @@
-!!A quick tour of Pharo
+!!A quick tour of Pharo (to revisit)
 @cha:tour
 
 This chapter will take you on a high level tour of Pharo, to help you get
@@ -617,7 +617,7 @@ switch seamlessly between selecting items and refining the search. Pressing
 ==Enter== on a selection opens the System Browser on that specific selected
 search result.
 
-!!!!Using 'Find class' in System Browser
+!!!Using 'Find class' in System Browser
 In the SystemBrowser you can also search for a class via its name. For example,
 suppose that you are looking for some unknown class that represents dates and
 times.
@@ -632,13 +632,6 @@ A list of classes is displayed, whose names contain the substring
 browse one of the others, select its name (in any text pane), and type
 ==CMD-b==, or you can choouse ==Brose== from the right-click context menu.
 
-!!!!Using the Finder
-
-You can also open the ==Finder== that is available from the ==World > Tools...==
-menu, and type part of the name of the class and change the Selectors to Classes
-in the right combo box. It is less efficient than using ""Spotter"" or the
-SystemBrowser as explained above. The Finder is more useful for other types of
-code searches such as find methods based on examples, as we will show later.
 
 !!!Finding Methods
 
@@ -648,7 +641,7 @@ in the current time, you might expect that there would be a method called "now",
 or containing "now" as a substring. But where might it be? ""Spotter"" and
 ""Finder"" can help you.
 
-!!!Spotter
+!!!!!Spotter.
 
 With ""Spotter"" you can also find methods. Either by getting a class and
 navigating or using category such as:
@@ -656,8 +649,7 @@ navigating or using category such as:
 - ==#implementor a method name== will display all the methods that are implemented and have the same name. For example you will get all the ==do:== methods.
 - ==#selector a method name== will display all the selectors that matches this name
 
-!!!With Finder
-
+!!!!!With Finder.
 Select ==World Menu > Tools > Finder==. Type ==now== in the top left search box,
 click ==Search== (or just press the ==Enter== key). You should see a list of
 results similar to the one in Figure *@fig:finder*.
@@ -672,6 +664,11 @@ in the code pane on the bottom. It is also possible to search for the exact matc
 +The Finder showing all classes defining a method named ==now==.>file://figures/finder.png|width=80|label=fig:finder+
 
 !!!Finding Methods Using Examples
+
+You can also open the ==Finder== that is available from the ==World > Tools...==
+menu, and type part of the name of the class and change the Selectors to Classes
+in the right combo box. The Finder is more useful for other types of
+code searches such as find methods based on examples.
 
 At other times, you may have a good idea that a method exists, but will have no
 idea what it might be called. The Finder can still help! For example,
