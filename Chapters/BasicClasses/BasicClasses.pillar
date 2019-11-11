@@ -1,4 +1,4 @@
-! Basic classes
+!! Basic classes
 @cha:basicClasses
 
 Pharo is a really simple language but powerful language. Part of its power is
@@ -15,7 +15,7 @@ cover the basic classes that you will need for nearly every application:
 ==Object==, ==Number== and its subclasses, ==Character==, ==String==,
 ==Symbol==, and ==Boolean==.
 
-!!Object
+!!!Object
 
 For all intents and purposes, ==Object== is the root of the inheritance
 hierarchy. Actually, in Pharo the true root of the hierarchy is ==ProtoObject==,
@@ -43,7 +43,7 @@ classes.
 If we begin to browse the method protocols on the instance side of ==Object==
 we will start to see some of the key behaviour it provides.
 
-!!!Printing
+!!!Object printing
 
 Every object can return a printed form of itself. You can select any expression
 in a textpane and select the ==Print it== menu item: this executes the
@@ -95,7 +95,7 @@ returns a textual version of the receiver. Of course, it may happen that this
 textual representation may represent the receiver as a self-evaluating
 expression.
 
-!!!!!A word about representation and self-evaluating representation.
+!!! A word about representation and self-evaluating representation.
 
 In functional programming, expressions return values when executed. In
 Pharo, messages (expressions) return objects (values). Some objects have the
@@ -106,21 +106,25 @@ value when you print the object in a playground. Here are some examples of such
 self-evaluating expressions.
 
 [[[testcase=true
-qqq
+true
 >>> true
 ]]]
+
 [[[testcase=true
 3@4
 >>> (3@4)
 ]]]
+
 [[[testcase=true
 $a
 >>> $a
 ]]]
+
 [[[testcase=true
 #(1 2 3)
 >>> #(1 2 3)
 ]]]
+
 [[[testcase=true
 Color red
 >>> Color red
@@ -527,7 +531,7 @@ instances of your class will automatically be initialized. The ==initialize==
 method should normally perform a ==super initialize== to establish the class
 invariant for any inherited instance variables.
 
-!!Numbers
+!!!Numbers
 @sec:Numbers
 
 Numbers in Pharo are not primitive data values but true objects.
@@ -745,7 +749,7 @@ n
 >>> 256
 ]]]
 
-!!Characters
+!!!Characters
 
 ==Character== is defined a subclass of ==Magnitude==. Printable characters are represented in Pharo as ==$<char>==.
 For example:
@@ -816,7 +820,7 @@ are always ''identical'':
 >>> true
 ]]]
 
-!!Strings
+!!!Strings
 
 A ==String== is an indexed ==Collection== that holds only ==Character==s.
 
@@ -887,7 +891,7 @@ converting a string to another string, such as ==capitalized== and
 
 For more on strings and collections, see Chapter *: Collections>../Collections/Collections.pier@cha:collections*.
 
-!!Booleans
+!!!Booleans
 
 The class ==Boolean== offers a fascinating insight into how much of the
 Pharo language has been pushed into the class library. ==Boolean== is the
@@ -957,9 +961,9 @@ takes a ==Boolean== argument. In the second and third examples, only the first
 is executed, since ==and:== expects a ==Block== as its argument. The ==Block==
 is executed only if the first argument is ==true==.
 
-@@todo Try to imagine how ==and:== and ==or:== are implemented. Check the implementations in ==Boolean==, ==True== and ==False==.
+Try to imagine how ==and:== and ==or:== are implemented. Check the implementations in ==Boolean==, ==True== and ==False==.
 
-!!Chapter summary
+!!!Chapter summary
 
 - If you override ===== then you should override ==hash== as well.
 - Override ==postCopy== to correctly implement copying for your objects.
