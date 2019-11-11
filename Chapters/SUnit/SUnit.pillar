@@ -1,4 +1,4 @@
-{ "title": "SUnit" }
+!!SUnit: Tests in Pharo
 @cha:sunit
 
 SUnit is a minimal yet powerful framework that supports the creation and
@@ -15,7 +15,7 @@ uses the power of reflection in supporting its tools. Note that the version
 documented in this chapter and used in Pharo is a modified version of SUnit3.3.
 
 
-!!Introduction
+!!!Introduction
 
 The interest in testing and Test Driven Development is not limited to Pharo.
  Automated testing has become a hallmark of the ''Agile software
@@ -50,7 +50,7 @@ write tests using SUnit, so instead of writing small code snippets in a
 playgound, we encourage you to use SUnit and get all the advantages of stored
 and automatically executable tests.
 
-!!Why testing is important
+!!!Why testing is important
 @sec:whytest
 
 Unfortunately, many developers believe that tests are a waste of their time.
@@ -85,7 +85,7 @@ find that this has happened, take advantage of it! As soon as you uncover the
 bug, write a test that exposes it, run the test, and watch it fail. Now you can
 start to fix the bug: the test will tell you when you are done.
 
-!!What makes a good test?
+!!!What makes a good test?
 
 Writing good tests is a skill that can be learned by practicing.
 Let us look at the properties that tests should have to get the maximum benefit.
@@ -138,7 +138,7 @@ stands for:
 
 Now let's write our first test, and show you the benefits of using SUnit.
 
-!!SUnit by example
+!!!!SUnit by example
 
 Before going into the details of SUnit, we will show a step by step example. We
 use an example that tests the class ==Set==. Try entering the code as we go
@@ -315,14 +315,14 @@ the bar to turn red, and are listed in the bottom pane on the right.
 
 Modify your tests to provoke both errors and failures.
 
-!!The SUnit cookbook
+!!!The SUnit cookbook
 
 This section will give you more details on how to use SUnit. If you have used
 another testing framework such as JUnit, much of this will be familiar, since
 all these frameworks have their roots in SUnit. Normally you will use SUnit's
 GUI to run tests, but there are situations where you may not want to use it.
 
-!!!Other assertions
+!!!!Other assertions
 
 In addition to ==assert:== and ==deny:==, there are several other methods that
 can be used to make assertions.
@@ -348,7 +348,7 @@ method below illustrates the use of ==should:raise:==.
 Try running this test. Note that the first argument of the ==should:== and
 ==shouldnt:== methods is a block that contains the expression to be executed.
 
-!!!Running a single test
+!!!!Running a single test
 
 Normally, you will run your tests using the Test Runner or using your code
 browser. If you don't want to launch the Test Runner from the World menu, you
@@ -359,7 +359,7 @@ MyExampleSetTest run: #testRemove
 >>> 1 run, 1 passed, 0 failed, 0 errors
 ]]]
 
-!!!Running all the tests in a test class
+!!!!Running all the tests in a test class
 
 Any subclass of ==TestCase== responds to the message ==suite==, which will build
 a test suite that contains all the methods in the class whose names start with
@@ -372,7 +372,7 @@ MyExampleSetTest suite run
 >>> 4 run, 4 passed, 0 failed, 0 errors
 ]]]
 
-!!!Must I subclass TestCase?
+!!!!Must I subclass TestCase?
 
 In JUnit you can build a TestSuite from an arbitrary class containing ==test*==
 methods. In SUnit you can do the same but you will then have to create a suite
@@ -380,7 +380,7 @@ by hand and your class will have to implement all the essential ==TestCase==
 methods like ==assert:==. We recommend, however, that you not try to do this.
 The framework is there: use it.
 
-!!The SUnit framework
+!!!The SUnit framework
 
 SUnit consists of four main classes: ==TestCase==, ==TestSuite==,
 ==TestResult==, and ==TestResource==, as shown in Figure *@fig:sunit-classes*.
@@ -392,7 +392,7 @@ before each test.
 
 +The four classes representing the core of SUnit.>file://figures/sunit-classes.png|width=80|label=fig:sunit-classes+
 
-!!!TestCase
+!!!!TestCase
 
 ==TestCase== is an abstract class that is designed to be subclassed. Each of its
 subclasses represents a group of tests that share a common context (that is, a
@@ -406,7 +406,7 @@ variables. Subclasses of ==TestCase== can also override method ==tearDown==,
 which is invoked after the execution of each test, and can be used to release
 any objects allocated during ==setUp==.
 
-!!!TestSuite
+!!!!TestSuite
 
 Instances of the class ==TestSuite== contain a collection of test cases. An
 instance of ==TestSuite== contains tests, and other test suites. That is, a test
@@ -417,13 +417,13 @@ they can be treated in the same way (for example, both can be ==run==). This is
 in fact an application of the Composite pattern in which ==TestSuite== is the
 composite and the test cases are the leaves.
 
-!!!TestResult
+!!!!TestResult
 
 The class ==TestResult== represents the results of a ==TestSuite== execution.
 It records the number of tests passed, the number of tests failed, and the
 number of errors signalled.
 
-!!!TestResource
+!!!!TestResource
 @sec:testResource
 
 One of the important features of a suite of tests is that they should be
@@ -484,7 +484,7 @@ MyTestCase class >> resources
 	^ { MyTestResource }
 ]]]
 
-!!!Exercise
+!!!!Exercise
 
 The following trace (written to the ==Transcript==) illustrates that a global
 set up is run before and after each test in a sequence. Let's see if you can
@@ -529,12 +529,12 @@ MyTestResource >> tearDown
 	Transcript show: 'MyTestResource>>tearDown has run.'; cr
 ]]]
 
-!!Advanced features of SUnit
+!!!Advanced features of SUnit
 
 In addition to ==TestResource==, SUnit contains assertion description strings,
 logging support, the ability to skip tests, and resumable test failures.
 
-!!!Assertion description strings
+!!!!Assertion description strings
 @sec:descriptionStrings
 
 The ==TestAsserter== assertion protocol includes a number of methods that allow
@@ -558,7 +558,7 @@ should:description:
 shouldnt:description:
 ]]]
 
-!!!Using ==assert:equals:==
+!!!!Using ==assert:equals:==
 
 In addition to ==assert:==, there is also ==assert:equals:== that offers a
 better report in case of error (incidentally, ==assert:equals:== uses
@@ -572,14 +572,15 @@ instance variable of the test class.
 [[[
 testAsDate
 	self assert: aDateAndTime asDate = ('February 29, 2004' asDate translateTo: 2 hours).
-
+]]]
+[[[
 testAsDate
 	self
 		assert: aDateAndTime asDate
 		equals: ('February 29, 2004' asDate translateTo: 2 hours).
 ]]]
 
-!!!Logging support
+!!!!Logging support
 
 The description strings mentioned above may also be logged to a ==Stream==, such
 as the ==Transcript== or a file stream. You can choose whether to log by
@@ -587,7 +588,7 @@ overriding ==isLogging== in your test class; you must also choose where to log
 by overriding ==failureLog== to answer an appropriate stream. By default, the
 ==Transcript== is used to log.
 
-!!!Skipping tests
+!!!!Skipping tests
 
 Sometimes in the middle of a development, you may want to skip a test instead of
 removing it or renaming it to prevent it from running. You can simply invoke the
@@ -602,7 +603,7 @@ OCCompiledMethodIntegrityTest >> testPragmas
 	...
 ]]]
 
-!!Continuing after a failure
+!!!Continuing after a failure
 
 SUnit also allows us to specify whether or not a test should continue after a
 failure. This is a really powerful feature that uses Pharo's exception
@@ -633,25 +634,25 @@ methods that we have seen are not resumable by default;
 ==assert: p description: s== is equivalent to
 ==assert: p description: s resumable: false==.
 
-!!A piece of advices on testing
+!!!A piece of advices on testing
 
 While the mechanics of testing are easy, writing good tests is not. Here is some
 advice on how to design tests.
 
-!!!Self-contained tests
+!!!!Self-contained tests
 
 You do not want to have to change your tests each time you change your code,
 so try to write the tests so that they are self-contained. This can be
 difficult, but pays off in the long term. Writing tests against stable
 interfaces supports this effort.
 
-!!!Do not over-test
+!!!!Do not over-test
 
 Try to build your tests so that they do not overlap. It is annoying to have many
 tests covering the same functionality, because one bug in the code will then
 break many tests at the same time. This is covered by Black's rule, below.
 
-!!!Feathers' Rules for Unit tests
+!!!!Feathers' Rules for Unit tests
 
 Michael Feathers, an agile process consultant and author, writes:
 
@@ -665,7 +666,7 @@ that we can keep a set of tests that we can run fast whenever we make our
 changes. Never get yourself into a situation where you don't want to run your
 unit test suite because it takes too long.''
 
-!!!Unit Tests vs. Acceptance Tests
+!!!!Unit Tests vs. Acceptance Tests
 
 Unit tests capture one piece of functionality, and as such make it easier to
 identify bugs in that functionality. As far as possible try to have unit tests
@@ -683,7 +684,7 @@ because they touch the file system. You can write them using SUnit, but you
 won't want to run them each time you make a small change, so they should be
 separated from the true unit tests.
 
-!!!Black's Rule of Testing
+!!!!Black's Rule of Testing
 
 For every test in the system, you should be able to identify some property for
 which the test increases your confidence. It's obvious that there should be no
@@ -696,7 +697,7 @@ tests. Second, because one bug in the code might then break many tests, they
 make it harder to estimate how many bugs remain in the code. So, have a property
 in mind when you write a test.
 
-!!Chapter summary
+!!!Chapter summary
 
 This chapter explained why tests are an important investment in the future of
 your code. We explained in a step-by-step fashion how to define a few tests for

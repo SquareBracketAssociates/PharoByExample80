@@ -186,11 +186,11 @@ images preloaded with specific libraries that make it very easy to use those
 tools without having to manually install and configure them.
 
 ""PharoLauncher"" can be found on GitHub at
-*https://github.com/pharo-project/pharo-launcher>https://github.com/pharo-project/pharo-launcher*
+*https://github.com/pharo-project/pharo-launcher.>https://github.com/pharo-project/pharo-launcher*
 together with installation instructions and download links depending on your
 platform. ""PharoLauncher"" is basically composed of two columns.
 
-+PharoLauncher - GUI>file://figures/PharoLauncher.png|width=70|label=fig:PharoLauncher+
++PharoLauncher - GUI.>file://figures/PharoLauncher.png|width=70|label=fig:PharoLauncher+
 
 After installing PharoLauncher and opening it (like you would do for any Pharo
 image), you should get a GUI similar to Figure *@fig:PharoLauncher*.
@@ -217,7 +217,7 @@ Once Pharo is running, you should see a single large window, possibly containing
 some open playground windows (see Figure *@fig:worldMenu*). You might notice a
 menu bar, but Pharo mainly makes use of context-dependent pop-up menus.
 
-+Clicking anywhere on the Pharo window background activates the World Menu>file://figures/Pharo80.png|width=100|label=fig:worldMenu+
++Clicking anywhere on the Pharo window background activates the World Menu.>file://figures/Pharo80.png|width=100|label=fig:worldMenu+
 
 Clicking anywhere on the background of the Pharo window will display the
 ""World Menu"", which contains many of the Pharo tools, utilities and settings.
@@ -252,7 +252,7 @@ Windows or Linux) or ==Shift-Option== (on OS X) while clicking.
 
 +Action Click (right click) brings the contextual menu.>file://figures/operating.png|width=60|label=fig:operating+
 
-+Meta-Clicking on a window opens the Halos>file://figures/addHalo.png|width=100|label=fig:halos+
++Meta-Clicking on a window opens the Halos.>file://figures/addHalo.png|width=100|label=fig:halos+
 
 !!!Sending Messages
 
@@ -277,7 +277,7 @@ the concept of sending messages to objects. The Pharo objects are like your
 soldiers ready to obey once you send them a message they can understand. We
 will see how an object can understand a message, later on.
 
-+PharoTutorial is a simple interactive tutorial to learn about Pharo>file://figures/ProfStef.png|width=60|label=fig:ProfStef+
++PharoTutorial is a simple interactive tutorial to learn about Pharo.>file://figures/ProfStef.png|width=60|label=fig:ProfStef+
 
 If you talk to Pharoers for a while, you will notice that they generally do not
 use expressions like ''call an operation'' or ''invoke a method'', as developers
@@ -420,7 +420,7 @@ expect.
 We use the notation ==>>>== as a convention in this book to indicate that a
 particular Pharo expression yields a given result when you ==Print it==.
 
-+Inspecting a simple number using ==Inspect==>file://figures/inspector.png|width=80|label=fig:inspector+
++Inspecting a simple number using ==Inspect==.>file://figures/inspector.png|width=80|label=fig:inspector+
 
 !!!Inspect
 
@@ -440,7 +440,7 @@ views on the object depending on the kind of object you are inspecting. Inspect
 ==Morph new openInWorld== you should get a situation similar to the one of
 Figure *@fig:inspectorMorph*.
 
-+Inspecting a Morph using ==Inspect==>file://figures/inspectMorph.png|width=80|label=fig:inspectorMorph+
++Inspecting a Morph using ==Inspect==.>file://figures/inspectMorph.png|width=80|label=fig:inspectorMorph+
 
 
 !!!Other Operations
@@ -467,7 +467,7 @@ current implementation of the System Browser is called Calypso. Previous version
 
 !!!Opening the System Browser on a Given Method
 
-+The System Browser showing the ==factorial== method of class ==Integer==>file://figures/system-browser-annotated.png|width=100|label=fig:systemBrowser+
++The System Browser showing the ==factorial== method of class ==Integer==.>file://figures/system-browser-annotated.png|width=100|label=fig:systemBrowser+
 
 This is not the usual way that we open a browser on a method: we use more
 advanced tools! But for the sake of this exercise, execute the following code
@@ -499,7 +499,7 @@ Let us look how to find the ==printString== method defined in class ==Object==.
 At the end of the navigation, we will get the situation depicted in
 *@fig:systemBrowser2*.
 
-+The System Browser showing the ==printString== method of class ==Object==>file://figures/browsingprintString.png|width=100|label=fig:systemBrowser2+
++The System Browser showing the ==printString== method of class ==Object==.>file://figures/browsingprintString.png|width=100|label=fig:systemBrowser2+
 
 !!!!!Open the Browser by selecting ==World > Tools > System Browser==.
 When a new System Browser window first opens, all panes but the leftmost are
@@ -573,7 +573,7 @@ The fastest (and probably the coolest) way to find a class is to use
 for finding classes, methods, and many other related actions. Figure
 *@fig:spotter* shows that we look for ==Point==.
 
-+Opening Spotter>file://figures/spotter.png|width=80|label=fig:spotter+
++Opening Spotter.>file://figures/spotter.png|width=80|label=fig:spotter+
 
 ""Spotter"" offers several possibilities as shown in Figure *@fig:spotter*. You
 can specify to Spotter the kind of ''categories'' you are interested in. For
@@ -589,7 +589,7 @@ Other Categories are menu, packages, method (==#implementor==), examples
 can just type the beginning of the category to identify it i.e., ==#ref Point==
 will give all the reference to the class ==Point==.
 
-+Looking for implementors matching ==printString==>file://figures/Spotter2.png|width=80|label=fig:spotter2+
++Looking for implementors matching ==printString==.>file://figures/Spotter2.png|width=80|label=fig:spotter2+
 
 ""Spotter"" can be used even to browse through the OS file system, and has a
 history category where previous searches are stored for quickly going back to
@@ -803,7 +803,7 @@ The window that opens with the error message is the Pharo debugger. We will look
 at the debugger and how to use it in Chapter:
 *The Pharo Environment>../Environment/Environment.pillar@cha:env*.
 
-+Pressing the Create button in the debugger prompts you to select in which class to create the new method. >file://figures/preview-2.png|width=50|label=fig:createPromptWhichClass+
++Pressing the Create button in the debugger prompts you to select in which class to create the new method.>file://figures/preview-2.png|width=50|label=fig:createPromptWhichClass+
 
 !!!Implementing the Tested Method
 
