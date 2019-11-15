@@ -7,20 +7,18 @@ os:
 smalltalk:
   - Pharo-stable
 
-# Unit tests run the normal pillar tests
-# Integration tests test that pillar itself can interact with generated files, pdf generation, etc.
-# System tests test that we can install and use pillar as a black box
 env:
   global:
+    - PILLAR_RELEASE=v7.7.3
     - TEXLIVE_RELEASE=2019
     - TEXLIVE_MIRROR=http://mirror.ctan.org/systems/texlive/tlnet
-    - PATH="$HOME/texlive/bin/x86_64-linux:$PWD/build:$PATH"
+    - PATH="$HOME/texlive/bin/x86_64-linux:$HOME/pillar/build:$PATH"
 
 install:
-  - git clone https://github.com/pillar-markup/pillar.git -b v7.7.3
-  - ./pillar/scripts/ci/install-texlive
+  - git clone --branch "$PILLAR_RELEASE" https://github.com/pillar-markup/pillar.git "$HOME/pillar"
+  - ( cd $HOME/pillar; ./scripts/build.sh; )
+  - $HOME/pillar/scripts/ci/install-texlive
   - ./_support/latex/ensure-deps.sh
-  - ./pillar/scripts/build.sh
 
 script:
   - pillar build pdf
