@@ -26,7 +26,7 @@ The following terminology will help us:
 -A message is sent to a ""receiver"".
 -The combination of a message and its receiver is called a ''message send'' as shown in Figure *@fig:firstScriptMessage*.
 
-+Two messages composed of a receiver, a method selector, and a set of arguments.>file://figures/message.png|label=fig:firstScriptMessage|width=65+
++Two message sends composed of a receiver, a method selector, and a set of arguments.>file://figures/message.png|label=fig:firstScriptMessage|width=65+
 
 A message is always sent to a receiver, which can be a single literal, a block or a variable or the result of evaluating another message.
 To help you identify the receiver of a message, we will underline it for you. We will also surround each message send with an ellipse and number message sends starting from the first one that will be sent to help you see the order in which messages are sent.
