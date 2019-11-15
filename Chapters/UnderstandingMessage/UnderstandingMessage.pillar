@@ -37,13 +37,14 @@ Figure *@fig:ellipse* represents two message sends, ==Color yellow== and ==aMorp
 
 A receiver can be the first element of a message, such as ==100== in the message send ==100 + 200== or ==Color== in the message send ==Color yellow==. However, a receiver can also be the result of other messages. For example in the message ==Pen new go: 100==, the receiver of the message ==go: 100== is the object returned by the message send ==Pen new==. In all the cases, a message is sent to an object called the ''receiver'' which may be the result of another message send.
 
+
 |!Message send |!Message type |!Result
-|==Color yellow== | unary | Creates a color.
-|==aPen  go: 100== | keyword | forwards pen 100 pixels.
-|==100 + 20== | binary |  100 receives the message +
+|==Color yellow== | unary | Gives a yellow color.
+|==aPen  go: 100== | keyword | The pen moves forward 100 pixels
+|==100 + 20== | binary |  100 is increased by 20
 |==Browser open== | unary | Opens a new browser.
-|==Pen new  go: 100== | unary and keyword | creat and move pen 100 pixels.
-|==aPen go: 100 + 20== | keyword and binary | pen moves forward 120 pixels.
+|==Pen new  go: 100== | unary and keyword | Creates and moves a pen 100 pixels forward.
+|==aPen go: 100 + 20== | keyword and binary | The pen moves forward 120 pixels.
 
 The table shows several examples of message sends. 
 - You should note that not all message sends have arguments. Unary messages like ==open== do not have arguments.
