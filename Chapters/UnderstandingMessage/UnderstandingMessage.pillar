@@ -24,7 +24,7 @@ The following terminology will help us:
 
 -A message is composed of the message ""selector"" and the optional message arguments.
 -A message is sent to a ""receiver"".
--The combination of a message and its receiver is called a ''message'' as shown in Figure *@fig:firstScriptMessage*.
+-The combination of a message and its receiver is called a ''message send'' as shown in Figure *@fig:firstScriptMessage*.
 
 +Two messages composed of a receiver, a method selector, and a set of arguments.>file://figures/message.png|label=fig:firstScriptMessage|width=65+
 
