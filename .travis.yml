@@ -9,7 +9,7 @@ smalltalk:
 
 env:
   global:
-    - PILLAR_RELEASE=v7.7.3
+    - PILLAR_RELEASE=v7.7.2
     - TEXLIVE_RELEASE=2019
     - TEXLIVE_MIRROR=http://mirror.ctan.org/systems/texlive/tlnet
     - PATH="$HOME/texlive/bin/x86_64-linux:$HOME/pillar/build:$PATH"
