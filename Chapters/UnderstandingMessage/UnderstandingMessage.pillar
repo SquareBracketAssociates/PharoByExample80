@@ -38,17 +38,18 @@ Figure *@fig:ellipse* represents two message sends, ==Color yellow== and ==aMorp
 A receiver can be the first element of a message, such as ==100== in the message send ==100 + 200== or ==Color== in the message send ==Color yellow==. However, a receiver can also be the result of other messages. For example in the message ==Pen new go: 100==, the receiver of the message ==go: 100== is the object returned by the message send ==Pen new==. In all the cases, a message is sent to an object called the ''receiver'' which may be the result of another message send.
 
 |!Message send |!Message type |!Result
-|==Color yellow== | unary | Gives a yellow color.
+|==Color yellow== | unary | Creates color yellow.
 |==aPen  go: 100== | keyword | The pen moves forward 100 pixels
 |==100 + 20== | binary |  100 is increased by 20
 |==Browser open== | unary | Opens a new browser.
-|==Pen new  go: 100== | unary and keyword | Creates and moves a pen 100 pixels forward.
+|==Pen new  go: 100== | unary and keyword | Creates and moves a pen 
+| | |100 pixels forward.
 |==aPen go: 100 + 20== | keyword and binary | The pen moves forward 120 pixels.
 
 The table shows several examples of message sends. You should note that:
 - Not all message sends have arguments. Unary messages like ==open== do not have arguments.
 - Single keyword and binary messages like ==go: 100== and ==+ 20== each have one argument.
-- There are also simple messages and composite ones. ==Color yellow== and ==100 + 20== are  simple:  a message is sent to an object, while the message send ==aPen go: 100 + 20== is composed of two messages: ==+ 20== is sent to ==100== and ==go:== is sent to ==aPen== with the argument being the result of the first message. 
+- There are also simple messages and composed ones. ==Color yellow== and ==100 + 20== are  simple:  a message is sent to an object, while the message send ==aPen go: 100 + 20== is composed of two messages: ==+ 20== is sent to ==100== and ==go:== is sent to ==aPen== with the argument being the result of the first message. 
 - A receiver can be an expression (such as an assignment, a message send or a literal) which returns an object. In ==Pen new go: 100==, the message ==go: 100== is sent to the object that results from the execution of the message send ==Pen new==.
 
 !!!Three kinds of messages
