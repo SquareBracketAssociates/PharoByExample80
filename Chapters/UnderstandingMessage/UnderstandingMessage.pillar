@@ -144,14 +144,14 @@ Note that ==\-\-== is not allowed for parsing reasons.
 
 Keyword messages are messages that require one or more arguments and whose selector consists of one or more keywords each ending in ==\:==.
 
-The following message ==between:and:== is composed of two keywords: ==between:== and ==and:==. The full message is ==between:and:== and it is sent to number.
+In the following example, message ==between:and:== is composed of two keywords: ==between:== and ==and:==. The full message is ==between:and:== and it is sent to number.
 
 [[[example=true
 2 between: 0 and: 10
 >>> true
 ]]]
 
-Each keyword takes an argument. Hence ==r:g:b:== is a method with three arguments, ==playFileNamed:== and ==at:== are methods with one argument, and ==at:put:== is a method with two arguments. To create an instance of the class ==Color== one can use the method ==r:g:b:== as in ==Color r: 1 g: 0 b: 0==, which creates the color red. Note that the colons are part of the selector.
+Each keyword takes an argument. Hence ==r:g:b:== is a message with three arguments, ==playFileNamed:== and ==at:== are messages with one argument, and ==at:put:== is a message with two arguments. To create an instance of the class ==Color== one can use the message ==r:g:b:== as in ==Color r: 1 g: 0 b: 0==, which creates the color red. Note that the colons are part of the selector.
 
 [[[example=true
 Color r: 1 g: 0 b: 0
@@ -159,7 +159,7 @@ Color r: 1 g: 0 b: 0
 ]]]
 
 
-In Java or C++, the Pharo method invocation ==Color r: 1 g: 0 b: 0== would be written ==Color.rgb(1,0,0)==.
+In aconventional syntax, the Pharo message send ==Color r: 1 g: 0 b: 0== would correspnd to a method invocation written as ==Color.rgb(1,0,0)==.
 
 [[[example=true
 1 to: 10
@@ -175,7 +175,7 @@ nums
 >>> #(6 2 3 4 5)
 ]]]
 
-@@important Keyword messages follow the syntactic template: receiver ""selectorWordOne:"" argumentOne ""wordTwo:"" argumentTwo
+@@important Keyword messages follow the syntactic template: receiver ""selectorWordOne:"" argumentOne ""wordTwo:"" argumentTwo ... ""wordN:"" argumentN
 
 !!!Message composition
 
