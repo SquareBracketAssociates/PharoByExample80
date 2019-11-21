@@ -1,4 +1,4 @@
-{ "title": "Streams" }
+!! Streams
 @cha:streams
 
 Streams are used to iterate over sequences of elements such as sequenced
@@ -7,7 +7,7 @@ writeable, or both. Reading or writing is always relative to the current
 position in the stream. Streams can easily be converted to collections, and vice
 versa.
 
-!!Two sequences of elements
+!!!Two sequences of elements
 
 A good metaphor to understand a stream is the following. A stream can be
 represented as two sequences of elements: a past element sequence and a future
@@ -35,7 +35,7 @@ the same stream after having written an ==x== using the message
 
 +The same stream after having written an ==x==.>file://figures/ax_cdeStef.png|width=70|label=fig:ax_cde+
 
-!!Streams vs. collections
+!!!Streams vs. collections
 
 The collection protocol supports the storage, removal and enumeration of the
 elements of a collection, but does not allow these operations to be
@@ -83,13 +83,13 @@ and writing protocols.
 
 The following sections present the protocols in more depth.
 
-!!Streaming over collections
+!!!Streaming over collections
 
 Streams are really useful when dealing with collections of elements, and can be
 used for reading and writing those elements. We will now explore the
 stream features for collections.
 
-!!!Reading collections
+!!!!Reading collections
 
 Using a stream to read a collection essentially provides you a pointer into the
 collection. That pointer will move forward on reading, and you can place it
@@ -179,7 +179,7 @@ one can simply send the message ==readStream== to a sequenceable
 collection (such as a ==String==) to get a reading stream on that particular
 collection.
 
-!!!!Positioning
+!!!Positioning
 
 There are messages to position the stream pointer. If you have the index, you
 can go directly to it using ==position:== defined in ==PositionableStream==. You
@@ -242,7 +242,7 @@ As you can see, the letter ==e== has been skipped.
 
 The message ==contents== always returns a copy of the entire stream.
 
-!!!!Testing
+!!!Testing
 
 Some messages allow you to test the state of the current stream:
 ==atEnd== returns ==true== if and only if no more elements can be read, whereas
@@ -340,7 +340,7 @@ such as ==space==, ==tab== and ==cr== (carriage return). Another useful method
 is ==ensureASpace== which ensures that the last character in the stream is a
 space; if the last character isn't a space it adds one.
 
-!!!!About String Concatenation
+!!!About String Concatenation
 
 Using ==nextPut:== and ==nextPutAll:== on a ==WriteStream== is often the best
 way to concatenate characters. Using the comma concatenation operator (==,==) is
@@ -489,7 +489,7 @@ History new
 >>> #(#page1 #page4 nil nil)
 ]]]
 
-!!Chapter summary
+!!!Chapter summary
 
 Streams offer a better way (compared to collections) to incrementally read and
 write a sequence of elements. There are easy ways to convert back and forth
