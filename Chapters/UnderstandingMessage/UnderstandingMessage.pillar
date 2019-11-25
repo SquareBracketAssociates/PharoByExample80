@@ -385,7 +385,7 @@ In the message sends ==20 \+ 2 \* 5==, there are only binary messages ==\+== and
 
      20 + 2 * 5
 (1)  20 + 2 >>> 22
-(2)  22       * 5 >>> 110
+(2)  22     * 5 >>> 110
 
 ]]]
 
@@ -399,7 +399,7 @@ Decomposing 20 + (2 * 5)
 "The messages surrounded by parentheses are evaluated first therefore * is sent prior to + which produces the correct behaviour."
 
     20 + (2 * 5)
-(1)        (2 * 5) >>> 10
+(1)      (2 * 5) >>> 10
 (2) 20 + 10      >>> 30
 ]]]
 
