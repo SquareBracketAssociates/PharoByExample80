@@ -330,16 +330,15 @@ Example of Parentheses.
 
 !!!!From left to right
 Now we know how messages of different kinds or priorities are handled. The final question to be addressed is how messages with the same priority are sent. They are sent from the left to the right. 
-@@todo is this example (two of them mixed) appropriate? point creation is binary before keyword and the figure is two unary messages from left to right...
-Note that you already saw this behaviour in  the previous example where the two point creation messages (==\@==) were sent first as shown in Figure *@fig:unaryMessages*.
-
-+Decomposing Pen new down.>file://figures/ucompoUn.png|label=fig:unaryMessages|width=60+
+Note that you already saw this behaviour in the example == 1.5 tan rounded asString == where all unary messages are sent from left to right which is equivalent to ==(((1.5 tan) rounded) asString)==.  
 
 
 @@important When the messages are of the same kind, the order of execution is from left to right.
 
 !!!!!!Example.
 In the message sends ==Pen new down== all messages are unary messages, so the leftmost one, ==Pen new==, is sent first. This returns a newly created pen to which the second message ==down== is sent, as shown in Figure *@fig:unaryMessages*.
+
++Decomposing Pen new down.>file://figures/ucompoUn.png|label=fig:unaryMessages|width=60+
 
 !!!!Arithmetic inconsistencies
 The message composition rules are simple but they result in inconsistency for the execution of arithmetic message sends expressed in terms of binary messages. 
