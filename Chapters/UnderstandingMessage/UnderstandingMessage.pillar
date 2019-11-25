@@ -329,7 +329,9 @@ Example of Parentheses.
 ]]]
 
 !!!!From left to right
-Now we know how messages of different kinds or priorities are handled. The final question to be addressed is how messages with the same priority are sent. They are sent from the left to the right. Note that you already saw this behaviour in  the previous example where the two point creation messages (==\@==) were sent first as shown in Figure *@fig:unaryMessages*.
+Now we know how messages of different kinds or priorities are handled. The final question to be addressed is how messages with the same priority are sent. They are sent from the left to the right. 
+@@todo is this example (two of them mixed) appropriate? point creation is binary before keyword and the figure is two unary messages from left to right...
+Note that you already saw this behaviour in  the previous example where the two point creation messages (==\@==) were sent first as shown in Figure *@fig:unaryMessages*.
 
 +Decomposing Pen new down.>file://figures/ucompoUn.png|label=fig:unaryMessages|width=60+
 
