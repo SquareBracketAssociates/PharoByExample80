@@ -378,7 +378,7 @@ Here we see the common situations where extra parentheses are needed.
 ]]]
 
 !!!!!!Example.
-In the message sends ==20 \+ 2 \* 5==, there are only binary messages ==\+== and ==\*==. However in \st there is no specific priority for the operations ==\+== and ==\*==. They are just binary messages, hence ==\*== does not have priority over ==\+==. Here the leftmost message ==\+== is sent first (1) and then the ==\*== is sent to the result as shown in below.
+In the message sends ==20 \+ 2 \* 5==, there are only binary messages ==\+== and ==\*==. However in Pharo there is no specific priority for the operations ==\+== and ==\*==. They are just binary messages, hence ==\*== does not have priority over ==\+==. Here the leftmost message ==\+== is sent first (1) and then the ==\*== is sent to the result as shown in below.
 
 [[[Decomposing 20 + 2 * 5
 "As there is no priority among binary messages, the leftmost message + is evaluated first even if by the rules of arithmetic the * should be sent first."
@@ -412,8 +412,8 @@ Decomposing 20 + (2 * 5)
 
 +Equivalent messages using parentheses.>file://figures/uunKeyBinPar.png|width=80+
 
+@@todo is this a "caption" of the table? Figures around move and separate it from the table...
 ""Table : Message sends and their fully parenthesized equivalents""
-
 |!Implicit precedence |!Explicitly parenthesized equivalent
 |aPen color: Color yellow | aPen color: (Color yellow)
 | aPen go: 100 \+ 20= | Pen go: (100 \+ 20)
