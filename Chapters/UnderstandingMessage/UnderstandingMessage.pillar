@@ -225,6 +225,8 @@ Unfortunately the rules are a bit too simplistic for arithmetic message sends, s
 >>> 7
 ]]]
 
+We will dedicate a section to arithmetic inconsistencies.
+
 The following example, which is a bit more complex (!), offers a nice illustration that even complicated expressions can be read in a natural way:
 
 [[[
