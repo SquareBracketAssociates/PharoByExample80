@@ -39,12 +39,14 @@ A receiver can be the first element of a message, such as ==100== in the message
 
 |!Message send |!Message type |!Result
 |==Color yellow== | unary | Creates color yellow.
-|==aPen  go: 100== | keyword | The pen moves forward 100 pixels
+|==aPen  go: 100== | keyword | The pen moves forward 
+| | 100 pixels.
 |==100 + 20== | binary |  100 is increased by 20
 |==Browser open== | unary | Opens a new browser.
-|==Pen new  go: 100== | unary and keyword | Creates and moves a pen 
-| | |100 pixels forward.
-|==aPen go: 100 + 20== | keyword and binary | The pen moves forward 120 pixels.
+|==Pen new  go: 100== | unary and | Creates and moves a pen 
+| | keyword  |100 pixels forward.
+|==aPen go: 100 + 20== | keyword and  | The pen moves forward 
+| | binary | 120 pixels.
 
 The table shows several examples of message sends. You should note that:
 - Not all message sends have arguments. Unary messages like ==open== do not have arguments.
@@ -277,7 +279,9 @@ Parenthesised messages are sent prior to other messages.
 
 @@important (Msg) > Unary > Binary > Keyword
 
-Here are some examples. The first example shows that parentheses are not needed when the order is the one we want. 
+Here are some examples. 
+
+The first example shows that parentheses are not needed when the order is the one we want, ie. that result is the same if we write this with or without parentheses.
 Here we compute tangent of 1.5, then we round it and convert it as a string.
 
 [[[example=true
@@ -286,6 +290,7 @@ Here we compute tangent of 1.5, then we round it and convert it as a string.
 ]]]
 
 The second example shows that ==factorial== is executed prior to the sum and if we want to first perform the sum of 3 and 4 we should use parentheses as shown below.
+
 [[[example=true
 3 + 4 factorial
 >>> 27    "(not 5040)"
@@ -306,7 +311,7 @@ Similarly in the following example, we need the parentheses to force sending ==l
 ]]]
 
 !!!!!!Example.
-The message ==(65@325 extent: 134@100) center== returns the center of a rectangle whose top left point is (65, 325) and whose size is 134*100. The following example shows how the message is decomposed and sent. First the message between parentheses is sent: it contains two binary messages ==65@325== and ==134@100== that are sent first and return points, and a keyword message ==extent:== which is then sent and returns a rectangle. Finally the unary message ==center== is sent to the rectangle and a point is returned. Evaluating the message without parentheses would lead to an error because the object ==100== does not understand the message ==center==.
+The message send ==(65@325 extent: 134@100) center== returns the center of a rectangle whose top left point is (65, 325) and whose size is 134*100. The following example shows how the message is decomposed and sent. First the message between parentheses is sent: it contains two binary messages ==65@325== and ==134@100== that are sent first and return points, and a keyword message ==extent:== which is then sent and returns a rectangle. Finally the unary message ==center== is sent to the rectangle and a point is returned. Evaluating the message without parentheses would lead to an error because the object ==100== does not understand the message ==center==.
 
 
 
