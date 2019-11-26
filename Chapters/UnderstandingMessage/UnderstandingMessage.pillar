@@ -497,13 +497,13 @@ box containsPoint: 40@50
 
 !!!Cascaded messages
 
-Pharo offers a way to send multiple messages to the same receiver using a semicolon (==\;==).
+Pharo offers a way to send multiple messages to the same receiver, without stating it multiple times, by  using a semicolon separator (==\;==).
 This is called the cascade in Pharo jargon.
 
 Syntactically a cascade is represented as follows:
 
 [[[
-anExpression msg1 ; msg2 ; msg3
+aReceiverExpression msg1 ; msg2 ; msg3
 ]]]
 
 !!!!!!Examples. 
@@ -522,8 +522,8 @@ Transcript
    cr
 ]]]
 
-Note that the object receiving the cascaded messages can itself be the result of a message send.
 In fact the receiver of all the cascaded messages is the receiver of the first message involved in a cascade.
+Note that the object receiving the cascaded messages can itself be the result of a message send.
 In the following example, the first cascaded message is ==setX:setY== since it is followed by a cascade.
 The receiver of the cascaded message ==setX:setY:== is the newly created point resulting from the execution of ==Point new==, and ''not'' ==Point==.
 The subsequent message ==isZero== is sent to that same receiver.
