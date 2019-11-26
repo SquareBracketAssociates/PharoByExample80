@@ -536,7 +536,7 @@ Point new setX: 25 setY: 35; isZero
 !!!Chapter summary
 
 - A message is always sent to an object named the ''receiver'' which may be the result of other message sends.
-- Unary messages are messages that do not require any argument. They are of the form of: selector.
+- Unary messages are messages that do not require any argument. They are of the form: selector.
 - Binary messages are messages that involve two objects, the receiver and another object, ''and'' whose selector is composed of one or more characters from the following list: ==\+==, ==\-==, ==\*==, ==\/==, ==\|==, ==\&==, ==\===, ==\>==, ==\<==, ==\~==, and ==\@==. They are of the form: receiver ""selector"" argument
 - Keyword messages are messages that involve more than one object and that contain at least one colon character (==\:==). They are of the form: receiver ""selectorKeywordOne:"" argumentOne ""KeywordTwo:"" argumentTwo ... ""KeywordN:"" argumentN
 -""Rule One."" Unary messages are sent first, then binary messages, and finally keyword messages.
