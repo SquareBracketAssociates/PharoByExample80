@@ -445,7 +445,7 @@ aDict
 !!!!!!Hints.
 If you have problems with these precedence rules, you may start simply by putting parentheses whenever you want to distinguish two messages having the same precedence.
 
-The following piece of code does not require parentheses because the message send  ==x isNil== is unary hence is sent prior to the keyword message ==ifTrue:==.
+The following piece of code does not require parentheses because the message  ==isNil== is unary hence it is sent prior to the keyword message ==ifTrue:==.
 [[[
 (x isNil)
    ifTrue:[...]
@@ -458,14 +458,14 @@ ord := OrderedCollection new.
    ifTrue:[...]
 ]]]
 
-Without parentheses the unknown message ==includes:ifTrue:== would be sent to the collection!
+Without parentheses the unknown message ==includes:ifTrue:== would be sent to the collection ==ord==!
 
 !!!!When to use \[ \] or \( \)
 
 You may also have problems understanding when to use square brackets rather than parentheses.
 The basic principle is that you should use ==\[\]== when you do not know how many times, potentially zero, an expression should be evaluated.
 ==\[expression\]== will create block closure (''i.e.'', an object) from ==expression==, which may be evaluated any number of times (possibly zero), depending on the context.
-Here note that an expression can either be a message send, a variable, a literal, an assignment or a block.
+Note that an expression can either be a message send, a variable, a literal, an assignment or a block.
 
 Hence the conditional branches of ==ifTrue:== or ==ifTrue:ifFalse:== require blocks.
 Following the same principle both the receiver and the argument of a ==whileTrue:== message require the use of square brackets since we do not know how many times either the receiver or the argument should be evaluated.
@@ -474,9 +474,11 @@ Parentheses, on the other hand, only affect the order of sending messages.
 So in ==(expression)==, the ==expression== will ''always'' be evaluated exactly once.
 
 [[[
-[ x isReady ] whileTrue: [ y doSomething ]   "both the receiver and the argument must be blocks"
-4 timesRepeat: [ Beeper beep ]                   "the argument is evaluated more than once, so must be a block"
-(x isReady) ifTrue: [ y doSomething ]           "receiver is evaluated once, so is not a block"
+[ x isReady ] whileTrue: [ y doSomething ]  "both the receiver and the argument must be blocks"
+4 timesRepeat: [ Beeper beep ]              "the argument is evaluated more than once, so must be a block"
+(x isReady) ifTrue: [ y doSomething ]       "receiver is evaluated once, so is not a block
+                                            argument does not have to be evaluated not even once, 
+											so it is a block"
 ]]]
 
 !!!Expression sequences
