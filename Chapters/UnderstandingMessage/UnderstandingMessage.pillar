@@ -283,7 +283,7 @@ Parenthesised messages are sent prior to other messages.
 
 Here are some examples. 
 
-The first example shows that parentheses are not needed when the order is the one we want, ie. that result is the same if we write this with or without parentheses.
+The first example shows that parentheses are not needed when the order is the one we want, ''i.e.'' that result is the same if we write this with or without parentheses.
 Here we compute tangent of 1.5, then we round it and convert it as a string.
 
 [[[example=true
@@ -483,9 +483,10 @@ So in ==(expression)==, the ==expression== will ''always'' be evaluated exactly 
 
 !!!Expression sequences
 
-Expressions (''i.e.'', message sends, assignments, ...) separated by periods are evaluated in sequence.Note that there is no period between a variable definition and the following expression.
-The value of a sequence is the value of the last expression.
-The values returned by all the expressions except the last one are ignored. Note that the period is a separator and not a terminator. Therefore a final period is optional.
+Expressions (''i.e.'', message sends, assignments, ...) separated by periods are evaluated in sequence. Note that there is no period between a variable declaration and the following expression.
+The value of a sequence is the value gained by the evaluation of the last expression in the sequence.
+The values returned by all the expressions except the last one are ignored at the end. 
+Note that the period is a separator and not a terminator. Therefore, a final period is optional.
 
 [[[
 | box |
