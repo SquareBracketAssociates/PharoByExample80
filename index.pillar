@@ -8,3 +8,4 @@ ${inputFile:path=Chapters/SUnit/SUnit.pillar}$
 ${inputFile:path=Chapters/BasicClasses/BasicClasses.pillar}$
 ${inputFile:path=Chapters/Collections/Collections.pillar}$
 ${inputFile:path=Chapters/Streams/Streams.pillar}$
+${inputFile:path=Chapters/Metaclasses/Metaclasses.pillar}$

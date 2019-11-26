@@ -1,4 +1,4 @@
-{ "title": "Classes and metaclasses" }
+!!Classes and metaclasses
 @cha:metaclasses
 
 As we saw in preceding chapters, in Pharo, everything is an object, and every
@@ -14,7 +14,7 @@ complex, ''magic'' or special here: just simple rules applied uniformly. By
 following these rules you can always understand why the situation is the way
 that it is.
 
-!!Rules for classes and metaclasses
+!!!Rules for classes
 
 The Pharo object model is based on a limited number of concepts applied
 uniformly. To refresh your memory, here are the rules of the object model that
@@ -36,6 +36,7 @@ As we mentioned in the introduction to this chapter, a consequence of Rule 1 is
 that ''classes are objects too'', so Rule 2 tells us that classes must also be
 instances of classes. The class of a class is called a ''metaclass''.
 
+!!!Metaclasses
 @sec:metaclassIntro
 
 A metaclass is created automatically for you whenever you create a class. Most
@@ -69,7 +70,7 @@ the same example.
 
 +Sending the message ==class== to a sorted collection>file://figures/SortedCollectionClassMessage.png|label=fig:classmessage|width=99+
 
-!!Revisiting the Pharo object model
+!!!Revisiting the Pharo object model
 
 ""Rule 1."" Since everything is an object, an ordered collection in Pharo is also an object.
 
@@ -127,7 +128,7 @@ message ==class== to the result of ==(OrderedCollection withAll: #(4 5 6 1 2 3))
 asSortedCollection==, the message is handled when the corresponding method is
 found in the class ==Object==, as shown in Figure *@fig:classmessage*.
 
-!!Every class is an instance of a metaclass
+!!!Every class is an instance of a metaclass
 
 As we mentioned earlier in Section *@sec:metaclassIntro*, classes whose
 instances are themselves classes are called metaclasses.
@@ -171,7 +172,7 @@ Their absence does not change the overall meaning.
 
 
 
-!!!! Querying Metaclasses
+!!! Querying Metaclasses
 
 The fact that classes are also objects makes it easy for us to query them by
 sending messages. Let's have a look:
@@ -201,7 +202,7 @@ SortedCollection selectors
 >>>  #(#sortBlock: #add: #groupedBy: #defaultSort:to: #addAll: #at:put: #copyEmpty #, #collect: #indexForInserting: #insert:before: #reSort #addFirst: #join: #median #flatCollect: #sort: #sort:to: #= #sortBlock)
 ]]]
 
-!!The metaclass hierarchy parallels the class hierarchy
+!!!The metaclass hierarchy parallels the class hierarchy
 
 Rule 7 says that the superclass of a metaclass cannot be an arbitrary class: it
 is constrained to be the metaclass of the superclass of the metaclass's unique
@@ -288,7 +289,7 @@ class, as shown in Figure *@fig:inspectingColor*.
 
 +Classes are objects too.>file://figures/InspectingOrderedCollection.png|label=fig:inspectingColor+
 
-!!Every metaclass inherits from ==Class== and ==Behavior==
+!!!Every metaclass inherits from ==Class== and ==Behavior==
 
 Every metaclass is a kind of a class (a class with a single instance), hence
 inherits from ==Class==. ==Class== in turn inherits from its superclasses,
@@ -368,7 +369,7 @@ a class for its sole instance (''i.e.'', the non-meta class), all metaclasses
 ultimately inherit from ==Class== (as shown by Figure
 *@fig:metaclassclassclass*).
 
-!!Every metaclass is an instance of ==Metaclass==
+!!!Every metaclass is an instance of ==Metaclass==
 
 One question left is since metaclasses are objects too, they should be instances
 of another class, but which one? Metaclasses are objects too; they are instances
@@ -384,7 +385,7 @@ metaclass's sole instance, initialization of class variables, metaclass
 instance, method compilation, and class information (inheritance links,
 instance variables, etc.).
 
-!!The metaclass of ==Metaclass== is an instance of ==Metaclass==
+!!!The metaclass of ==Metaclass== is an instance of ==Metaclass==
 
 The final question to be answered is: what is the class of ==Metaclass class==?
 The answer is simple: it is a metaclass, so it must be an instance of
@@ -451,7 +452,7 @@ Metaclass superclass
 >>> ClassDescription
 ]]]
 
-!!Chapter summary
+!!!Chapter summary
 
 This chapter gave an in-depth look into the uniform object model, and a
 more thorough explanation of how classes are organized. If you get lost or
