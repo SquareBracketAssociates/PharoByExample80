@@ -34,8 +34,8 @@ Let us look at each of these rules in detail.
 
 The mantra ''everything is an object'' is highly contagious. After only a short
 while working with Pharo, you will become surprised how this rule
-simplifies everything you do. Integers, for example, are truly objects, so you
-can send messages to them, just as you do to any other object. At the end of
+simplifies everything you do. Integers, for example, are objects too, so you
+send messages to them, just as you do to any other object. At the end of
 this chapter, we added an implementation note on the object implementation for
 the curious reader.
 
@@ -65,8 +65,8 @@ system, which gives a great deal of expressive power to developers.
 
 !!!Every object is an instance of a class
 
-Every object has a class; you can find out which one by sending it the message
-==class==.
+Every object has a class and you can find out which one by sending message
+==class== to it.
 
 [[[example=true
 1 class
@@ -101,8 +101,8 @@ Since ''classes are objects'', and ''every object is an instance of a class'',
 it follows that classes must also be instances of classes. A class whose
 instances are classes is called a ''metaclass''. Whenever you create a class,
 the system automatically creates a metaclass for you. The metaclass defines the
-structure and behavior of the class that is its instance. 99\% of the time you
-will not need to think about metaclasses, and may happily ignore them. (We will
+structure and behavior of the class that is its instance. You will not need to
+think about metaclasses 99\% of the time, and may happily ignore them. (We will
 have a closer look at metaclasses in Chapter
 *: Classes and Metaclasses>../Metaclasses/Metaclasses.pillar@cha:metaclasses*.)
 
@@ -173,7 +173,7 @@ value, but it also clutters the interface of your classes, and worse, exposes
 its private state to the world.
 
 To ease class browsing, methods are grouped into ''protocols'' that indicate their intent. 
-Protocols have no semantics from the language view point. There are just folders
+Protocols have no semantics from the language view point. They are just folders
 in which methods are stored. Some common protocol
 names have been established by convention, for example, ==accessing== for all
 accessor methods and ==initialization== for establishing a consistent initial
@@ -188,7 +188,7 @@ Each class in Pharo inherits its behaviour and the description of its
 structure from a single ''superclass''. 
 This means that Pharo offers single inheritance.
 
-Here are some examples showing how we can navigate the hierarchy.
+Here are some examples showing how can we navigate the hierarchy.
 
 [[[testcase=true
 SmallInteger superclass
@@ -421,7 +421,7 @@ Suppose we create an instance of ==EllipseMorph==.
 anEllipse := EllipseMorph new.
 ]]]
 
-If we now send this object the message ==defaultColor==, we get the result
+If we send the message ==defaultColor== to this object now, we get the result
 ==Color yellow==.
 
 [[[testcase=true
@@ -461,7 +461,7 @@ We mentioned that sending a message is a two step process:
 
 Now we explain the second point: the method execution.
 
-When the lookup return a method, the receiver of the message is bound to ==self==, and the arguments of the message to the method parameters. Then the system executes the method body. 
+When the lookup returns a method, the receiver of the message is bound to ==self==, and the arguments of the message to the method parameters. Then the system executes the method body. 
 This is true wherever the method that should be executed is found. 
 Imagine that we send the message ==EllipseMorph new closestPointTo: 100@100== and that the method is defined as in Listing *@scr:closestPoing*. 
 
