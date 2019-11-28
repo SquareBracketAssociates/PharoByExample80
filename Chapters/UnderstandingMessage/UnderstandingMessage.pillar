@@ -283,7 +283,7 @@ Parenthesised messages are sent prior to other messages.
 
 Here are some examples. 
 
-The first example shows that parentheses are not needed when the order is the one we want, ie. that result is the same if we write this with or without parentheses.
+The first example shows that parentheses are not needed when the order is the one we want, ''i.e.'' that result is the same if we write this with or without parentheses.
 Here we compute tangent of 1.5, then we round it and convert it as a string.
 
 [[[example=true
@@ -445,7 +445,7 @@ aDict
 !!!!!!Hints.
 If you have problems with these precedence rules, you may start simply by putting parentheses whenever you want to distinguish two messages having the same precedence.
 
-The following piece of code does not require parentheses because the message send  ==x isNil== is unary hence is sent prior to the keyword message ==ifTrue:==.
+The following piece of code does not require parentheses because the message  ==isNil== is unary hence it is sent prior to the keyword message ==ifTrue:==.
 [[[
 (x isNil)
    ifTrue:[...]
@@ -458,14 +458,14 @@ ord := OrderedCollection new.
    ifTrue:[...]
 ]]]
 
-Without parentheses the unknown message ==includes:ifTrue:== would be sent to the collection!
+Without parentheses the unknown message ==includes:ifTrue:== would be sent to the collection ==ord==!
 
 !!!!When to use \[ \] or \( \)
 
 You may also have problems understanding when to use square brackets rather than parentheses.
 The basic principle is that you should use ==\[\]== when you do not know how many times, potentially zero, an expression should be evaluated.
 ==\[expression\]== will create block closure (''i.e.'', an object) from ==expression==, which may be evaluated any number of times (possibly zero), depending on the context.
-Here note that an expression can either be a message send, a variable, a literal, an assignment or a block.
+Note that an expression can either be a message send, a variable, a literal, an assignment or a block.
 
 Hence the conditional branches of ==ifTrue:== or ==ifTrue:ifFalse:== require blocks.
 Following the same principle both the receiver and the argument of a ==whileTrue:== message require the use of square brackets since we do not know how many times either the receiver or the argument should be evaluated.
@@ -474,16 +474,19 @@ Parentheses, on the other hand, only affect the order of sending messages.
 So in ==(expression)==, the ==expression== will ''always'' be evaluated exactly once.
 
 [[[
-[ x isReady ] whileTrue: [ y doSomething ]   "both the receiver and the argument must be blocks"
-4 timesRepeat: [ Beeper beep ]                   "the argument is evaluated more than once, so must be a block"
-(x isReady) ifTrue: [ y doSomething ]           "receiver is evaluated once, so is not a block"
+[ x isReady ] whileTrue: [ y doSomething ]  "both the receiver and the argument must be blocks"
+4 timesRepeat: [ Beeper beep ]              "the argument is evaluated more than once, so must be a block"
+(x isReady) ifTrue: [ y doSomething ]       "receiver is evaluated once, so is not a block
+                                            argument does not have to be evaluated not even once, 
+											so it is a block"
 ]]]
 
 !!!Expression sequences
 
-Expressions (''i.e.'', message sends, assignments, ...) separated by periods are evaluated in sequence.Note that there is no period between a variable definition and the following expression.
-The value of a sequence is the value of the last expression.
-The values returned by all the expressions except the last one are ignored. Note that the period is a separator and not a terminator. Therefore a final period is optional.
+Expressions (''i.e.'', message sends, assignments, ...) separated by periods are evaluated in sequence. Note that there is no period between a variable declaration and the following expression.
+The value of a sequence is the value gained by the evaluation of the last expression in the sequence.
+The values returned by all the expressions except the last one are ignored at the end. 
+Note that the period is a separator and not a terminator. Therefore, a final period is optional.
 
 [[[
 | box |
@@ -494,13 +497,13 @@ box containsPoint: 40@50
 
 !!!Cascaded messages
 
-Pharo offers a way to send multiple messages to the same receiver using a semicolon (==\;==).
+Pharo offers a way to send multiple messages to the same receiver, without stating it multiple times, by  using a semicolon separator (==\;==).
 This is called the cascade in Pharo jargon.
 
 Syntactically a cascade is represented as follows:
 
 [[[
-anExpression msg1 ; msg2 ; msg3
+aReceiverExpression msg1 ; msg2 ; msg3
 ]]]
 
 !!!!!!Examples. 
@@ -519,8 +522,8 @@ Transcript
    cr
 ]]]
 
-Note that the object receiving the cascaded messages can itself be the result of a message send.
 In fact the receiver of all the cascaded messages is the receiver of the first message involved in a cascade.
+Note that the object receiving the cascaded messages can itself be the result of a message send.
 In the following example, the first cascaded message is ==setX:setY== since it is followed by a cascade.
 The receiver of the cascaded message ==setX:setY:== is the newly created point resulting from the execution of ==Point new==, and ''not'' ==Point==.
 The subsequent message ==isZero== is sent to that same receiver.
@@ -533,10 +536,10 @@ Point new setX: 25 setY: 35; isZero
 !!!Chapter summary
 
 - A message is always sent to an object named the ''receiver'' which may be the result of other message sends.
-- Unary messages are messages that do not require any argument.\\ They are of the form of selector.
-- Binary messages are messages that involve two objects, the receiver and another object ''and'' whose selector is composed of one or more characters from the following list: ==\+==, ==\-==, ==\*==, ==\/==, ==\|==, ==\&==, ==\===, ==\>==, ==\<==, ==\~==, and ==\@==. They are of the form: receiver ""selector"" argument
-- Keyword messages are messages that involve more than one object and that contain at least one colon character (==\:==). They are of the form: receiver ""selectorWordOne:"" argumentOne ""wordTwo:"" argumentTwo
+- Unary messages are messages that do not require any argument. They are of the form: selector.
+- Binary messages are messages that involve two objects, the receiver and another object, ''and'' whose selector is composed of one or more characters from the following list: ==\+==, ==\-==, ==\*==, ==\/==, ==\|==, ==\&==, ==\===, ==\>==, ==\<==, ==\~==, and ==\@==. They are of the form: receiver ""selector"" argument
+- Keyword messages are messages that involve more than one object and that contain at least one colon character (==\:==). They are of the form: receiver ""selectorKeywordOne:"" argumentOne ""KeywordTwo:"" argumentTwo ... ""KeywordN:"" argumentN
 -""Rule One."" Unary messages are sent first, then binary messages, and finally keyword messages.
 -""Rule Two."" Messages in parentheses are sent before any others.
 -""Rule Three."" When the messages are of the same kind, the order of execution is from left to right.
-- In Pharo, traditional arithmetic operators such as \+ and \* have the same priority. ==\+== and ==\*== are just binary messages, therefore ==\*== does not have priority over ==\+==. You must use parentheses to obtain a different result.
+- In Pharo, traditional arithmetic operators such as \+ and \* have the same priority. ==\+== and ==\*== are just binary messages, therefore ==\*== does not have priority over ==\+==. You must use parentheses to obtain a correct result.
