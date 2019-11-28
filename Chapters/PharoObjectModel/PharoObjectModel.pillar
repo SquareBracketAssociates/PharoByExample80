@@ -34,8 +34,8 @@ Let us look at each of these rules in detail.
 
 The mantra ''everything is an object'' is highly contagious. After only a short
 while working with Pharo, you will become surprised how this rule
-simplifies everything you do. Integers, for example, truly are objects, so you
-can send messages to them, just as you do to any other object. At the end of
+simplifies everything you do. Integers, for example, are objects too, so you
+send messages to them, just as you do to any other object. At the end of
 this chapter, we added an implementation note on the object implementation for
 the curious reader.
 
