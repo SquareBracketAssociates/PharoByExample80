@@ -609,12 +609,12 @@ class of the method where the ==super== send occurs''.
 
 @@important ==super== represents the receiver of the message and the method lookup starts in the superclass of the class of the method where the ==super== send occurs.
 
-We shall see with the following example precisely how this works.
+We shall see in the following example precisely how this works.
 Imagine that we define the following three methods:
 
-First in LIsting *@scr:morphfullPrintOn*, we define the method ==fullPrintOn:== on class ==Morph== that just adds to
+First in Listing *@scr:morphfullPrintOn*, we define the method ==fullPrintOn:== on class ==Morph== that just adds to
 the stream the name of the class followed by the string ' new' - the idea is
-that we could execute the resulting string and gets back an instance similar to
+that we could execute the resulting string and get back an instance similar to
 the receiver.
 
 [[[label=scr:morphfullPrintOn|caption=A ==self== send
@@ -713,7 +713,7 @@ never be executed. If you forget to override one, and it is executed, an
 exception will be raised.
 
 Similarly, a class is considered abstract if one of its methods is abstract.
-Nothing actually prevents you from creating an instance of an abstract class;
+Nothing actually prevents you from creating an instance of an abstract class,
 everything will work until an abstract method is invoked.
 
 !!!!!Example: the abstract class ==Magnitude==
