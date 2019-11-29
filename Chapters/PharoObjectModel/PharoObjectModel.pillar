@@ -713,7 +713,7 @@ never be executed. If you forget to override one, and it is executed, an
 exception will be raised.
 
 Similarly, a class is considered abstract if one of its methods is abstract.
-Nothing actually prevents you from creating an instance of an abstract class,
+Nothing actually prevents you from creating an instance of an abstract class;
 everything will work until an abstract method is invoked.
 
 !!!!!Example: the abstract class ==Magnitude==
