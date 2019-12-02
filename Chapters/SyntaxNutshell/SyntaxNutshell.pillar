@@ -20,7 +20,7 @@ startDay: aSymbol
 Pharo's syntax is minimal. Essentially there is syntax only for sending messages
 (i.e. expressions). Expressions are built up from a very small number of
 primitive elements (message sends, assignments, closures, returns...). There are
-only 6 keywords, and there is no syntax for control structures or declaring new
+only 6 reserved keywords, and there is no syntax for control structures or declaring new
 classes. Instead, nearly everything is achieved by sending messages to objects.
 For instance, instead of an if-then-else control structure, conditionals are
 expressed as messages (such as ==ifTrue:==) sent to Boolean objects. New
