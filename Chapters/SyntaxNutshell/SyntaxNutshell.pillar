@@ -20,7 +20,7 @@ startDay: aSymbol
 Pharo's syntax is minimal. Essentially there is syntax only for sending messages
 (i.e. expressions). Expressions are built up from a very small number of
 primitive elements (message sends, assignments, closures, returns...). There are
-only 6 keywords, and there is no syntax for control structures or declaring new
+only 6 reserved keywords, i.e. pseudo-variables, and there are no dedicated syntax constructs for control structures or declaring new
 classes. Instead, nearly everything is achieved by sending messages to objects.
 For instance, instead of an if-then-else control structure, conditionals are
 expressed as messages (such as ==ifTrue:==) sent to Boolean objects. New
@@ -30,7 +30,7 @@ expressed as messages (such as ==ifTrue:==) sent to Boolean objects. New
 
 Expressions are composed of the following building blocks:
 
-# The six reserved keywords, or ''pseudo-variables'': ==self==, ==super==, ==nil==, ==true==, ==false==, and ==thisContext==
+# The six ''pseudo-variables'': ==self==, ==super==, ==nil==, ==true==, ==false==, and ==thisContext==
 # Constant expressions for ''literal'' objects including numbers, characters, strings, symbols and arrays
 # Variable declarations
 # Assignments
@@ -74,7 +74,7 @@ case. This indicates to the reader that the variable has a private scope.
 variables, class variables, pool dictionaries or class names. ==Transcript== is
 a global variable, an instance of the class ==ThreadSafeTranscript==.
 
-""The receiver."" ==self== is a keyword that refers to the object inside which
+""The receiver."" ==self== is a pseudo-variable that refers to the object inside which
 the current method is executing. We call it "the receiver" because this object
 has received the message that caused the method to execute. ==self== is called a
 "pseudo-variable" since we cannot assign to it.
@@ -160,7 +160,7 @@ in more detail in Chapter
 
 !!Pseudo-variables
 
-In Pharo, there are 6 reserved keywords, or pseudo-variables: ==nil==, ==true==,
+In Pharo, there are 6 pseudo-variables: ==nil==, ==true==,
 ==false==, ==self==, ==super==, and ==thisContext==. They are called
 pseudo-variables because they are predefined and cannot be assigned to.
 ==true==, ==false==, and ==nil== are constants, while the values of ==self==,
