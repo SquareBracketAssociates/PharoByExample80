@@ -36,17 +36,18 @@ Expressions are composed of the following building blocks:
 # Assignments
 # Block closures
 # Messages
+# Method returns
 
 We can see examples of the various syntactic elements in the Table below.
 
-|!Syntax |!What it represents
+|!Syntax expression |!What it represents
 |==startPoint== | a variable name
 |==Transcript== | a global variable name
 |self | pseudo-variable
-|==1 ==| decimal integer
+|==1 ==| decimal integer 
 |==2r101== | binary integer
 |==1.5== | floating point number
-|==2.4e7== | exponential notation
+|==2.4e7== | number in exponential notation
 |==$a== | the character =='a'==
 |=='Hello'== | the string =='Hello'==
 |==#Hello== | the symbol ==#Hello==
@@ -61,22 +62,24 @@ We can see examples of the various syntactic elements in the Table below.
 |==3 + 4==| binary message ==+==
 |==2 raisedTo: 6 modulo: 10==| keyword message ==raisedTo:modulo:==
 |==^ true==| return the value true
-|==x := 2 . x := x + x==| expression separator (==.==)
-|==Transcript show: 'hello'; cr==| message cascade (==;==)
+|==x := 2 . x := x + x==| two expressions separated by separator (==.==)
+|==Transcript show: 'hello'; cr==| two cascade messages separated by  (==;==)
+
+
 
 ""Local variables."" ==startPoint== is a variable name, or identifier. By
 convention, identifiers are composed of words in "camelCase" (i.e., each word
 except the first starting with an upper case letter). The first letter of an
-instance variable, method or block argument, or temporary variable must be lower
+instance variable, method or block parameters, or temporary variable must be lower
 case. This indicates to the reader that the variable has a private scope.
 
 ""Shared variables."" Identifiers that start with upper case letters are global
 variables, class variables, pool dictionaries or class names. ==Transcript== is
 a global variable, an instance of the class ==ThreadSafeTranscript==.
 
-""The receiver."" ==self== is a pseudo-variable that refers to the object inside which
-the current method is executing. We call it "the receiver" because this object
-has received the message that caused the method to execute. ==self== is called a
+""The current object."" ==self== is a pseudo-variable that refers to the current object and gives us a way send messages to it. As the current object is object inside which
+the current method is executing, we can call it "the receiver" because this object
+will receive the message that causes the method to be executed. Finally, ==self== is called a
 "pseudo-variable" since we cannot assign to it.
 
 ""Integers."" In addition to ordinary decimal integers like 42, Pharo also
