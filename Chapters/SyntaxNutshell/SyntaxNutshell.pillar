@@ -109,9 +109,8 @@ example, ==#(27 (true false) abc)== is a literal array of three elements: the
 integer 27, the compile-time array containing two pseudo-variables (non-changable Boolean objects), and the symbol
 ==#abc==. Note that this is the same as ==#(27 #(true false) #abc)==.
 
-""Run-time arrays."" Curly braces =={ }== define a (dynamic) array at run-time.
-Elements are expressions separated by periods. So =={ 1. 2. 1 + 2 }== defines an
-array with elements 1, 2, and the result of evaluating ==1+2==.
+""Run-time dynamic arrays."" Curly braces =={ }== define a dynamic array whose elements are expressions, separated by periods, and evaluated at run-time.
+So =={ 1. 2. 1 + 2 }== defines an array with elements 1, 2, and the result of evaluating ==1+2==.
 
 ""Comments."" are enclosed in double quotes \" \". "hello" is a comment, not a
 string, and is ignored by the Pharo compiler. Comments may span multiple lines.
