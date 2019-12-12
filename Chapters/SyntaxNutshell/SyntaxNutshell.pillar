@@ -123,7 +123,7 @@ one or more local variables before the beginning of a method or a block body.
 ""Blocks."" Square brackets ==[ ]== define a block, also known as a block
 closure or a lexical closure, which is a first-class object representing a
 function. As we shall see, blocks may take arguments (==[:i | ...]==) and can
-have local variables.
+have local variables (==[| x | ...]==).
 
 ""Primitives."" ==< primitive: ... >== denotes an invocation of a virtual
 machine primitive. For example, ==< primitive: 1 >== is the VM primitive for
