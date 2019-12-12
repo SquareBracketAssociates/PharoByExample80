@@ -134,9 +134,8 @@ primitive fails. The same syntax of a message within ==< >== is also used for ot
 a receiver (like 3). In ==3 factorial==, 3 is the receiver, and ==factorial== is
 the message selector.
 
-""Binary messages."" These are message with an argument and whose selector looks
-like mathematical expressions (for example: ==\+==) sent to a receiver, and
-taking a single argument. In ==3 + 4==, the receiver is 3, the message selector
+""Binary messages."" These are messages sent to a receiver with a single argument, and whose selector looks
+like mathematical operator (for example: ==\+==). In ==3 + 4==, the receiver is 3, the message selector
 is ==\+==, and the argument is 4.
 
 ""Keyword messages."" They consist of multiple keywords (like ==raisedTo:
