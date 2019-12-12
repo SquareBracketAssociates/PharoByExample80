@@ -106,7 +106,7 @@ multiple ==String== objects with the value =='Hello'==.
 ""Compile-time literal arrays."" are defined by ==#( )==, surrounding space-separated
 literals. Everything within the parentheses must be a compile-time constant. For
 example, ==#(27 (true false) abc)== is a literal array of three elements: the
-integer 27, the compile-time array containing two pseudo-variables (non-changable Boolean objects), and the symbol
+integer 27, the compile-time array containing two pseudo-variables (non-changeable Boolean objects), and the symbol
 ==#abc==. Note that this is the same as ==#(27 #(true false) #abc)==.
 
 ""Run-time dynamic arrays."" Curly braces =={ }== define a dynamic array whose elements are expressions, separated by periods, and evaluated at run-time.
@@ -116,7 +116,7 @@ So =={ 1. 2. 1 + 2 }== defines an array with elements 1, 2, and the result of ev
 string, and is ignored by the Pharo compiler. Comments may span multiple lines.
 
 ""Local variable definitions."" Vertical bars ==| |== enclose the declaration of
-one or more local variables at the begining of a method or a block body.
+one or more local variables before the beginning of a method or a block body.
 
 ""Assignment."" ==:= == assigns an object to a variable.
 
