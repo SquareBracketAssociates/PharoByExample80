@@ -106,7 +106,7 @@ multiple ==String== objects with the value =='Hello'==.
 ""Compile-time literal arrays."" are defined by ==#( )==, surrounding space-separated
 literals. Everything within the parentheses must be a compile-time constant. For
 example, ==#(27 (true false) abc)== is a literal array of three elements: the
-integer 27, the compile-time array containing the two booleans, and the symbol
+integer 27, the compile-time array containing two pseudo-variables (non-changable Boolean objects), and the symbol
 ==#abc==. Note that this is the same as ==#(27 #(true false) #abc)==.
 
 ""Run-time arrays."" Curly braces =={ }== define a (dynamic) array at run-time.
