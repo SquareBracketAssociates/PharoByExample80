@@ -90,7 +90,7 @@ equal to decimal 5.
 ==2.4e7== is ==2.4 X 10^7==.
 
 ""Characters."" A dollar sign introduces a literal character: ==$a== is the
-literal for the character =='a'==. Instances of non-printing characters can be
+literal for the character =='a'==. Instances of special, non-printing characters can be
 obtained by sending appropriately named messages to the ==Character== class,
 such as ==Character space== and ==Character tab==.
 
