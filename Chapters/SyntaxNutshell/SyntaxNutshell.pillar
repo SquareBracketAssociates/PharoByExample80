@@ -116,7 +116,7 @@ So =={ 1. 2. 1 + 2 }== defines an array with elements 1, 2, and the result of ev
 string, and is ignored by the Pharo compiler. Comments may span multiple lines.
 
 ""Local variable definitions."" Vertical bars ==| |== enclose the declaration of
-one or more local variables in a method (and also in a block).
+one or more local variables at the begining of a method or a block body.
 
 ""Assignment."" ==:= == assigns an object to a variable.
 
