@@ -128,7 +128,7 @@ have local variables (==[| x | ...]==).
 ""Primitives and pragmas."" ==< primitive: ... >== denotes an invocation of a virtual
 machine (VM) primitive. For example, ==< primitive: 1 >== is the VM primitive for
 ==SmallInteger==. Any code following the primitive is executed only if the
-primitive fails. The same syntax of a message send within ==< >== is also used for other kinds of method annotations (pragmas).
+primitive fails. The same syntax of a message within ==< >== is also used for other kinds of method annotations (pragmas).
 
 ""Unary messages."" These consist of a single word (like ==factorial==) sent to
 a receiver (like 3). In ==3 factorial==, 3 is the receiver, and ==factorial== is
