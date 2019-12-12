@@ -103,7 +103,7 @@ characters. However, unlike a string, a literal symbol is guaranteed to be
 globally unique. There is only one ==Symbol== object ==#Hello== but there may be
 multiple ==String== objects with the value =='Hello'==.
 
-""Compile-time arrays."" are defined by ==#( )==, surrounding space-separated
+""Compile-time literal arrays."" are defined by ==#( )==, surrounding space-separated
 literals. Everything within the parentheses must be a compile-time constant. For
 example, ==#(27 (true false) abc)== is a literal array of three elements: the
 integer 27, the compile-time array containing the two booleans, and the symbol
