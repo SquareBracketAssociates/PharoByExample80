@@ -157,7 +157,7 @@ unary message ==close== to the same receiver.
 
 ""Method return."" ==^== is used to ''return'' a value from a method.
 
-The classes ==Number==, ==Character==, ==String== and ==Boolean== in Chapter *: Basic Classes>../BasicClasses/BasicClasses.pier@cha:basicClasses*.
+The basic classes ==Number==, ==Character==, ==String== and ==Boolean== are described in Chapter *: Basic Classes>../BasicClasses/BasicClasses.pier@cha:basicClasses*.
 
 !!!Pseudo-variables
 
@@ -167,19 +167,19 @@ pseudo-variables because they are predefined and cannot be assigned to.
 ==true==, ==false==, and ==nil== are constants, while the values of ==self==,
 ==super==, and ==thisContext== vary dynamically as code is executed.
 
-- ==true== and ==false== are the unique instances of the Boolean classes ==True== and ==False==. See Chapter *: Basic Classes>../BasicClasses/BasicClasses.pier@cha:basicClasses* for more details.
+- ==true== and ==false== are the unique instances of classes ==True== and ==False== which are the subclasses of class Boolean . See Chapter *: Basic Classes>../BasicClasses/BasicClasses.pier@cha:basicClasses* for more details.
 
-- ==self== always refers to the receiver of the message and denotes the object in which the corresponding method will be executed.  Therefore, the value of ==self== dinamically changes during the program execution, but can not be assigned in the code.
+- ==self== always refers to the receiver of the message and denotes the object in which the corresponding method will be executed.  Therefore, the value of ==self== dynamically changes during the program execution, but can not be assigned in the code.
 
-- ==super== also refers to the receiver of the current method, but when you send a message to ==super==, the method-lookup changes so that it starts from the superclass of the class containing the method that uses ==super==. For further details see Chapter *: The Pharo Object Model>../PharoObjectModel/PharoObjectModel.pier@cha:model*.
+- ==super== also refers to the receiver of the current message, but when you send a message to ==super==, the method-lookup changes so that it starts from the superclass of the class containing the method that sends message to ==super==. For further details see Chapter *: The Pharo Object Model>../PharoObjectModel/PharoObjectModel.pier@cha:model*.
 
 - ==nil== is the undefined object. It is the unique instance of the class ==UndefinedObject==. Instance variables, class variables and local variables are, by default, initialized to ==nil==.
 
-- ==thisContext== is a pseudo-variable that represents the top frame of the execution stack  and gives access to the current execution point. ==thisContext== is normally not of interest to most programmers, but it is essential for implementing development tools like the debugger, and it is also used to implement exception handling and continuations.
+- ==thisContext== is a pseudo-variable that represents the top frame of the execution stack and gives access to the current execution point. ==thisContext== is normally not of interest to most programmers, but it is essential for implementing development tools such as the debugger, and it is also used to implement exception handling and continuations.
 
 !!!Message sends
 
-As we described, there are three kinds of messages in Pharo. This distinction has been made to reduce the number of mandatory parentheses.
+As we described, there are three kinds of messages in Pharo with ppredefied precedence. This distinction has been made to reduce the number of mandatory parentheses.
 
 #''Unary'' messages take no argument. ==1 factorial== sends the message ==factorial== to the object 1. Unary message selectors consist of alphanumeric characters, and start with a lower case letter.
 #''Binary'' messages take exactly one argument. ==1 \+ 2== sends the message ==\+== with argument 2 to the object 1. Binary message selectors consist of one or more characters from the following
