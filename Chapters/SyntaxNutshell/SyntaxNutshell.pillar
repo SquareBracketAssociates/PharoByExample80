@@ -216,7 +216,7 @@ Parentheses must be used to alter the order of evaluation as follows:
 
 !!!Sequences and cascades.
 
-All expressions may be composed separated by period, while message sends may be also composed with semi-colons. A period separated
+All expressions may be composed in sequences separated by period, while message sends may be also composed in cascades by semi-colons. A period separated
 sequence of expressions causes each expression in the series to be evaluated as a separate ''statement'', one after the other.
 
 [[[
@@ -237,7 +237,7 @@ Transcript
   cr
 ]]]
 
-This has precisely the same effect as in the previous example.
+This cascade has precisely the same effect as the sequence in the previous example.
 
 
 !!!Method syntax
