@@ -99,7 +99,7 @@ expression.
 !!! A word about representation and self-evaluating representation.
 
 In functional programming, expressions return values when executed. In
-Pharo, messages (expressions) return objects (values). Some objects have the
+Pharo, message sends (expressions) return objects (values). Some objects have the
 nice property that their value is themselves. For example, the value of the
 object ==true== is itself i.e., the object ==true==. We call such objects
 ''self-evaluating objects''. You can see a ''printed'' version of an object
