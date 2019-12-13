@@ -189,9 +189,9 @@ Interval >> printOn: aStream
 
 !!!Identity and equality
 
-In Pharo, the message ==\=== tests object ''equality'' (i.e., whether
-two objects represent the same value) whereas ==\=\=== tests object ''identity''
-(whether two expressions represent the same object).
+In Pharo, the message ==\=== tests object ''equality'' while the message ==\=\=== tests object ''identity''.
+The former is used to check whether two objects represent the same value, while the latter is used to check whether
+two expressions represent the same object.
 
 The default implementation of object equality is to test for object identity:
 
