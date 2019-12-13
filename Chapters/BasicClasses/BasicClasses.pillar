@@ -80,7 +80,8 @@ Color >> printOn: aStream
 			^ aStream
 				nextPutAll: 'Color ';
 				nextPutAll: name ].
-	self storeOn: aStream]]]
+	self storeOn: aStream
+]]]
 
 [[[testcase=true
 Color red printString
