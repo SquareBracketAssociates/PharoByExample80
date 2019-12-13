@@ -260,7 +260,7 @@ Conversely, you can ask if an object is an instance of a specific class:
 
 Since Pharo is written in itself, you can really navigate through its
 structure using the right combination of superclass and class messages (see
-Chapter *: Classes and Metaclasses>../Metaclasses/Metaclasses.pillar@cha:metaclasses*).
+Chapter: *Classes and Metaclasses>../Metaclasses/Metaclasses.pillar@cha:metaclasses*).
 
 !!!!==isKindOf:==.
 
