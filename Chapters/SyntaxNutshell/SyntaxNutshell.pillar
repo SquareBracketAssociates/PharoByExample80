@@ -169,13 +169,13 @@ pseudo-variables because they are predefined and cannot be assigned to.
 
 - ==true== and ==false== are the unique instances of the Boolean classes ==True== and ==False==. See Chapter *: Basic Classes>../BasicClasses/BasicClasses.pier@cha:basicClasses* for more details.
 
-- ==self== always refers to the receiver of the currently executing method.
+- ==self== always refers to the receiver of the message and denotes the object in which the corresponding method will be executed.  Therefore, the value of ==self== dinamically changes during the program execution, but can not be assigned in the code.
 
 - ==super== also refers to the receiver of the current method, but when you send a message to ==super==, the method-lookup changes so that it starts from the superclass of the class containing the method that uses ==super==. For further details see Chapter *: The Pharo Object Model>../PharoObjectModel/PharoObjectModel.pier@cha:model*.
 
-- ==nil== is the undefined object. It is the unique instance of the class ==UndefinedObject==. Instance variables, class variables and local variables are initialized to ==nil==.
+- ==nil== is the undefined object. It is the unique instance of the class ==UndefinedObject==. Instance variables, class variables and local variables are, by default, initialized to ==nil==.
 
-- ==thisContext== is a pseudo-variable that represents the top frame of the execution stack. ==thisContext== is normally not of interest to most programmers, but it is essential for implementing development tools like the debugger, and it is also used to implement exception handling and continuations.
+- ==thisContext== is a pseudo-variable that represents the top frame of the execution stack  and gives access to the current execution point. ==thisContext== is normally not of interest to most programmers, but it is essential for implementing development tools like the debugger, and it is also used to implement exception handling and continuations.
 
 !!!Message sends
 
