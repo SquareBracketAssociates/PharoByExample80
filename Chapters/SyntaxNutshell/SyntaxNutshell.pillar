@@ -146,10 +146,10 @@ We send the message to the receiver 2.
 
 ""Sequences of statements."" A period or full-stop (==.==) is the statement
 separator. Putting a period between two expressions turns them into independent
-statements like in ====x := 2 . x := x \+ x==. Here we first assign value 2 to the variable ==x==, and then duplicate its value by assigning a value of == x \+ x== to it.
+statements like in ==x := 2. x := x + x==. Here we first assign value 2 to the variable ==x==, and then duplicate its value by assigning a value of ==x + x== to it.
 
 ""Cascades."" Semicolons ( ==;== ) can be used to send a cascade of messages to
-a single receiver. In ==stream nextPutAll: ’Hello World’; close.== we first send the keyword
+a single receiver. In ==stream nextPutAll: ’Hello World’; close== we first send the keyword
 message ==nextPutAll: ’Hello World’== to the receiver ==stream==, and then we send the
 unary message ==close== to the same receiver. 
 
