@@ -228,7 +228,7 @@ be a bug, not a feature.)
 
 Several methods allow you to query the class of an object.
 
-!!!!==class==
+!!!!==class==.
 
 You can ask any object about its class using the message ==class==.
 
