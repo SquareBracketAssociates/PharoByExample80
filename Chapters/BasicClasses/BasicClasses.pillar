@@ -314,7 +314,7 @@ A note on the usage of ==respondsTo:==. Normally it is a bad idea to query an
 object for its class, or to ask it which messages it understands. Instead of
 making decisions based on the class of object, you should simply send a message
 to the object and let it decide (on the basis of its class) how it should
-behave. (This concept is sometimes referred to as ''duck typing'').
+behave. This concept is sometimes referred to as ''duck typing''.
 
 !!!Copying
 
@@ -399,12 +399,13 @@ that state of the superclass is also copied.
 
 !!!! ==halt==.
 The most important method here is ==halt==. To set a breakpoint in a method,
-simply insert the expression send ==self halt== at some point in the body of the
+simply insert the expression ==self halt== at some point in the body of the
 method. (Note that since ==halt== is defined on ==Object== you can also write
 ==1 halt==). When this message is sent, execution will be interrupted and a
 debugger will open to this point in your program (see
 Chapter *: The Pharo Environment>../Environment/Environment.pillar@cha:env* for
 more details about the debugger).
+% TO REVISIT Because we don't have that chapter
 
 You can also use ==Halt once== or ==Halt if: aCondition==. Have a look at the
 class ==Halt== which is an special exception.
@@ -417,7 +418,7 @@ otherwise caught, the debugger will open to this point in the execution.
 ==assert:== is especially useful to support ''design by contract''. The most
 typical usage is to check non-trivial pre-conditions to public methods of
 objects. ==Stack>>pop== could easily have been implemented as follows (note
-that this definition is anhypothetical example and not in the Pharo 5.0 system):
+that this definition is anhypothetical example and not in the Pharo 8.0 system):
 
 [[[caption=Checking a pre-condition
 Stack >> pop
@@ -881,6 +882,7 @@ usual ==comparing== methods, ==<==, ===== and so on. In addition,
 >>> true
 ]]]
 
+% TO REVISIT we don't have chapter Regex
 Regular expressions will be discussed in more detail in
 Chapter *: Regular Expressions in Pharo>../Regex/Regex.pier@cha:regex*.
 
