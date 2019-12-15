@@ -314,7 +314,7 @@ A note on the usage of ==respondsTo:==. Normally it is a bad idea to query an
 object for its class, or to ask it which messages it understands. Instead of
 making decisions based on the class of object, you should simply send a message
 to the object and let it decide (on the basis of its class) how it should
-behave. (This concept is sometimes referred to as ''duck typing'').
+behave. This concept is sometimes referred to as ''duck typing''.
 
 !!!Copying
 
