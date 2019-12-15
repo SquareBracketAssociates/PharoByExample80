@@ -399,7 +399,7 @@ that state of the superclass is also copied.
 
 !!!! ==halt==.
 The most important method here is ==halt==. To set a breakpoint in a method,
-simply insert the expression send ==self halt== at some point in the body of the
+simply insert the expression ==self halt== at some point in the body of the
 method. (Note that since ==halt== is defined on ==Object== you can also write
 ==1 halt==). When this message is sent, execution will be interrupted and a
 debugger will open to this point in your program (see
