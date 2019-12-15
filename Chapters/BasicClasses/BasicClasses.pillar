@@ -882,6 +882,7 @@ usual ==comparing== methods, ==<==, ===== and so on. In addition,
 >>> true
 ]]]
 
+% TO REVISIT we don't have chapter Regex
 Regular expressions will be discussed in more detail in
 Chapter *: Regular Expressions in Pharo>../Regex/Regex.pier@cha:regex*.
 
