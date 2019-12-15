@@ -405,6 +405,7 @@ method. (Note that since ==halt== is defined on ==Object== you can also write
 debugger will open to this point in your program (see
 Chapter *: The Pharo Environment>../Environment/Environment.pillar@cha:env* for
 more details about the debugger).
+% TO REVISIT Because we don't have that chapter
 
 You can also use ==Halt once== or ==Halt if: aCondition==. Have a look at the
 class ==Halt== which is an special exception.
