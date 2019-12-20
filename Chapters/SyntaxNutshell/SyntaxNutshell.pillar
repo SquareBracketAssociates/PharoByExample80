@@ -217,7 +217,7 @@ Parentheses must be used to alter the order of evaluation as follows:
 All expressions may be composed in sequences separated by period, while message sends may be also composed in cascades by semi-colons. A period separated
 sequence of expressions causes each expression in the series to be evaluated as a separate ''statement'', one after the other.
 
-[[[
+[[[example=true
 Transcript cr.
 Transcript show: 'hello world'.
 Transcript cr
@@ -228,7 +228,7 @@ This will send ==cr== to the ==Transcript== object, then send to Trascript the m
 When a series of messages is being sent to the ''same'' receiver, then this can be expressed more succinctly as a ''cascade''. The receiver is specified just
 once, and the sequence of messages is separated by semi-colons as follows:
 
-[[[
+[[[example=true
 Transcript
   cr;
   show: 'hello world';
@@ -303,10 +303,10 @@ expression.
 >>> 33
 ]]]
 
-Blocks may take parameters, each of which is declared with a leading colon. A
-vertical bar separates the parameter declaration(s) from the body of the block.
-To evaluate a block with one parameter, you must send it the message value: with
-one argument. A two-parameter block must be sent ==value:value:==, and so on, up
+Blocks may have parameters each of which is declared with a leading colon. A
+vertical bar separates the parameters declaration from the body of the block.
+To evaluate a block with one parameter, you must send it the message ==value:== with
+one argument. A two-parameter block must be evaluated by sending ==value:value:== with two arguments, and so on, up
 to 4 arguments.
 
 [[[example=true
@@ -319,12 +319,11 @@ to 4 arguments.
 ]]]
 
 If you have a block with more than four parameters, you must use
-==valueWithArguments:== and pass the arguments in an array. (A block with a
-large number of parameters is often a sign of a design problem.)
+==valueWithArguments:== and pass the arguments in an array. However, a block with a
+large number of parameters is often a sign of a design problem.
 
-Blocks may also declare local variables, which are surrounded by vertical bars,
-just like local variable declarations in a method. Locals are declared after any
-arguments:
+In blocks there may be also declared local variables, surrounded by vertical bars,
+just like local variable declarations in a method. Local variables are declared after arguments and vertical bar separator, and before the block body. In the following example, ==x== i ==y== are parameters, and ==z== is local variable.
 
 [[[example=true
 [ :x :y |
