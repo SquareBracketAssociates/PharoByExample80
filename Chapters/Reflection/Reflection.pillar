@@ -211,9 +211,9 @@ deep into the internal details of code.
 !!!!Code metrics
 
 Let's see how we can use Pharo's introspection features to quickly extract
-some code metrics. Code metrics measure such aspects as the depth of the
+some code metrics. Code metrics measure aspects such as the depth of the
 inheritance hierarchy, the number of direct or indirect subclasses, the number
-of methods or of instance variables in each class, or the number of locally
+of methods or instance variables in each class, or the number of locally
 defined methods or instance variables. Here are a few metrics for the class
 ==Morph==, which is the superclass of all graphical objects in Pharo, revealing
 that it is a huge class, and that it is at the root of a huge hierarchy. Maybe
@@ -224,40 +224,47 @@ it needs some refactoring!
 Morph allSuperclasses size.
 >>> 2
 ]]]
+
 [[[testcase=true
 "number of methods"
 Morph allSelectors size.
->>> 1368
+>>> 1346
 ]]]
+
 [[[testcase=true
 "number of instance variables"
 Morph allInstVarNames size.
 >>> 6
 ]]]
+
 [[[testcase=true
 "number of new methods"
 Morph selectors size.
->>> 904
+>>> 905
 ]]]
+
 [[[testcase=true
 "number of new variables"
 Morph instVarNames size.
 >>> 6
 ]]]
+
 [[[testcase=true
 "direct subclasses"
 Morph subclasses size.
 >>> 65
 ]]]
+
 [[[testcase=true
 "total subclasses"
 Morph allSubclasses size.
->>>  430
+>>>  428
 ]]]
+
 [[[testcase=true
 "total lines of code!"
 Morph linesOfCode.
->>> 5023
+>>> 5027
 ]]]
 
 One of the most interesting metrics in the domain of object-oriented languages
