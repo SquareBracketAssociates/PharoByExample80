@@ -499,11 +499,11 @@ Suppose we are interested to discover which classes refer to the class
 
 Open a browser on the class ==Point==.
 
-Action-click on the top level package ==Kernel== in the package pane and select
-==Browse scoped==. A new browser opens, showing only the package ==Kernel== and
+Click on the top level package ==Kernel== in the package pane and select
+==Scoped View== radio button. Browser now shows only the package ==Kernel== and
 all classes within this package (and some classes which have extension methods
 from this package). Now, in this browser, select again the class ==Point==,
-Action-click on the class name and select ==Analyse > Class refs==. This will
+Action-click on the class name and select ==Class refs==. This will
 show all methods that have references to the class ==Point== but only those
 from the package ==Kernel==. Compare this result with the search from a Browser
 without restricted scope.
