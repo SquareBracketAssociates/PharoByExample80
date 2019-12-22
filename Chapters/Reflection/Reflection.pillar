@@ -295,10 +295,12 @@ active instances in memory with ==instanceCount==.
 ByteString allInstances
 >>> #('collection' 'position'  ...)
 ]]]
+
 [[[testcase=true
 ByteString instanceCount
 >>> 58514
 ]]]
+
 [[[testcase=true
 String allSubInstances size
 >>>  138962
@@ -322,10 +324,12 @@ reflection.
 Point whichSelectorsAccess: 'x'
 >>> #(#octantOf: #roundDownTo: #+ #asIntegerPoint #transposed ...)
 ]]]
+
 [[[testcase=true
 Point whichSelectorsStoreInto: 'x'
 >>> #(#fromSton: #setX:setY: #setR:degrees: #bitShiftPoint:)
 ]]]
+
 [[[testcase=true
 Point whichSelectorsReferTo: #+
 >>> #(#+)
@@ -363,13 +367,15 @@ The following messages should also be self-explanatory:
 SystemNavigation default allSentMessages size
 >>>43985
 ]]]
+
 [[[testcase=true
 (SystemNavigation default allUnsentMessagesIn: Object selectors) size
->>> 38
+>>> 37
 ]]]
+
 [[[testcase=true
 SystemNavigation default allUnimplementedCalls size
->>> 273
+>>> 269
 ]]]
 
 Note that messages implemented but not sent are not necessarily useless, since
@@ -386,7 +392,7 @@ particular the code browsers. As we mentioned before, there are convenient
 keyboard shortcuts for browsing all i""m""plementors (==CMD-m==) and
 browsing se""n""ders (==CMD-n==) of a given message. What is perhaps
 not so well known is that there are many such pre-packaged queries implemented
-as methods of the ==SystemNavigation== class in the ==browsing== protocol. For
+as methods of the ==SystemNavigation== class in the ==query== protocol. For
 example, you can programmatically browse all implementors of the message
 ==ifTrue:== by evaluating:
 
