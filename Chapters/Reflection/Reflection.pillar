@@ -1,4 +1,4 @@
-{ "title": "Reflection" }
+!!Reflection
 @cha:reflection
 
 Pharo is a reflective programming language. In a nutshell, this means that
@@ -33,7 +33,7 @@ In this chapter we will focus mainly on structural reflection. We will explore
 many practical examples illustrating how Pharo supports introspection and
 metaprogramming.
 
-!!Introspection
+!!!Introspection
 
 Using the inspector, you can look at an object, change the values of its
 instance variables, and even send messages to it.
@@ -60,7 +60,7 @@ has a comment on top and type ==self bounds: (Rectangle origin: 10@10 corner:
 
 Immediately you will see the Playground we created change and resize itself.
 
-!!!Accessing instance variables
+!!!!Accessing instance variables
 
 How does the inspector work? In Pharo, all instance variables are protected.
 In theory, it is impossible to access them from another object if the class
@@ -152,7 +152,7 @@ Morph allSubInstances
 OrderedCollection(a GLMSystemWindow(874014976) named: Playground a GLMSystemWindow(365303808) named: Playground a MenubarMorph(779936512) a HandMorph(725291008) a TaskbarMorph(747120896))
 ]]]
 
-!!!Querying classes and interfaces
+!!!!Querying classes and interfaces
 
 The development tools in Pharo (system browser, debugger, inspector...) all use
 the reflective features we have seen so far.
@@ -205,7 +205,7 @@ encapsulation. Development tools, however, are not normal applications, since
 their domain is that of software itself. As such these tools have a right to dig
 deep into the internal details of code.
 
-!!!Code metrics
+!!!!Code metrics
 
 Let's see how we can use Pharo's introspection features to quickly extract
 some code metrics. Code metrics measure such aspects as the depth of the
@@ -263,7 +263,7 @@ informs us about the relation between the class and its superclasses. In the
 next sections we will see how to exploit our knowledge of the runtime structure
 to answer such questions.
 
-!!Browsing code
+!!!Browsing code
 
 In Pharo, everything is an object. In particular, classes are objects that
 provide useful features for navigating through their instances. Most of the
@@ -397,7 +397,7 @@ SystemNavigation default browseMethodsWithSourceString: 'super' matchCase: true.
 SystemNavigation default browseAllSelect: [:method | method sendsToSuper ].
 ]]]
 
-!!Classes, method dictionaries and methods
+!!!Classes, method dictionaries and methods
 
 Since classes are objects, we can inspect or explore them just like any other
 object.
@@ -471,7 +471,7 @@ reference for a compiled method.
 >>> #=
 ]]]
 
-!!Browsing environments
+!!!Browsing environments
 
 Although ==SystemNavigation== offers some useful ways to programmatically query
 and browse system code, there are more ways. The Browser, which is integrated
@@ -543,12 +543,12 @@ found within the ==Collection== hierarchy, including
 that send a different super
 message.>file://figures/sendDifferentSuper.png|label=fig:sendDifferentSuper+
 
-!!Accessing the run-time context
+!!!Accessing the run-time context
 
 We have seen how Pharo's reflective capabilities let us query and explore
 objects, classes and methods. But what about the run-time environment?
 
-!!!Method contexts
+!!!!Method contexts
 
 In fact, the run-time context of an executing method is in the virtual machine —
 it is not in the image at all! On the other hand, the debugger obviously has
@@ -611,7 +611,7 @@ are considered to be abstract. But how does ==Object>>subclassResponsibility==
 provide a useful error message indicating which abstract method has been
 invoked? Very simply, by asking ==thisContext== for the sender.
 
-!!!Intelligent breakpoints
+!!!!Intelligent breakpoints
 
 The Pharo way to set a breakpoint is to evaluate ==self halt== at an
 interesting point in a method. This will cause ==thisContext== to be reified,
@@ -687,7 +687,7 @@ It is also possible to supply a boolean or a boolean block as an argument to
 ==haltIf:==, but these cases are straightforward and do not make use of
 ==thisContext==.
 
-!!Intercepting messages not understood
+!!!Intercepting messages not understood
 @sec:msgnotunderstood
 
 So far we have used Pharo's reflective features mainly to query and
@@ -712,7 +712,7 @@ alternative strategy for responding to that message.
 Two very common applications of this technique are 1) to implement lightweight
 proxies for objects, and 2) to dynamically compile or load missing code.
 
-!!!Lightweight proxies
+!!!!Lightweight proxies
 
 In the first case, we introduce a ''minimal object'' to act as a proxy for an
 existing object. Since the proxy will implement virtually no methods of its own,
@@ -863,7 +863,7 @@ Although messages can be intercepted by proxies using this technique, one should
 be aware of the inherent limitations of using a proxy. In Section *@sec:wrapper*
 we will see another, more general approach for intercepting messages.
 
-!!!Generating missing methods
+!!!!Generating missing methods
 
 The other most common application of intercepting not understood messages is to
 dynamically load or generate the missing methods. Consider a very large library
@@ -942,7 +942,7 @@ messages that are composed at run-time:
 >>> 6
 ]]]
 
-!!Objects as method wrappers
+!!!Objects as method wrappers
 @sec:wrapper
 
 We have already seen that compiled methods are ordinary objects in Pharo,
@@ -1017,7 +1017,7 @@ installed using ==Behavior>>addSelector:withMethod:== or directly using
 
 !!!!!!!!!!!!!!!!!!!!!!!!NEXT CHAPTER NEEDS A REVIEW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-!!!Using method wrappers to perform test coverage
+!!!!Using method wrappers to perform test coverage
 
 Method wrappers are a well-known technique for intercepting messages. In the
 original implementation(http://www.squeaksource.com/MethodWrappers.html), a
@@ -1129,7 +1129,7 @@ computed values of methods).
 !!!!!!!!!!!!!!!!!!!!!CORRECTION IN THE SUMMARY AS WELL!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-!!Pragmas
+!!!Pragmas
 
 A ''pragma'' is an annotation that specifies data about a program, but is not
 involved in the execution of the program. Pragmas have no direct effect on the
@@ -1200,7 +1200,7 @@ method (==selector==), the class that contains the method (==methodClass==), its
 number of arguments (==numArgs==), about the literals the pragma has for
 arguments (==hasLiteral:== and ==hasLiteralSuchThat:==).
 
-!!Chapter summary
+!!!Chapter summary
 
 Reflection refers to the ability to query, examine and even modify the
 metaobjects of the runtime system as ordinary objects.
