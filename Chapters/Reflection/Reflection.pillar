@@ -58,7 +58,7 @@ has a comment on top and type ==self bounds: (Rectangle origin: 10@10 corner:
 300@300 )== in it as shown in Figure *@fig:playgroundInspector* and then
 ''Do It'' like you do with a code of a Playground.
 
-Immediately you will see the Playground we created change and resize itself.
+Immediately you will see the Playground that we created will change and resize itself.
 
 !!!!Accessing instance variables
 
@@ -166,14 +166,17 @@ of one of its superclasses. For instance:
 1.5 class
 >>> SmallFloat64
 ]]]
+
 [[[testcase=true
 1.5 isKindOf: Float
 >>> true
 ]]]
+
 [[[testcase=true
 1.5 isKindOf: Number
 >>> true
 ]]]
+
 [[[testcase=true
 1.5 isKindOf: Integer
 >>> false
@@ -195,7 +198,7 @@ Exception respondsTo: #,
 >>> true    "exception classes can be grouped"
 ]]]
 
-!!!!!Important Caveat:
+@@important Caveat:
 
 Although these features are especially useful for implementing development
 tools, they are normally not appropriate for typical applications. Asking an
