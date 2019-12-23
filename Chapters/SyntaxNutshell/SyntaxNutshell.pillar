@@ -348,7 +348,7 @@ Blocks are instances of the class ==BlockClosure==. This means that they are
 objects, so they can be assigned to variables and passed as arguments just like
 any other object.
 
-!!!Conditionals and loops in a nutshell
+!!!Conditionals and loops
 
 Pharo offers no special syntax for control constructs. Instead, these are
 typically expressed by sending messages to booleans, numbers and collections,
@@ -390,7 +390,7 @@ n
 >>> 1024
 ]]]
 
-==timesRepeat:== offers a simple way to implement a fixed iteration:
+==timesRepeat:== offers a simple way to implement a fixed number of iterations through the loop body:
 
 [[[example=true
 n := 1.
@@ -414,7 +414,7 @@ result
 Collections comprise a large number of different
 classes, many of which support the same protocol. The most important messages
 for iterating over collections include ==do:==, ==collect:==, ==select:==,
-==reject:==, ==detect:== and ==inject:into:==. These messages define high-level
+==reject:==, ==detect:== and ==inject:into:==. These messages represent high-level
 iterators that allow one to write very compact code.
 
 An ""Interval"" is a collection that lets one iterate over a sequence of numbers
@@ -430,8 +430,8 @@ result
 ]]]
 
 ==collect:== builds a new collection of the same size, transforming each
-element. (You can think of ==collect:== as the Map in the MapReduce
-programming model).
+element. You can think of ==collect:== as the Map in the MapReduce
+programming mode).
 
 [[[example=true
 (1 to:10) collect: [ :each | each * each ]
@@ -439,10 +439,11 @@ programming model).
 ]]]
 
 ==select:== and ==reject:== build new collections, each containing a subset of
-the elements satisfying (or not) the boolean block condition.
+the elements of the itterated collection that satisfies, or not, respectively, the boolean block condition.
 
-==detect:== returns the first element satisfying the condition. Don't forget
-that strings are also collections (of characters), so you can iterate over all
+==detect:== returns the first element in the collection that satisfies the condition. 
+
+Don't forget that strings are also collections (of characters), so you can iterate over all
 the characters.
 
 [[[example=true
