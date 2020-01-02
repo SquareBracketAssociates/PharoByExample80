@@ -12,7 +12,7 @@ learn how to define a new method, create an object and send it messages.
 
 ''Note:'' Most of the introductory material in this book will work with any
 Pharo version, so if you already have one installed, you may as well continue to
-use it. However, since this book is written for Pharo 5.0, if you notice
+use it. However, since this book is written for Pharo 8, if you notice
 differences between the appearance or behaviour of your system and what is
 described here, do not be surprised.
 
