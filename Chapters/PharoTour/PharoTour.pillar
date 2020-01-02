@@ -1,16 +1,16 @@
-!!A quick tour of Pharo (to revisit - started by Gordana)
+!!A quick tour through Pharo (to revisit - started by Gordana)
 @cha:tour
 
-This chapter will take you on a high level tour of Pharo, to help you get
+This chapter will take you on a high level tour through Pharo, to help you to get
 comfortable with the environment. There will be plenty of opportunities to try
 things out, so it would be a good idea if you have a computer handy when you
 read this chapter.
 
-In particular, you will fire up Pharo, learn about the different ways of
+In particular, you will launch Pharo, learn about the different ways of
 interacting with the system, and discover some of the basic tools. You will also
 learn how to define a new method, create an object and send it messages.
 
-''Note:'' Most of the introductory material in this book will work with any
+@@note Most of the introductory material in this book will work with any
 Pharo version, so if you already have one installed, you may as well continue to
 use it. However, since this book is written for Pharo 5.0, if you notice
 differences between the appearance or behaviour of your system and what is
