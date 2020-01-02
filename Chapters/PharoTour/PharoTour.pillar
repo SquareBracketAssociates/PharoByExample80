@@ -19,23 +19,23 @@ described here, do not be surprised.
 !!!Installing Pharo
 
 Pharo does not need to install anything in your system, as it's perfectly
-capable of running standalone. Depending on your platform, download the
-appropriate zip file, uncompress it in a directory of your choice and now you
-are ready to launch Pharo. In case of Ubuntu Linux, there is also the extra
-option of installing Pharo via the Pharo PPA. Pharo can be also installed via
+capable of running standalone. As it will be explained later, Pharo consists of the virtual machine (VM), the image, the changes and the sources.
+
+Depending on your platform, download the
+appropriate ==.zip==  file, uncompress it in a directory of your choice and now you
+are ready to launch Pharo. Pharo can be also installed via
 the command line.
 
 !!!!Downloading Pharo
 
 Pharo is available as a free download from
-*http://pharo.org/download>http://pharo.org/download*. You can download Pharo either by using Pharo Launcher
-or by downloading one of the Pharo standalone versions.
+*http://pharo.org/download>http://pharo.org/download*. You can download either Pharo Launcher some of the Pharo standalone versions.
 
 Pharo Launcher is a cross-platform application that allows easy managing of Pharo images. Click the button for your
 operating system to download the appropriate Pharo Launcher, it contains everything you need to run Pharo.
 
-For standalone version download the appropriate ==.zip== file. Once that file is unzipped, it will contain everything you need to run
-Pharo (this includes the VM, the image, and the sources, as explained below).
+For standalone version download the appropriate ==.zip== file. Once the file is unzipped, it will contain everything you need to run
+Pharo.
 
 !!!!Using handy scripts
 
