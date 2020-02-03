@@ -988,7 +988,7 @@ instance of the latter. However, this is largely irrelevant to you as a
 programmer: you are concerned with defining the behavior of your objects and the
 classes that create them.
 
-+Browsing a class and its metaclass (revisit).>file://figures/colorInstanceClassSide.png|label=fig:colorInstanceClassSide|width=90+
++Browsing a class and its metaclass.>file://figures/colorInstanceClassSide.png|label=fig:colorInstanceClassSide|width=90+
 
 For this reason, the browser helps you to browse both class and metaclass as if
 they were a single thing with two "sides": the ''instance side'' and the ''class

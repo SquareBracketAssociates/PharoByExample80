@@ -1,4 +1,4 @@
-{ "title": "Reflection" }
+!!Reflection
 @cha:reflection
 
 Pharo is a reflective programming language. In a nutshell, this means that
@@ -33,7 +33,7 @@ In this chapter we will focus mainly on structural reflection. We will explore
 many practical examples illustrating how Pharo supports introspection and
 metaprogramming.
 
-!!Introspection
+!!!Introspection
 
 Using the inspector, you can look at an object, change the values of its
 instance variables, and even send messages to it.
@@ -58,9 +58,9 @@ has a comment on top and type ==self bounds: (Rectangle origin: 10@10 corner:
 300@300 )== in it as shown in Figure *@fig:playgroundInspector* and then
 ''Do It'' like you do with a code of a Playground.
 
-Immediately you will see the Playground we created change and resize itself.
+Immediately you will see the Playground that we created will change and resize itself.
 
-!!!Accessing instance variables
+!!!!Accessing instance variables
 
 How does the inspector work? In Pharo, all instance variables are protected.
 In theory, it is impossible to access them from another object if the class
@@ -152,7 +152,7 @@ Morph allSubInstances
 OrderedCollection(a GLMSystemWindow(874014976) named: Playground a GLMSystemWindow(365303808) named: Playground a MenubarMorph(779936512) a HandMorph(725291008) a TaskbarMorph(747120896))
 ]]]
 
-!!!Querying classes and interfaces
+!!!!Querying classes and interfaces
 
 The development tools in Pharo (system browser, debugger, inspector...) all use
 the reflective features we have seen so far.
@@ -166,14 +166,17 @@ of one of its superclasses. For instance:
 1.5 class
 >>> SmallFloat64
 ]]]
+
 [[[testcase=true
 1.5 isKindOf: Float
 >>> true
 ]]]
+
 [[[testcase=true
 1.5 isKindOf: Number
 >>> true
 ]]]
+
 [[[testcase=true
 1.5 isKindOf: Integer
 >>> false
@@ -195,7 +198,7 @@ Exception respondsTo: #,
 >>> true    "exception classes can be grouped"
 ]]]
 
-!!!!!Important Caveat:
+@@important Caveat:
 
 Although these features are especially useful for implementing development
 tools, they are normally not appropriate for typical applications. Asking an
@@ -205,12 +208,12 @@ encapsulation. Development tools, however, are not normal applications, since
 their domain is that of software itself. As such these tools have a right to dig
 deep into the internal details of code.
 
-!!!Code metrics
+!!!!Code metrics
 
 Let's see how we can use Pharo's introspection features to quickly extract
-some code metrics. Code metrics measure such aspects as the depth of the
+some code metrics. Code metrics measure aspects such as the depth of the
 inheritance hierarchy, the number of direct or indirect subclasses, the number
-of methods or of instance variables in each class, or the number of locally
+of methods or instance variables in each class, or the number of locally
 defined methods or instance variables. Here are a few metrics for the class
 ==Morph==, which is the superclass of all graphical objects in Pharo, revealing
 that it is a huge class, and that it is at the root of a huge hierarchy. Maybe
@@ -221,40 +224,47 @@ it needs some refactoring!
 Morph allSuperclasses size.
 >>> 2
 ]]]
+
 [[[testcase=true
 "number of methods"
 Morph allSelectors size.
->>> 1368
+>>> 1346
 ]]]
+
 [[[testcase=true
 "number of instance variables"
 Morph allInstVarNames size.
 >>> 6
 ]]]
+
 [[[testcase=true
 "number of new methods"
 Morph selectors size.
->>> 904
+>>> 905
 ]]]
+
 [[[testcase=true
 "number of new variables"
 Morph instVarNames size.
 >>> 6
 ]]]
+
 [[[testcase=true
 "direct subclasses"
 Morph subclasses size.
 >>> 65
 ]]]
+
 [[[testcase=true
 "total subclasses"
 Morph allSubclasses size.
->>>  430
+>>>  428
 ]]]
+
 [[[testcase=true
 "total lines of code!"
 Morph linesOfCode.
->>> 5023
+>>> 5027
 ]]]
 
 One of the most interesting metrics in the domain of object-oriented languages
@@ -263,7 +273,7 @@ informs us about the relation between the class and its superclasses. In the
 next sections we will see how to exploit our knowledge of the runtime structure
 to answer such questions.
 
-!!Browsing code
+!!!Browsing code
 
 In Pharo, everything is an object. In particular, classes are objects that
 provide useful features for navigating through their instances. Most of the
@@ -285,10 +295,12 @@ active instances in memory with ==instanceCount==.
 ByteString allInstances
 >>> #('collection' 'position'  ...)
 ]]]
+
 [[[testcase=true
 ByteString instanceCount
 >>> 58514
 ]]]
+
 [[[testcase=true
 String allSubInstances size
 >>>  138962
@@ -312,10 +324,12 @@ reflection.
 Point whichSelectorsAccess: 'x'
 >>> #(#octantOf: #roundDownTo: #+ #asIntegerPoint #transposed ...)
 ]]]
+
 [[[testcase=true
 Point whichSelectorsStoreInto: 'x'
 >>> #(#fromSton: #setX:setY: #setR:degrees: #bitShiftPoint:)
 ]]]
+
 [[[testcase=true
 Point whichSelectorsReferTo: #+
 >>> #(#+)
@@ -353,13 +367,15 @@ The following messages should also be self-explanatory:
 SystemNavigation default allSentMessages size
 >>>43985
 ]]]
+
 [[[testcase=true
 (SystemNavigation default allUnsentMessagesIn: Object selectors) size
->>> 38
+>>> 37
 ]]]
+
 [[[testcase=true
 SystemNavigation default allUnimplementedCalls size
->>> 273
+>>> 269
 ]]]
 
 Note that messages implemented but not sent are not necessarily useless, since
@@ -376,7 +392,7 @@ particular the code browsers. As we mentioned before, there are convenient
 keyboard shortcuts for browsing all i""m""plementors (==CMD-m==) and
 browsing se""n""ders (==CMD-n==) of a given message. What is perhaps
 not so well known is that there are many such pre-packaged queries implemented
-as methods of the ==SystemNavigation== class in the ==browsing== protocol. For
+as methods of the ==SystemNavigation== class in the ==query== protocol. For
 example, you can programmatically browse all implementors of the message
 ==ifTrue:== by evaluating:
 
@@ -397,7 +413,7 @@ SystemNavigation default browseMethodsWithSourceString: 'super' matchCase: true.
 SystemNavigation default browseAllSelect: [:method | method sendsToSuper ].
 ]]]
 
-!!Classes, method dictionaries and methods
+!!!Classes, method dictionaries and methods
 
 Since classes are objects, we can inspect or explore them just like any other
 object.
@@ -471,7 +487,7 @@ reference for a compiled method.
 >>> #=
 ]]]
 
-!!Browsing environments
+!!!Browsing environments
 
 Although ==SystemNavigation== offers some useful ways to programmatically query
 and browse system code, there are more ways. The Browser, which is integrated
@@ -483,11 +499,11 @@ Suppose we are interested to discover which classes refer to the class
 
 Open a browser on the class ==Point==.
 
-Action-click on the top level package ==Kernel== in the package pane and select
-==Browse scoped==. A new browser opens, showing only the package ==Kernel== and
+Click on the top level package ==Kernel== in the package pane and select
+==Scoped View== radio button. Browser now shows only the package ==Kernel== and
 all classes within this package (and some classes which have extension methods
 from this package). Now, in this browser, select again the class ==Point==,
-Action-click on the class name and select ==Analyse > Class refs==. This will
+Action-click on the class name and select ==Class refs==. This will
 show all methods that have references to the class ==Point== but only those
 from the package ==Kernel==. Compare this result with the search from a Browser
 without restricted scope.
@@ -543,12 +559,75 @@ found within the ==Collection== hierarchy, including
 that send a different super
 message.>file://figures/sendDifferentSuper.png|label=fig:sendDifferentSuper+
 
-!!Accessing the run-time context
+!!!Accessing the run-time context
 
 We have seen how Pharo's reflective capabilities let us query and explore
 objects, classes and methods. But what about the run-time environment?
 
-!!!Intelligent breakpoints
+!!!!Method contexts
+
+In fact, the run-time context of an executing method is in the virtual machine —
+it is not in the image at all! On the other hand, the debugger obviously has
+access to this information, and we can happily explore the run-time context,
+just like any other object. How is this possible?
+
+Actually, there is nothing magical about the debugger. The secret is the
+pseudo-variable ==thisContext==, which we have encountered only in passing
+before. Whenever ==thisContext== is referred to in a running method, the entire
+run-time context of that method is reified and made available to the image as a
+series of chained ==Context== objects.
+
+We can easily experiment with this mechanism ourselves.
+
+Change the definition of ==Integer>>factorial== by inserting the expression
+==thisContext inspect. self halt.== as shown below:
+
+[[[
+Integer>>factorial
+	"Answer the factorial of the receiver."
+	self = 0 ifTrue: [thisContext inspect. self halt. ^ 1].
+	self > 0 ifTrue: [^ self * (self - 1) factorial].
+	self error: 'Not valid for negative integers'
+]]]
+
+Now evaluate ==3 factorial== in a workspace. You should obtain both a debugger
+window and an inspector, as shown in Figure *@fig:exploringThisContext*.
+
++Inspecting ==thisContext==.>file://figures/exploringThisContext.png|label=fig:exploringThisContext+
+
+Inspecting ==thisContext== gives you full access to the current execution
+context, the stack, the local tempories and arguments, the senders chain and the
+receiver. Welcome to the poor man's debugger! If you now browse the class of
+the explored object (''i.e.'', by evaluating ==self browse== in the bottom pane
+of the inspector) you will discover that it is an instance of the class
+==Context==, as is each ==sender== in the chain.
+
+==thisContext== is not intended to be used for day-to-day programming, but it is
+essential for implementing tools like debuggers, and for accessing information
+about the call stack. You can evaluate the following expression to discover
+which methods make use of ==thisContext==:
+
+[[[
+SystemNavigation default browseMethodsWithSourceString: 'thisContext' matchCase: true
+]]]
+
+As it turns out, one of the most common applications is to discover the sender
+of a message. Here is a typical application:
+
+[[[
+subclassResponsibility
+	"This message sets up a framework for the behavior of the class' subclasses.
+	Announce that the subclass should have implemented this message."
+
+	SubclassResponsibility signalFor: thisContext sender selector
+]]]
+
+By convention, methods that send ==self subclassResponsibility==
+are considered to be abstract. But how does ==Object>>subclassResponsibility==
+provide a useful error message indicating which abstract method has been
+invoked? Very simply, by asking ==thisContext== for the sender.
+
+!!!!Intelligent breakpoints
 
 The Pharo way to set a breakpoint is to evaluate ==self halt== at an
 interesting point in a method. This will cause ==thisContext== to be reified,
@@ -596,7 +675,35 @@ This time the image does not freeze. Try running the ==MorphTest==.
 MorphTest run:#testOpenInWorld.
 ]]]
 
-!!Intercepting messages not understood
+How does this work? Let's have a look at ==Object>>haltIf:==. It first calls
+==if:== with the condition to the ==Exception== class ==Halt==. This method
+itself will check if the condition is a symbol, which is true in this case and
+finally calls
+
+[[[
+Object>>haltIf: condition
+	<debuggerCompleteToSender>
+	Halt if: condition.
+]]]
+[[[
+Halt class >> haltIfCallChain: haltSenderContext contains: aSelector
+	| cntxt |
+	cntxt := haltSenderContext.
+	[ cntxt isNil ] whileFalse: [
+		cntxt selector = aSelector ifTrue: [ self signalIn: haltSenderContext ].
+		cntxt := cntxt sender ]
+]]]
+
+Starting from ==thisContext==, ==haltIfCallChainContains:== goes up through the
+execution stack, checking if the name of the calling method is the same as the
+one passed as parameter. If this is the case, then it signals itself, the
+exception which, by default, summons the debugger.
+
+It is also possible to supply a boolean or a boolean block as an argument to
+==haltIf:==, but these cases are straightforward and do not make use of
+==thisContext==.
+
+!!!Intercepting messages not understood
 @sec:msgnotunderstood
 
 So far we have used Pharo's reflective features mainly to query and
@@ -621,7 +728,7 @@ alternative strategy for responding to that message.
 Two very common applications of this technique are 1) to implement lightweight
 proxies for objects, and 2) to dynamically compile or load missing code.
 
-!!!Lightweight proxies
+!!!!Lightweight proxies
 
 In the first case, we introduce a ''minimal object'' to act as a proxy for an
 existing object. Since the proxy will implement virtually no methods of its own,
@@ -772,7 +879,7 @@ Although messages can be intercepted by proxies using this technique, one should
 be aware of the inherent limitations of using a proxy. In Section *@sec:wrapper*
 we will see another, more general approach for intercepting messages.
 
-!!!Generating missing methods
+!!!!Generating missing methods
 
 The other most common application of intercepting not understood messages is to
 dynamically load or generate the missing methods. Consider a very large library
@@ -851,7 +958,7 @@ messages that are composed at run-time:
 >>> 6
 ]]]
 
-!!Objects as method wrappers
+!!!Objects as method wrappers
 @sec:wrapper
 
 We have already seen that compiled methods are ordinary objects in Pharo,
@@ -870,7 +977,7 @@ Object subclass: #Demo
 	package: 'PBE-Reflection'
 ]]]
 [[[
-Demo new answer42å
+Demo new answer42
 ]]]
 
 Now we will install a plain object in the method dictionary of our ==Demo==
@@ -924,7 +1031,121 @@ others may be required by some tools and depending on whether the method is
 installed using ==Behavior>>addSelector:withMethod:== or directly using
 ==MethodDictionary>>at:put:==.)
 
-!!Pragmas
+!!!!!!!!!!!!!!!!!!!!!!!!NEXT CHAPTER NEEDS A REVIEW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!!!!Using method wrappers to perform test coverage
+
+Method wrappers are a well-known technique for intercepting messages. In the
+original implementation(http://www.squeaksource.com/MethodWrappers.html), a
+method wrapper is an instance of a subclass of ==CompiledMethod==. When
+installed, a method wrapper can perform special actions before or after invoking
+the original method. When uninstalled, the original method is returned to its
+rightful position in the method dictionary.
+
+In Pharo, method wrappers can be implemented more easily by implementing
+==run:with:in:== instead of by subclassing ==CompiledMethod==. In fact, there
+exists a lightweight implementation of objects as method
+wrappers (http://www.squeaksource.com/ObjectsAsMethodsWrap.html), but it is not
+part of standard Pharo at the time of this writing.
+
+Nevertheless, the Pharo Test Runner uses precisely this technique to evaluate
+test coverage. Let's have a quick look at how it works.
+
+The entry point for test coverage is the method ==TestRunner>>runCoverage==:
+
+[[[
+TestRunner >> runCoverage
+	| packages methods |
+	... "identify methods to check for coverage"
+	self collectCoverageFor: methods
+]]]
+
+The method ==TestRunner>>collectCoverageFor:== clearly illustrates the coverage
+checking algorithm:
+
+[[[
+TestRunner >> collectCoverageFor: methods
+	| suite link notExecuted |
+	suite := self
+		resetResult;
+		suiteForAllSelected.
+
+	link := MetaLink new
+		selector: #tagExecuted;
+		metaObject: #node.
+
+	[ methods do: [ :meth | meth ast link: link].
+	[ self runSuite: suite ] ensure: [ link uninstall ] ] valueUnpreemptively.
+
+	notExecuted := methods reject: [:each | each ast hasBeenExecuted].
+	notExecuted isEmpty
+		ifTrue:  [ UIManager default inform: 'Congratulations. Your tests cover all code under analysis.' ]
+		ifFalse: ...
+]]]
+
+!!!!!!!!!!!!!!CODE NOT UPDATED FROM HERE TO NEXT EXCALAMATION!!!!!!!!!!!!!!!!!!!
+
+A wrapper is created for each method to be checked, and each wrapper is
+installed. The tests are run, and all wrappers are uninstalled. Finally the user
+obtains feedback concerning the methods that have not been covered.
+
+How does the wrapper itself work? The ==TestCoverage== wrapper has three
+instance variables, ==hasRun==, ==reference== and ==method==. They are
+initialized as follows:
+
+[[[
+TestCoverage class >> on: aMethodReference
+	^ self new initializeOn: aMethodReference
+
+TestCoverage >> initializeOn: aMethodReference
+	hasRun := false.
+	reference := aMethodReference.
+	method := reference compiledMethod
+]]]
+
+The install and uninstall methods simply update the method dictionary in the
+obvious way:
+
+[[[
+TestCoverage >> install
+	reference actualClass methodDict
+		at: reference selector
+		put: self
+
+TestCoverage >> uninstall
+	reference actualClass methodDict
+		at: reference selector
+		put: method
+]]]
+
+The ==run:with:in:== method simply updates the ==hasRun== variable,
+uninstalls the wrapper (since coverage has been verified), and resends the
+message to the original method.
+
+[[[
+run: aSelector with: anArray in: aReceiver
+	self mark; uninstall.
+	^ aReceiver withArgs: anArray executeMethod: method
+
+mark
+	hasRun := true
+]]]
+
+Take a look at ==ProtoObject>>withArgs:executeMethod:== to see how a method
+displaced from its method dictionary can be invoked.
+
+That's all there is to it!
+
+Method wrappers can be used to perform any kind of suitable behaviour before or
+after the normal operation of a method. Typical applications are
+instrumentation (collecting statistics about the calling patterns of methods),
+checking optional pre- and post-conditions, and memoization (optionally cacheing
+computed values of methods).
+
+!!!!!!!!!!!!!!!!!!!!!CORRECTION IN THE SUMMARY AS WELL!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!!!Pragmas
 
 A ''pragma'' is an annotation that specifies data about a program, but is not
 involved in the execution of the program. Pragmas have no direct effect on the
@@ -995,7 +1216,7 @@ method (==selector==), the class that contains the method (==methodClass==), its
 number of arguments (==numArgs==), about the literals the pragma has for
 arguments (==hasLiteral:== and ==hasLiteralSuchThat:==).
 
-!!Chapter summary
+!!!Chapter summary
 
 Reflection refers to the ability to query, examine and even modify the
 metaobjects of the runtime system as ordinary objects.
@@ -1007,10 +1228,11 @@ metaobjects of the runtime system as ordinary objects.
 -Every Pharo class points to an instance of ==MethodDictionary== which maps selectors to instances of ==CompiledMethod==. A compiled method knows its class, closing the loop.
 -==RGMethodDefinition== is a leightweight proxy for a compiled method, providing additional convenience methods, and used by many Pharo tools.
 -==RBBrowserEnvironment==, part of the Refactoring Browser infrastructure, offers a more refined interface than ==SystemNavigation== for querying the system, since the result of a query can be used as a the scope of a new query. Both GUI and programmatic interfaces are available.
+-==thisContext== is a pseudo-variable that reifies the runtime stack of the virtual machine. It is mainly used by the debugger to dynamically construct an interactive view of the stack. It is also especially useful for dynamically determining the sender of a message.
 -Intelligent breakpoints can be set using ==haltIf:==, taking a method selector as its argument. ==haltIf:== halts only if the named method occurs as a sender in the run-time stack.
 -A common way to intercept messages sent to a given target is to use a ''minimal object'' as a proxy for that target. The proxy implements as few methods as possible, and traps all message sends by implementing ==doesNotunderstand:==. It can then perform some additional action and then forward the message to the original target.
 -Send ==become:== to swap the references of two objects, such as a proxy and its target.
 -Beware, some messages, like ==class== and ==yourself== are never really sent, but are interpreted by the VM. Others, like ==+==, ==-== and ==ifTrue:== may be directly interpreted or inlined by the VM depending on the receiver.
 -Another typical use for overriding ==doesNotUnderstand:== is to lazily load or compile missing methods.
 -==doesNotUnderstand:== cannot trap ==self==-sends.
--A more rigorous way to intercept messages is to use an object as a method wrapper. Such an object is installed in a method dictionary in place of a compiled method. It should implement ==run:with:in:== which is sent by the VM when it detects an ordinary object instead of a compiled method in the method dictionary.
+-A more rigorous way to intercept messages is to use an object as a method wrapper. Such an object is installed in a method dictionary in place of a compiled method. It should implement ==run:with:in:== which is sent by the VM when it detects an ordinary object instead of a compiled method in the method dictionary. This technique is used by the SUnit Test Runner to collect coverage data.
