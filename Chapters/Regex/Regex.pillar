@@ -6,8 +6,8 @@ Python and Ruby. They are useful to identify strings that match a certain
 pattern, to check that input conforms to an expected format, and to rewrite
 strings to new formats. Pharo also supports regular expressions due to the
 ==Regex== package contributed by Vassili Bykov. Regex is installed by default
-in Pharo. If you are using an older image that does not include Regex the Regex
-package, you can install it yourself from SqueakSource
+in Pharo. If you are using an older image that does not include the Regex package,
+you can install it yourself from SqueakSource
 (*http://www.squeaksource.com/Regex.html*).
 
 A *regular expression>http://en.wikipedia.org/wiki/Regular_expression* is a
@@ -60,7 +60,7 @@ directory structure of the web site.
 
 !!!Accessing the web directory
 
-@@todo If you do not have a web site on your machine, copy a few HTML files to a local directory to serve as a test bed.
+@@todo If you do not have a web site on your machine, we recommend using the Pharo website for the tutorial. This can be done by saving the different pages as html only (usually ==Edit==/==Save page as==)
 
 We will develop two classes, ==WebDir== and ==WebPage==, to represent
 directories and web pages. The idea is to create an instance of ==WebDir==
@@ -272,7 +272,7 @@ You should see something like this:
 
 !!!String substitutions
 
-That's not very informative, so let's use a regex to get the actual file name
+That is not very informative, so let's use a regex to get the actual file name
 for each web page. To do this, we want to strip away all the characters from the
 path name up to the last directory. On a Unix file system directories end with a
 slash (==/==), so we need to delete everything up to the last slash in the file
@@ -289,7 +289,7 @@ we want:
 In this example the regex ==[elo]== matches any of the characters ==e==, ==l==
 or ==o==. The operator ==\+== is like the Kleene star, but it matches exactly
 ''one'' or more instances of the regex preceding it. Here it will match the
-entire substring =='ello'== and replay it in a fresh string with the letter
+entire substring =='ello'== and replace it in a fresh string with the letter
 ==i==.
 
 @@todo Add the following method and verify that it works as expected.
@@ -315,25 +315,16 @@ get at the contents of each page. This is straightforward.
 
 [[[
 WebPage >> contents
-	^ (FileStream oldFileOrNoneNamed: path) contents
-]]]
-
-Actually, you might have problems if your web pages contain non-ascii
-characters, in which case you might be better off with the following code:
-
-[[[
-WebPage >> contents
-	^ (FileStream oldFileOrNoneNamed: path)
-		converter: Latin1TextConverter new;
-		contents
+	^ (ZnCharacterReadStream on: (File named: path) readStream encoding: 'utf8') contents
 ]]]
 
 You should now be able to see something like this:
 
 [[[testcase=true
 (WebDir onPath: '...') webPages first contents
->>> '<head>
-<title>Home Page</title>
+>>> '<!DOCTYPE HTML>
+<html>
+<head>
 ...
 '
 ]]]
@@ -967,7 +958,7 @@ argument; matching just a prefix of it is enough.
 !!!Enumeration interface
 
 Some applications need to access ''all'' matches of a certain regular expression
-within a string. The matches are accessible using a protocol modeled after the
+within a string. The matches are accessible using a protocol modelled after the
 familiar ==Collection==-like enumeration protocol.
 
 ==regex:matchesDo:== evaluates a one-argument ==aBlock== for every match of the
@@ -1181,19 +1172,19 @@ items subexpression: 4
 ]]]
 [[[testcase=true
 items subBeginning: 3
->>> 14
+>>> an OrderedCollection(14)
 ]]]
 [[[testcase=true
 items subEnd: 3
->>> 15
+>>> an OrderedCollection(15)
 ]]]
 [[[testcase=true
 items subBeginning: 4
->>> 16
+>>> an OrderedCollection(16)
 ]]]
 [[[testcase=true
 items subEnd: 4
->>> 21
+>>> an OrderedCollection(21)
 ]]]
 
 As a more elaborate example, the following piece of code uses a ==MMM DD, YYYY==
