@@ -106,8 +106,8 @@ multiple ==String== objects with the value =='Hello'==.
 
 ""Compile-time literal arrays."" are defined by ==#( )==, surrounding space-separated
 literals. Everything within the parentheses must be a compile-time constant. For
-example, ==#(27 (true) abc 1+2 )== is a literal array of 6 elements: the
-integer 27, the compile-time array containing two pseudo-variables (non-changeable Boolean objects), the symbol
+example, ==#(27 (true) abc 1+2)== is a literal array of 6 elements: the
+integer 27, the compile-time array containing the object ==true== (non-changeable Boolean), the symbol
 ==#abc==, the integer 1, the symbol ==\+== and the integer 2. Note that this is the same as ==#(27 #(true) #abc 1 #+ 2)==.
 
 ""Run-time dynamic arrays."" Curly braces =={ }== define a dynamic array whose elements are expressions, separated by periods, and evaluated at run-time.
@@ -188,7 +188,7 @@ Here we give a brief overview on message kinds and ways for sending and executin
 
 #''Unary'' messages take no argument. ==1 factorial== sends the message ==factorial== to the object 1. Unary message selectors consist of alphanumeric characters, and start with a lower case letter.
 #''Binary'' messages take exactly one argument. ==1 \+ 2== sends the message ==\+== with argument 2 to the object 1. Binary message selectors consist of one or more characters from the following
-set: == + - / \ * ~ < > = @ % | & ? ,==
+set: == + - / \ * ~ < > = @ \% \| \& \? ,==
 #''Keyword'' messages take an arbitrary number of arguments. ==2 raisedTo: 6 modulo: 10== sends the message consisting of the message selector ==raisedTo:modulo:== and the arguments 6 and 10 to the object 2. Keyword message selectors consist of a series of alphanumeric keywords, where each keyword starts with a lower-case letter and ends with a colon.
 
 
@@ -217,7 +217,7 @@ Parentheses must be used to alter the order of evaluation as follows:
 >>> 7
 ]]]
 
-!!!Sequences and cascades.
+!!!Sequences and cascades
 
 All expressions may be composed in sequences separated by period, while message sends may be also composed in cascades by semi-colons. A period separated
 sequence of expressions causes each expression in the series to be evaluated as a separate ''statement'', one after the other.
@@ -363,7 +363,7 @@ with blocks as arguments.
 !!!! Some conditionals
 Conditionals are expressed by sending one of the messages ==ifTrue:==,
 ==ifFalse:== or ==ifTrue:ifFalse:== to the result of a boolean expression. See
-Chapter *: Basic Classes>../BasicClasses/BasicClasses.pilar@cha:basicClasses*,
+Chapter *: Basic Classes>../BasicClasses/BasicClasses.pillar@cha:basicClasses*,
 for more about booleans.
 
 [[[example=true
@@ -480,7 +480,7 @@ This is equivalent to ==0\+\1\+2\+3\+4\+5\+6\+7\+8\+9\+10==.
 More about collections can be found in Chapter
 *: Collections>../Collections/Collections.pillar@cha:collections*.
 
-!!! Primitives and pragmas
+!!! Method annotations: Primitives and pragmas
 
 In Pharo everything is an object, and everything happens by sending messages.
 Nevertheless, at certain points we hit rock bottom. Certain objects can only get
@@ -495,7 +495,7 @@ Primitives are invoked by the syntax ==<primitive: aNumber>==. A method that
 invokes such a primitive may include additional Pharo code, which will be
 executed only if the primitive fails.
 
--in the following example,  we see the code for ==SmallInteger>>+==. If the primitive fails, the
+In the following example,  we see the code for ==SmallInteger>>+==. If the primitive fails, the
 expression ==super + aNumber== will be evaluated and its value returned.
 
 [[[
