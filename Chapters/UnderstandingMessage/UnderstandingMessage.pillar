@@ -1,6 +1,5 @@
 !!Understanding message syntax
 @chapterUnderstandingMessage
-%stef did several passes
 
 Although Pharo's message syntax is extremely simple, it is unconventional and can take some time getting used to.
 This chapter offers some guidance to help you get acclimatized to the syntax for sending messages.
@@ -11,7 +10,8 @@ The Pharo's syntax is closed to the one of Smalltalk, so Smalltalk programmers c
 
 In Pharo, except for the syntactic elements listed in Chapter *@chapterSyntaxNutshell* (\:= ^ . ; # () {} [ : | ]), everything is a message send.
 You can define operators like ==\+== for your own classes, but all operators, existing and defined ones, have the same precedence.
-Moreover, you cannot change the arity of a method. "-" is always a binary message; there is no way to have a unary ''==\-=='' with a different overloading.
+In fact, in Pharo there is no operators! Just messages of a given kind: ''unary'', ''binary'' or ''keywords''.
+Moreover, you cannot change the arity of a message or selector. The selector "-" is always the selector of a binary message; there is no way to have a unary ''==\-=='' of a different kind.
 
 In Pharo, the order in which messages are sent is determined by the ''kind'' of message.
 There are just three kinds of messages: ''unary'', ''binary'', and ''keyword messages''.
@@ -22,7 +22,7 @@ These rules make Pharo code as easy to read as possible. And most of the time yo
 As most computation in Pharo is done by message passing, correctly identifying messages is crucial.
 The following terminology will help us:
 
--A message is composed of the message ""selector"" and the optional message arguments.
+-A message is composed of a message ""selector"" and optional message arguments.
 -A message is sent to a ""receiver"".
 -The combination of a message and its receiver is called a ''message send'' as shown in Figure *@fig:firstScriptMessage*.
 
@@ -161,7 +161,7 @@ Color r: 1 g: 0 b: 0
 ]]]
 
 
-In a conventional syntax, the Pharo message send ==Color r: 1 g: 0 b: 0== would correspond to a method invocation written as ==Color.rgb(1,0,0)==.
+In a Java like syntax, the Pharo message send ==Color r: 1 g: 0 b: 0== would correspond to a method invocation written as ==Color.rgb(1,0,0)==.
 
 [[[example=true
 1 to: 10
@@ -313,7 +313,10 @@ Similarly in the following example, we need the parentheses to force sending ==l
 ]]]
 
 !!!!!!Example.
-The message send ==(65@325 extent: 134@100) center== returns the center of a rectangle whose top left point is (65, 325) and whose size is 134*100. The following example shows how the message is decomposed and sent. First the message between parentheses is sent: it contains two binary messages ==65@325== and ==134@100== that are sent first and return points, and a keyword message ==extent:== which is then sent and returns a rectangle. Finally the unary message ==center== is sent to the rectangle and a point is returned. Evaluating the message without parentheses would lead to an error because the object ==100== does not understand the message ==center==.
+The message send ==(65@325 extent: 134@100) center== returns the center of a rectangle whose top left point is (65, 325) and whose size is 134*100.
+The following example shows how the message is decomposed and sent.
+First the message between parentheses is sent: it contains two binary messages ==65@325== and ==134@100== that are sent first and return points, and a keyword message ==extent:== which is then sent and returns a rectangle.
+Finally the unary message ==center== is sent to the rectangle and a point is returned. Evaluating the message without parentheses would lead to an error because the object ==100== does not understand the message ==center==.
 
 
 
@@ -331,19 +334,23 @@ Example of Parentheses.
 ]]]
 
 !!!!From left to right
-Now we know how messages of different kinds or priorities are handled. The final question to be addressed is how messages with the same priority are sent. They are sent from the left to the right. 
+Now we know how messages of different kinds or priorities are handled.
+The final question to be addressed is how messages with the same priority are sent. They are sent from the left to the right. 
 Note that you already saw this behaviour in the example == 1.5 tan rounded asString == where all unary messages are sent from left to right which is equivalent to ==(((1.5 tan) rounded) asString)==.  
 
 
 @@important When the messages are of the same kind, the order of execution is from left to right.
 
 !!!!!!Example.
-In the message sends ==Pen new down== all messages are unary messages, so the leftmost one, ==Pen new==, is sent first. This returns a newly created pen to which the second message ==down== is sent, as shown in Figure *@fig:unaryMessages*.
+In the message sends ==Pen new down== all messages are unary messages, so the leftmost one, ==Pen new==, is sent first.
+This returns a newly created pen to which the second message ==down== is sent, as shown in Figure *@fig:unaryMessages*.
 
 +Decomposing Pen new down.>file://figures/ucompoUn.png|label=fig:unaryMessages|width=60+
 
 !!!!Arithmetic inconsistencies
-The message composition rules are simple but they result in inconsistency for the execution of arithmetic message sends expressed in terms of binary messages. 
+The message composition rules are simple.
+There is no notion of mathematical precedence because arithmetic messages are just messages as any other.
+So their result may look in inconsistent when executed them.
 Here we see the common situations where extra parentheses are needed.
 
 
@@ -378,7 +385,9 @@ Here we see the common situations where extra parentheses are needed.
 ]]]
 
 !!!!!!Example.
-In the message sends ==20 \+ 2 \* 5==, there are only binary messages ==\+== and ==\*==. However in Pharo there is no specific priority for the operations ==\+== and ==\*==. They are just binary messages, hence ==\*== does not have priority over ==\+==. Here the leftmost message ==\+== is sent first (1) and then the ==\*== is sent to the result as shown in below.
+In the message sends ==20 \+ 2 \* 5==, there are only binary messages ==\+== and ==\*==. 
+However in Pharo there is no specific priority for the operations ==\+== and ==\*==.
+They are just binary messages, hence ==\*== does not have priority over ==\+==. Here the leftmost message ==\+== is sent first (1) and then the ==\*== is sent to the result as shown in below.
 
 [[[Decomposing 20 + 2 * 5
 "As there is no priority among binary messages, the leftmost message + is evaluated first even if by the rules of arithmetic the * should be sent first."
@@ -392,7 +401,12 @@ In the message sends ==20 \+ 2 \* 5==, there are only binary messages ==\+== and
 +Default execution order.>file://figures/ucompoNoBracketPar.png|width=55+
 
 
-As shown in the previous example the result of this message send is not ==30== but ==110==. This result is perhaps unexpected but follows directly from the rules used to send messages. This is the price to pay for the simplicity of the \st model. To get the correct result, we should use parentheses. When messages are enclosed in parentheses, they are evaluated first. Hence the message send ==20 \+ (2 \* 5)== returns the result as shown.
+As shown in the previous example the result of this message send is not ==30== but ==110==.
+This result is perhaps unexpected but follows directly from the rules used to send messages.
+This is the price to pay for the simplicity of the \st model.
+To get the correct result, we should use parentheses.
+When messages are enclosed in parentheses, they are evaluated first.
+Hence the message send ==20 \+ (2 \* 5)== returns the result as shown.
 
 [[[
 Decomposing 20 + (2 * 5)
