@@ -481,19 +481,24 @@ More about collections can be found in Chapter
 *: Collections>../Collections/Collections.pillar@cha:collections*.
 
 !!! Method annotations: Primitives and pragmas
+In Pharo methods can be annotated too. Method annotation are delimitated by ==\<== and ==\>==.
+There are used for two main scenarios: execution specific metadata for the primitives of the language and 
+metadata. 
 
+!!!! Primitives	
 In Pharo everything is an object, and everything happens by sending messages.
 Nevertheless, at certain points we hit rock bottom. Certain objects can only get
-work done by invoking virtual machine primitives.
+work done by invoking virtual machine primitives. Such primitives are essential primitives
+since they cannot be expressed in Pharo.
 
 For example, the following are all implemented as primitives: memory allocation
 (==new==, ==new:==), bit manipulation (==bitAnd:==, ==bitOr:==, ==bitShift:==),
 pointer and integer arithmetic (\+, \-, \<, \>, \*, \/, \=, \=\=...), and
 array access (==at:==, ==at:put:==).
 
-Primitives are invoked by the syntax ==<primitive: aNumber>==. A method that
-invokes such a primitive may include additional Pharo code, which will be
-executed only if the primitive fails.
+When a method with a primitive is executed, the primitive code is executed in place of the method. 
+A method using such a primitive may include additional Pharo code, which will be
+executed only if the primitive fails (for the case the primitive is an optional one).
 
 In the following example,  we see the code for ==SmallInteger>>+==. If the primitive fails, the
 expression ==super + aNumber== will be evaluated and its value returned.
@@ -508,7 +513,9 @@ expression ==super + aNumber== will be evaluated and its value returned.
 	^ super + aNumber
 ]]]
 
+!!!! Pragmas. 
 In Pharo, the angle bracket syntax is also used for method annotations called pragmas.
+Once a method has been annotated with a pragmas, the annotations can be collected using a collection (see the class ==PragmaCollector==).
 
 !!!Chapter summary
 
