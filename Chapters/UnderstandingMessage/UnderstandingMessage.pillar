@@ -335,8 +335,9 @@ Example of Parentheses.
 
 !!!!From left to right
 Now we know how messages of different kinds or priorities are handled.
-The final question to be addressed is how messages with the same priority are sent. They are sent from the left to the right. 
-Note that you already saw this behaviour in the example == 1.5 tan rounded asString == where all unary messages are sent from left to right which is equivalent to ==(((1.5 tan) rounded) asString)==.  
+The final question to be addressed is how messages with the same priority are sent. 
+They are sent from the left to the right. 
+Note that you already saw this behaviour in the example == 1.5 tan rounded asString == where all unary messages are sent from left to right which is equivalent to ==(((1.5 tan) rounded) asString)==.
 
 
 @@important When the messages are of the same kind, the order of execution is from left to right.
@@ -349,7 +350,7 @@ This returns a newly created pen to which the second message ==down== is sent, a
 
 !!!!Arithmetic inconsistencies
 The message composition rules are simple.
-There is no notion of mathematical precedence because arithmetic messages are just messages as any other.
+There is no notion of mathematical precedence because arithmetic messages are just messages as any other ones.
 So their result may look in inconsistent when executed them.
 Here we see the common situations where extra parentheses are needed.
 
@@ -403,14 +404,15 @@ They are just binary messages, hence ==\*== does not have priority over ==\+==. 
 
 As shown in the previous example the result of this message send is not ==30== but ==110==.
 This result is perhaps unexpected but follows directly from the rules used to send messages.
-This is the price to pay for the simplicity of the \st model.
+This is the price to pay for the simplicity of the model.
 To get the correct result, we should use parentheses.
 When messages are enclosed in parentheses, they are evaluated first.
 Hence the message send ==20 \+ (2 \* 5)== returns the result as shown.
 
 [[[
 Decomposing 20 + (2 * 5)
-"The messages surrounded by parentheses are evaluated first therefore * is sent prior to + which produces the correct behaviour."
+"The messages surrounded by parentheses are evaluated first therefore * is sent prior 
+to + which produces the correct behaviour."
 
     20 + (2 * 5)
 (1)      (2 * 5) >>> 10
