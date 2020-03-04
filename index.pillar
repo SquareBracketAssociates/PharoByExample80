@@ -1,5 +1,8 @@
-
+%reviewed SD: 4th of march
 ${inputFile:path=Chapters/Preface/Preface.pillar}$
+
+
+
 ${inputFile:path=Chapters/PharoTour/PharoTour.pillar}$
 ${inputFile:path=Chapters/FirstApplication/FirstApplication.pillar}$
 ${inputFile:path=Chapters/SyntaxNutshell/SyntaxNutshell.pillar}$
