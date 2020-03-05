@@ -235,12 +235,11 @@ The following example, which is a bit more complex (!), offers a nice illustrati
 ]]]
 
 Here we want to know which methods of the ==Boolean== class are abstract.
-@@todo here there was some footnote? 
-In fact, we could also have written the equivalent but simpler expression: ==Boolean methodDict select: #isAbstract thenCollect: #selector==. 
 We ask some argument class, ==aClass==, for the keys of its method dictionary, and select those methods of that class that are abstract. 
 Then we bind the argument ==aClass== to the concrete value ==Boolean==. 
 We need parentheses only to send the binary message ==\>\>==, which selects a method from a class, before sending the unary message ==isAbstract== to that method. The result shows us which methods must be implemented by ==Boolean=='s concrete subclasses ==True== and ==False==.
 
+In fact, we could also have written the equivalent but simpler expression: ==Boolean methodDict select: [:each | each isAbstract] thenCollect: [:each | each selector]==. 
 !!!!!!Example.
 
 In the message ==aPen color: Color yellow==, there is one ''unary'' message ==yellow== sent to the class ==Color== and a ''keyword'' message ==color:== sent to ==aPen==.
