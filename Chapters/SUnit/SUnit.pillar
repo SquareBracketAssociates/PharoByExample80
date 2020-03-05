@@ -237,7 +237,7 @@ the icon of the class name, or on an individual test method, and select ''Run
 tests (t)'' or press the icon. The test methods will be flagged green or red,
 depending on whether they pass or not (as shown in *@fig:browsertests*).
 
-+Running SUnit tests from the System Browser.>file://figures/updatedbrowsertests.png|width=80|label=fig:browsertests+
++Running SUnit tests from the System Browser.>file://figures/updatedBrowserTests.png|width=80|label=fig:browsertests+
 
 You can also select sets of test suites to run, and obtain a more detailed log
 of the results using the SUnit Test Runner, which you can open by selecting
@@ -254,7 +254,7 @@ of ==ClassTestCase== are indented more than subclasses of ==TestCase==.
 ==ClassTestCase== is a class offering utilities methods to compute test
 coverage.
 
-+Running SUnit tests using the ''TestRunner''.>file://figures/updatedtestRunner.png|width=80|label=fig:test-runner+
++Running SUnit tests using the ''TestRunner''.>file://figures/updatedTestRunner.png|width=80|label=fig:test-runner+
 
 Open a Test Runner, select the package ''MySetTest'', and click the ==Run
 Selected== button.
