@@ -37,6 +37,7 @@
 \urlstyle{sf}
 \usepackage[unicode,breaklinks,hidelinks]{hyperref} % undecorated hyperlinks
 
+
 \title{the Square Bracket Associates\titlebreak{}
   \texorpdfstring{\protect\LaTeX}{LaTeX} book class}
 \author{Damien Pollet}
@@ -211,13 +212,13 @@ SIL Open Font License]{https://mozilla.github.io/Fira/}{Fira Mono}.
 
 \begin{table}
   \caption{Fonts used in the document, and their roles}
-  \begin{tabular}{ll}
+  \begin{fullwidthtabular}{ll}
     \toprule
     \textnormal{Gentium -- \textit{Italic}} & Primary, paragraph text \\
     \textsf{Open Sans -- \textbf{Bold}}     & Structural and secondary text: titles, captions \\
     \texttt{Fira Mono}                      & Verbatim text and code \\
     \bottomrule
-  \end{tabular}
+  \end{fullwidthtabular}
   \label{tab:fontRoles}
 \end{table}
 
@@ -256,7 +257,7 @@ convenient as delimiters.
 
 \begin{table}
   \caption{Some convenient delimiters for inline code}
-  \begin{tabular}{ll@{\qquad}ll}
+  \begin{fullwidthtabular}{ll@{\qquad}ll}
     \toprule
     \code_\code|...|_ & pipe                      & \code¶\code§...§¶ & section sign \\
     \code|\code_..._| & underscore                & \code§\code¶...¶§ & pilcrow      \\
@@ -265,7 +266,7 @@ convenient as delimiters.
     \code¿\code?...?¿ & question mark             & \code`\code^...^` & circumflex   \\
     \code?\code¿...¿? & inverse question mark     & \code^\code`...`^ & backquote    \\
     \bottomrule
-  \end{tabular}
+  \end{fullwidthtabular}
   \label{tab:codeDelims}
 \end{table}
 
