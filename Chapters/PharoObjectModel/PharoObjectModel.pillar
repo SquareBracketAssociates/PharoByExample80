@@ -1,7 +1,7 @@
 !!The Pharo object model
 @cha:model
 
-The Pharo programming model is heavily inspired by the one of Smalltalk. It is
+The Pharo language model is inspired by the one of Smalltalk. It is
 simple and uniform: everything is an object, and objects communicate only by
 sending messages to each other. Instance variables are private to the object
 and methods are all public and dynamically looked up (late-bound). 
@@ -15,7 +15,7 @@ This will be extended in Chapter:
 !!!The rules of the model
 @sec:rules
 
-The object model is based on a set of simple rules that are applied ''uniformly''. 
+The object model is based on a set of simple rules that are applied ''uniformly'' and systematically without any exception.
 The rules are as follows:
 
 ""Rule 1"". Everything is an object.
@@ -39,21 +39,21 @@ send messages to them, just as you do to any other object. At the end of
 this chapter, we added an implementation note on the object implementation for
 the curious reader.
 
-[[[example=true
-"send '+ 4' to 3, yielding 7"
+Here are two examples.
+
+[[[example=true|caption=Sending ==+ 4== to ==3==, yields the object ==7==.
 3 + 4
 >>> 7
 ]]]
 
-[[[example=true
-"send factorial, yielding a big number"
+[[[example=true|caption=Sending ==factorial== to ==20==, yields a large number.
 20 factorial
 >>> 2432902008176640000
 ]]]
 
-The object ==7== is different than the object returned by ==20 factorial==, but
-because they are both polymorphic objects (they know how to answer to the same set of messages), none of the code, not even the
-implementation of ==factorial==, needs to know about this.
+The object ==7== is different than the object returned by ==20 factorial==. ==7== is an instance of ==SmallInteger== 
+while ==20 factorial== is an instance of ==LargePositiveInteger==. 
+But because they are both polymorphic objects (they know how to answer to the same set of messages), none of the code, not even the implementation of ==factorial==, needs to know about this.
 
 Coming back to ''everything is an object'' rule, perhaps the most fundamental
 consequence of this rule is that classes are objects too. Classes are not
@@ -102,9 +102,9 @@ it follows that classes must also be instances of classes. A class whose
 instances are classes is called a ''metaclass''. Whenever you create a class,
 the system automatically creates a metaclass for you. The metaclass defines the
 structure and behavior of the class that is its instance. You will not need to
-think about metaclasses 99\% of the time, and may happily ignore them. (We will
-have a closer look at metaclasses in Chapter
-*: Classes and Metaclasses>../Metaclasses/Metaclasses.pillar@cha:metaclasses*.)
+think about metaclasses 99\% of the time, and may happily ignore them. 
+We will have a closer look at metaclasses in Chapter
+*: Classes and Metaclasses>../Metaclasses/Metaclasses.pillar@cha:metaclasses*.
 
 !!! Instance structure and behavior
 Now we will briefly present how we specify the structure and behavior of
@@ -135,13 +135,13 @@ subclass.
 
 !!!!Instance encapsulation example
 
-The method ==Point>>dist:== computes the distance between the receiver and
+The method ==distanceTo:== of the class ==Point== computes the distance between the receiver and
 another point. The instance variables ==x== and ==y== of the receiver are
 accessed directly by the method body. However, the instance variables of the
 other point must be accessed by sending it the messages ==x== and ==y==.
 
 [[[label=scr:distance|caption=Distance between two points
-Point >> dist: aPoint
+Point >> distanceTo: aPoint
     "Answer the distance between aPoint and the receiver."
 
     | dx dy |
