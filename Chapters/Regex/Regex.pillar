@@ -1,4 +1,4 @@
-{ "title": "Regular expressions in Pharo" }
+!!Regular expressions in Pharo
 @cha:regex
 
 Regular expressions are widely used in many scripting languages such as Perl,
@@ -50,7 +50,7 @@ description of the Regex package, based largely on Vassili Bykov's documentation
 provided in the package. (The original documentation can be found on the class
 side of ==RxParser==.)
 
-!!Tutorial example — generating a site map
+!!!Tutorial example — generating a site map
 
 Our job is to write a simple application that will generate a site map for a web
 site that we have stored locally on our hard drive. The site map will contain
@@ -496,7 +496,7 @@ WebDir selectHome makeToc
 
 +A small site map.>file://figures/PBE-toc.png|label=fig:PBE-toc+
 
-!!Regex syntax
+!!!Regex syntax
 
 We will now have a closer look at the syntax of regular expressions as supported
 by the Regex package.
@@ -917,7 +917,7 @@ boundaries of strings.
 >>> false    "no boundary before o"
 ]]]
 
-!!Regex API
+!!!Regex API
 
 Up to now we have focussed mainly on the syntax of regexes. Now we will have a
 closer look at the different messages understood by strings and regexes.
@@ -1270,9 +1270,9 @@ Smalltalk exception handling mechanism to catch and handle them.
 >>> 'RegexSyntaxError:  nullable closure'
 ]]]
 
-!!Implementation Notes by Vassili Bykov
+!!!Implementation Notes by Vassili Bykov
 
-!!!!!What to look at first.
+!!!!What to look at first.
 
 In 90\% of the cases, the method ==String>>matchesRegex:==  is all you need to
 access the package.
@@ -1290,7 +1290,7 @@ found, the matcher can report a specific string that matched the whole
 expression, or any parenthesized subexpression of it. All other classes support
 the same functionality and are used by ==RxParser==, ==RxMatcher==, or both.
 
-!!!!!Caveats
+!!!!Caveats
 
 The matcher is similar in spirit, but ''not'' in design to Henry Spencer's
 original regular expression implementation in C. The focus is on simplicity,
@@ -1298,7 +1298,7 @@ not on efficiency. I didn't optimize or profile anything. The matcher passes H.
 Spencer's test suite (see ''test suite'' protocol), with quite a few extra tests
 added, so chances are good there are not too many bugs. But watch out anyway.
 
-!!!!!Acknowledgments
+!!!!Acknowledgments
 
 Since the first release of the matcher, thanks to the input from several fellow
 Smalltalkers, I became convinced a native Smalltalk regular expression matcher
@@ -1307,7 +1307,7 @@ made this release possible, I want to thank: Felix Hack, Eliot Miranda, Robb
 Shecter, David N. Smith, Francis Wolinski and anyone whom I haven't yet met or
 heard from, but who agrees this has not been a complete waste of time.
 
-!!Chapter Summary
+!!!Chapter Summary
 
 Regular expressions are an essential tool for manipulating strings in a trivial
 way. This chapter presented the Regex package for Pharo. The essential points of
