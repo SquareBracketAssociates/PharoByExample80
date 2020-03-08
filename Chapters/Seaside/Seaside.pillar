@@ -1,4 +1,4 @@
-{ "title": "Seaside by example" }
+!!Seaside by example
 @cha:seaside
 
 Seaside is a framework for building web applications in Smalltalk, originally
@@ -13,7 +13,7 @@ Seaside is unusual in that it is thoroughly object-oriented: there are no HTML
 templates, no complicated control flows through web pages, and no encoding of
 state in URLs. Instead, you just send messages to objects. What a nice idea!
 
-!!Why do we need Seaside?
+!!!Why do we need Seaside?
 
 Modern web applications try to interact with the user in the same way as desktop
 applications: they ask the user questions and the user responds, usually by
@@ -50,9 +50,9 @@ Finally, Seaside provides a convenient web-based development interface, making
 it easy to develop applications iteratively, debug applications interactively,
 and recompile and extend applications while the server is running.
 
-!!Getting started
+!!!Getting started
 
-!!!The Seaside community
+!!!!The Seaside community
 
 The Seaside.st website (*http://www.seaside.st*) contains many Seaside-related
 resources, including downloads, documentation and tutorials. (Keep in mind that
@@ -64,7 +64,7 @@ In addition, the Wiki on the Seaside GitHub repository
 (*https://github.com/seasidest/seaside/wiki*) provides some crucial
 documentation, including the Release Notes for each version of Seaside.
 
-!!!Installing Seaside using the one-click experience image
+!!!!Installing Seaside using the one-click experience image
 
 +Start up the Seaside One-Click Experience image.>file://figures/seasideOneClickExperience.png|label=fig:seasideOneClickExperience+
 
@@ -85,7 +85,7 @@ something similar to Figure *@fig:seasideOneClickExperience* - a familiar
 Pharo development environment with some windows pre-opened, such as welcome
 messages as well as a Seaside Control Panel.
 
-!!!Starting the Seaside server
+!!!!Starting the Seaside server
 
 The easiest way to start and stop the Seaside web server is through the
 ==Seaside Control Panel==. If you're using the Seaside One-Click Experience
@@ -107,7 +107,7 @@ You can also start and stop the Seaside web server from a playground, by
 sendning the ==startOn:== and ==stop== messages to your server adapter of
 choice.
 
-!!!The Seaside welcome page
+!!!!The Seaside welcome page
 
 Once the Seaside server is running, navigate to *http://localhost:8080/* in
 your web browser. You should see a web page that looks like Figure
@@ -258,7 +258,7 @@ If you want to enable the password protection, you need to add the
 ==WAAuthConfiguration== from the list of possible parents, after adding this
 configuration, you can define the ==Login== and ==Password== setting.
 
-!!Seaside components
+!!!Seaside components
 @sec:components
 
 As we mentioned in the previous section, Seaside applications are built out of
@@ -355,14 +355,14 @@ When the state of a ==WACounter== object is replaced by a previous state, the
 previous value; this correctly replaces the current value of ==count== by a
 prior value.
 
-!!Rendering HTML
+!!!Rendering HTML
 
 The purpose of a web application is to create, or ''render'', web pages. As we
 mentioned in Section *@sec:components*, each Seaside component is responsible
 for rendering itself. So, let's start our exploration of rendering by seeing how
 the counter component renders itself.
 
-!!!Rendering the Counter
+!!!!Rendering the Counter
 
 The rendering of the counter is relatively straightforward; the code is shown in
 Figure *@fig:WACounter*. The current value of the counter is displayed as an
@@ -630,7 +630,7 @@ and click on the ==Restart== button to see most of the features of forms.
 Don't forget, if you toggle ==Halos==, you can browse the source code of the
 examples directly using the Seaside class browser.
 
-!!CSS: Cascading style sheets
+!!!CSS: Cascading style sheets
 @sec:css
 
 Cascading Style Sheets (*http://www.w3.org/Style/CSS/*), or CSS for short, are a
@@ -725,7 +725,7 @@ Zen Garden (*http://www.csszengarden.com/*), which shows how the same content
 can be rendered in radically different ways simply by changing the CSS style
 sheet.
 
-!!Managing control flow
+!!!Managing control flow
 
 Seaside makes it particularly easy to design web applications with non-trivial
 control flow. There are basically two mechanisms that you can use:
@@ -1018,7 +1018,7 @@ clicking ==Ok==. Note that as soon as a transaction is complete, you can no
 longer go back inside the transaction without generating an error upon clicking
 ==Ok==.
 
-!!A complete tutorial example
+!!!A complete tutorial example
 
 Let's see how we can build a complete Seaside application from scratch. (The
 exercise should take at most a couple of hours. If you prefer to just look at
@@ -1355,7 +1355,7 @@ stack machine.
 
 Check that backtracking now works correctly.
 
-!!A quick look at AJAX
+!!!A quick look at AJAX
 
 AJAX (Asynchronous JavaScript and XML) is a technique to make web applications
 more interactive by exploiting JavaScript functionality on the client side.
@@ -1490,13 +1490,12 @@ return false
 For more advanced examples, have a further look at
 *http://localhost:8080/javascript/scriptaculous*.
 
-!!!!Hints
-
+!!!!Hints.
 In case of server side problems use the Debugger. In case of client
 side problems use FireFox (*http://www.mozilla.com*) with the JavaScript
 debugger FireBug (*http://www.getfirebug.com/*) plugin enabled.
 
-!!Chapter summary
+!!!Chapter summary
 
 -The easiest way to get started is to download the ''Seaside One-Click Experience'' from *http://seaside.st*
 -Turn the server on and off by evaluating ==ZnZincServerAdaptor startOn: 8080== and ==ZnZincServerAdaptor stop==.

@@ -651,15 +651,12 @@ We then immediately find and execute the method ==fullPrintOn:== of the class ==
 !!! Stepping back
 
 A ==self== send is dynamic in the sense that by looking at the method containing
-it, we cannot predict which method will be executed. Indeed an instance of a
-subclass may receive the message containing the self expression and redefine the
-method in that subclass. Here ==EllipseMorph== could redefine the method
-==fullPrintOn:== and this method would be executed by method
-==constructorString==. Note that by only looking at the method
-==constructorString==, we cannot predict which ==fullPrintOn:== method (either
-the one of ==EllipseMorph==, ==BorderedMorph==, or ==Morph==) will be executed
-when executing the method ==constructorString==, since it depends on the
-receiver the ==constructorString== message.
+it, we cannot predict which method will be executed. 
+Indeed an instance of a subclass may receive the message containing the self expression and redefine the
+method in that subclass. 
+Here ==EllipseMorph== could redefine the method ==fullPrintOn:== and this method would be executed by method ==constructorString==. 
+Note that by only looking at the method ==constructorString==, we cannot predict which ==fullPrintOn:== method (either the one of ==EllipseMorph==, ==BorderedMorph==, or ==Morph==) will be executed
+when executing the method ==constructorString==, since it depends on the receiver the ==constructorString== message.
 
 @@important A ==self== send triggers a ''method lookup starting in the class of the receiver.'' A ==self== send is dynamic in the sense that by looking at the method containing it, we cannot predict which method will be executed.
 
@@ -667,13 +664,15 @@ Note that the ==super== lookup did not start in the superclass of the receiver.
 This would have caused lookup to start from ==BorderedMorph==, resulting in an
 infinite loop!
 
-If you think carefully about ==super== send and Figure *@fig:constructorStringLookup*, you will realize that ==super== bindings are
-static: all that matters is the class in which the text of the ==super== send is
-found. 
+If you think carefully about ==super== send and Figure *@fig:constructorStringLookup*, you will realize that ==super== bindings are static: all that matters is the class in which the text of the ==super== send is found. 
 By contrast, the meaning of ==self== is dynamic: it always represents the receiver of the currently executing message. This means that ''all'' messages
 sent to ==self== are looked up by starting in the receiver's class.
 
 @@important A ==super== send triggers a method lookup starting in the ''superclass of the class of the method performing the ==super== send''. We say that super sends are ''static'' because just looking at the method we know the class where the lookup should start (the class above the class containing the method).
+
+
+
+
 
 
 
@@ -763,7 +762,7 @@ us that they are indeed shared between multiple objects.
 
 !!!!Global variables
 
-In Pharo, all global variables are stored in a namespace called ==Smalltalk==,
+In Pharo, all global variables are stored in a namespace called ==Smalltalk globals==,
 which is implemented as an instance of the class ==SystemDictionary==. Global
 variables are accessible everywhere. Every class is named by a global variable.
 In addition, a few globals are used to name special or commonly useful objects.
@@ -778,11 +777,11 @@ Processor class
 
 !!!!Other useful global variables
 
-""==Smalltalk=="" is the instance of ==SmalltalkImage==. It contains many
-functionality to manage the system. In particular it holds a reference to the
-main namespace ==Smalltalk globals==. This namespace includes ==Smalltalk==
-itself since it is a global variable. The keys to this namespace are the
-symbols that name the global objects in Pharo code. So, for example:
+""==Smalltalk=="" is the instance of ==SmalltalkImage==.
+It contains many functionality to manage the system. 
+In particular it holds a reference to the main namespace ==Smalltalk globals==. 
+This namespace includes ==Smalltalk== itself since it is a global variable.
+The keys to this namespace are the symbols that name the global objects in Pharo code. So, for example:
 
 [[[testcase=true
 Smalltalk globals at: #Boolean
@@ -834,19 +833,19 @@ execute ==Smalltalk globals removeKey: #AGlobalName==.
 @sec:classVars
 
 Sometimes we need to share some data amongst all the instances of a class and
-the class itself. This is possible using ''class variables''. The term ''class
-variable'' indicates that the lifetime of the variable is the same as that of
-the class. However, what the term does not convey is that these variables are
-shared amongst all the instances of a class as well as the class itself, as
-shown in Figure *@fig:privateSharedVar*. Indeed, a better name would have been
-''shared variables'' since this expresses more clearly their role, and also
-warns of the danger of using them, particularly if they are modified.
+the class itself. 
+This is possible using ''class variables''. 
+The term ''class variable'' indicates that the lifetime of the variable is the same as that of
+the class. 
+However, what the term does not convey is that these variables are shared amongst all the instances of a class as well as the class itself, as shown in Figure *@fig:privateSharedVar*. 
+Indeed, a better name would have been ''shared variables'' since this expresses more clearly their role, and also warns of the danger of using them, particularly if they are modified.
 
 +Instance and class methods accessing different variables.>file://figures/privateSharedVarColor.png|label=fig:privateSharedVar|width=70+
 
 In Figure *@fig:privateSharedVar* we see that ==rgb== and ==cachedDepth== are
 instance variables of ==Color==, hence only accessible to instances of
-==Color==. We also see that ==superclass==, ==subclass==, ==methodDict== and so
+==Color==. 
+We also see that ==superclass==, ==subclass==, ==methodDict== and so
 on are ''class instance variables'', i.e., instance variables only accessible to
 the ==Color== class.
 
@@ -859,8 +858,7 @@ access these shared variables.
 
 A class variable is declared in the class definition template. For example, the
 class ==Color== defines a large number of class variables to speed up color
-creation; its definition is shown below.
-% in Script *@scr:classDefColor*.
+creation; its definition is shown below in Script *@scr:classDefColor*.
 
 [[[label=scr:classDefColor|caption=Color and its class variables
 Object subclass: #Color
@@ -870,9 +868,9 @@ Object subclass: #Color
 ]]]
 
 The class variable ==ColorRegistry== is an instance of ==IdentityDictionary==
-containing the frequently-used colors, referenced by name. This dictionary is
-shared by all the instances of ==Color==, as well as the class itself. It is
-accessible from all the instance and class methods.
+containing the frequently-used colors, referenced by name. 
+This dictionary is shared by all the instances of ==Color==, as well as the class itself.
+It is accessible from all the instance and class methods.
 
 % ==ColorNames== is initialized once in ==Color class>>initializeNames==, but it is accessed from instances of ==Color==.
 % The method ==Color>>name== uses the variable to find the name of a color.
@@ -885,16 +883,13 @@ The presence of class variables raises the question: how do we initialize them?
 One solution is lazy initialization (discussed earlier in this chapter). This
 can be done by introducing an accessor method which, when executed, initializes
 the variable if it has not yet been initialized. This implies that we must use
-the accessor all the time and never use the class variable directly. This
-furthermore imposes the cost of the accessor send and the initialization test.
-It also arguably defeats the point of using a class variable, since in fact it
-is no longer shared.
+the accessor all the time and never use the class variable directly. 
+This furthermore imposes the cost of the accessor send and the initialization test.
 
-% \begin{method}[colorclasscolornames]{Color class>>colorNames}
-% Color class>>colorNames
-%     ColorNames ifNil: [self initializeNames].
-%     ^ ColorNames
-% \end{method}
+[[[label=scr:colorClassInit|caption=Using Lazy initialization.
+   ColorNames ifNil: [self initializeNames].
+   ^ ColorNames
+]]]
 
 Another solution is to override the class method ==initialize== (we've seen this
 before in the Dog example).
@@ -917,12 +912,11 @@ compiled, or when they are edited and re-compiled.
 !!!!Pool variables
 
 Pool variables are variables that are shared between several classes that may
-not be related by inheritance. Pool variables were originally stored in pool
-dictionaries; now they should be defined as class variables of dedicated classes
-(subclasses of ==SharedPool==). Our advice is to avoid them; you will need them
-only in rare and specific circumstances. Our goal here is therefore to explain
-pool variables just enough so that you can understand them when you are reading
-code.
+not be related by inheritance. 
+Pool variables were originally stored in pool dictionaries; now they should be defined as class variables of dedicated classes
+(subclasses of ==SharedPool==). 
+Our advice is to avoid them; you will need them only in rare and specific circumstances. 
+Our goal here is therefore to explain pool variables just enough so that you can understand them when you are reading code.
 
 A class that accesses a pool variable must mention the pool in its class
 definition. For example, the class ==Text== indicates that it is using the pool
