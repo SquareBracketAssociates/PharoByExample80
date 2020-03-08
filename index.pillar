@@ -25,3 +25,7 @@ ${inputFile:path=Chapters/Collections/Collections.pillar}$
 ${inputFile:path=Chapters/Streams/Streams.pillar}$
 ${inputFile:path=Chapters/Metaclasses/Metaclasses.pillar}$
 ${inputFile:path=Chapters/Reflection/Reflection.pillar}$
+
+%not sure that I want to have the seaside chapter here. 
+%better do a seaside primer
+% What about iceberg chapter!
