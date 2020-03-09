@@ -805,6 +805,7 @@ Text >> testCR
 Once again, we recommend that you avoid the use of pool variables and pool
 dictionaries.
 
+
 !!!The instance and class side
 
 Since classes are objects, they can have their own instance variables and their
@@ -1011,13 +1012,13 @@ Section *@sec:classVars*), since in those languages all of the subclasses and
 all of their instances share the same static variable.
 
 !!!Example: Defining a Singleton
-We do not like Singleton.
+
 Singleton is the most misunderstood design pattern. 
 When wrongly applied, it favors procedural style promoting single global access.
-The Singleton pattern provides a typical example of the use of class instance
-variables and class methods. Imagine that we would like to implement a class
-==WebServer==, and to use the Singleton pattern to ensure that it has only one
-instance.
+However, the Singleton pattern provides a typical example of the use of class instance
+variables and class methods.
+
+Imagine that we would like to implement a class ==WebServer==, and to use the Singleton pattern to ensure that it has only one instance.
 
 We define the class ==WebServer== as follow.
 
@@ -1038,12 +1039,11 @@ WebServer class
 
 As a result, the class ==WebServer class== will have a new instance variable (in
 addition to the variables that it inherits from ==Behavior==, such as
-==superclass== and ==methodDict==). It means that the value of this extra
-instance variable will describe the instance of the class ==WebServer class==
-i.e. the class ==WebServer==.
+==superclass== and ==methodDict==). 
+It means that the value of this extra instance variable will describe the instance of the class ==WebServer class== i.e., the class ==WebServer==.
 
 [[[example=true|label=scr:instance|caption=New state for classes
-Object class allInstVarNames
+Point class allInstVarNames
 >>>  "#(#superclass #methodDict #format #layout #organization #subclasses #name #classPool #sharedPools #environment #category)"
 ]]]
 [[[example=true
@@ -1073,16 +1073,16 @@ in an accessor method, and initializing its value if it is nil, is called
 
 Note that the instance creation code in the code above.
 Script *@scr:uniqueInstance*
-is written as ==self new== and not as ==WebServer new==. What is the difference?
+is written as ==self new== and not as ==WebServer new==. 
+What is the difference?
 Since the ==uniqueInstance== method is defined in ==WebServer class==, you might
-think that there is no difference. And indeed, until someone creates a subclass
-of ==WebServer==, they are the same. But suppose that ==ReliableWebServer== is
-a subclass of ==WebServer==, and inherits the ==uniqueInstance== method. We
-would clearly expect ==ReliableWebServer uniqueInstance== to answer a
-==ReliableWebServer==. Using ==self== ensures that this will happen, since
-==self== will be bound to the respective receiver, here the classes
-==WebServer== and ==ReliableWebServer==. Note also that ==WebServer== and
-==ReliableWebServer== will each have a different value for their
+think that there is no difference. 
+And indeed, until someone creates a subclass of ==WebServer==, they are the same. 
+But suppose that ==ReliableWebServer== is a subclass of ==WebServer==, and inherits the ==uniqueInstance== method. 
+We would clearly expect ==ReliableWebServer uniqueInstance== to answer a
+==ReliableWebServer==. 
+Using ==self== ensures that this will happen, since ==self== will be bound to the respective receiver, here the classes ==WebServer== and ==ReliableWebServer==. 
+Note also that ==WebServer== and ==ReliableWebServer== will each have a different value for their
 ==uniqueInstance== instance variable.
 
 !!!! A note on lazy initialization.
