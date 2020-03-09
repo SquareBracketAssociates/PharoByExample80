@@ -515,7 +515,7 @@ expression ==super + aNumber== will be evaluated and its value returned.
 
 !!!! Pragmas. 
 In Pharo, the angle bracket syntax is also used for method annotations called pragmas.
-Once a method has been annotated with a pragmas, the annotations can be collected using a collection (see the class ==PragmaCollector==).
+Once a method has been annotated with a pragma, the annotations can be collected using a collection (see the class ==PragmaCollector==).
 
 !!!Chapter summary
 
