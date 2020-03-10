@@ -15,7 +15,7 @@ This will be extended in Chapter:
 
 
 
-!!!The rules of the model
+!!!The rules of the core model
 @sec:rules
 
 The object model is based on a set of simple rules that are applied ''uniformly'' and systematically without any exception.
@@ -27,9 +27,9 @@ The rules are as follows:
 
 ""Rule 3"". Every class has a superclass.
 
-""Rule 4"". Everything happens by sending messages.
+""Rule 4"". Objects react to message sends: Methods are dynamically bound and public. 
 
-""Rule 5"". Method lookup dynamically follows the inheritance chain.
+""Rule 5"". Classes are objects too and follow exactly the same rules.
 
 Let us look at each of these rules in detail.
 
@@ -172,7 +172,8 @@ it can respond to the messages ==x== and ==y==, the code of method ==distanceTo:
 
 !!!!Methods
 
-All methods are ''public'' and virtual (i.e., dynamically looked up). 
+All methods are ''public'' and ''virtual'' (i.e., dynamically looked up).
+There is no static methods in Pharo. 
 Methods can access all instance variables of the object.
 Some developers prefer to access instance variables only through accessors.
 This practice has some value, but it also clutters the interface of your classes, and worse, exposes
@@ -287,7 +288,7 @@ accordingly.
 - ''Variable accesses'' are just access to the value of a variable.
 - ''Assignments'' are not message sends. An assignment to a variable causes that variable name to be freshly bound in the scope of its definition.
 - ''Returns'' are not message sends. A return simply causes the computed result to be returned to the sender.
-- ''Pragma'' are not message sends. They are method annotations.
+- ''Pragmas'' are not message sends. They are method annotations.
 
 Other than these few exceptions, pretty much everything else does truly happen by sending messages.
 
@@ -432,7 +433,7 @@ A ==Delegator== object could simply delegate all messages it does not understand
 handle them, or raise an error itself!
 
 
-!!!About Returning self
+!!!About returning self
 
 Notice that the method ==defaultColor== of the class ==EllipseMorph== explicitly returns ==Color yellow==,
 whereas the method ==openInWorld== of ==Morph== does not appear to return anything.
@@ -498,7 +499,7 @@ We need ==super== sends to compose inherited behaviour that would otherwise be o
 
 @@important It is a good practice that an ==initialize== method start by sending ==super initialize==.
 
-!!!Self sends and super sends
+!!!Self and super sends
 
 ==self== represents the receiver of the message and the lookup of the method
 starts in the class of the receiver. Now what is ==super==? ==super== is
@@ -597,22 +598,23 @@ sent to ==self== are looked up by starting in the receiver's class.
 @@important A ==super== send triggers a method lookup starting in the ''superclass of the class of the method performing the ==super== send''. We say that super sends are ''static'' because just looking at the method we know the class where the lookup should start (the class above the class containing the method).
 
 
-!!!The instance and class side
+!!!The instance and class sides
 
-Since classes are objects, they can have their own instance variables and their
+Since classes are objects, they have their own instance variables and their
 own methods. We call these ''class instance variables'' and ''class methods'',
 but they are really no different from ordinary instance variables and methods:
 They simply operate on different objects (classes in this case). An instance
 variable describes instance state and a method describes instance behavior.
 Similarly, class instance variables are just instance variables defined by a
-metaclass (and describe the state of classes - instances of metaclasses), and
-class methods are just methods defined by a metaclass (and that will be executed
-on classes).
+metaclass (a class whose instances are classes):
+- Class instance variables describe the state of classes. An example is the superclass instance variable that describes the superclass of a given class.
+- Class methods are just methods defined by a metaclass and that will be executed on classes. Sending the message ==now== to the class ==Date== is defined on the (meta)class ==Date class==. This method is executed with the class ==Date== as receiver.
+
+
 
 A class and its metaclass are two separate classes, even though the former is an
-instance of the latter. However, this is largely irrelevant to you as a
-programmer: you are concerned with defining the behavior of your objects and the
-classes that create them.
+instance of the latter. 
+However, this is largely irrelevant to you as a programmer: you are concerned with defining the behavior of your objects and the classes that create them.
 
 +Browsing a class and its metaclass.>file://figures/colorInstanceClassSide.png|label=fig:colorInstanceClassSide|width=90+
 
