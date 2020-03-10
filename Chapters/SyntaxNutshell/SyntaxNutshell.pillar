@@ -272,7 +272,6 @@ String >> lineCount
 ]]]
 
 Syntactically, a method consists of:
-
 #the method pattern, containing the name (i.e., ==lineCount==) and any parameters (none in this example)
 #comments which may occur anywhere, but the convention is to put one at the top that explains what the method does
 #declarations of local variables (i.e., ==cr== and ==count==); and
@@ -485,7 +484,7 @@ In Pharo methods can be annotated too. Method annotation are delimitated by ==\<
 There are used for two main scenarios: execution specific metadata for the primitives of the language and 
 metadata. 
 
-!!!! Primitives	
+!!!! Primitives
 In Pharo everything is an object, and everything happens by sending messages.
 Nevertheless, at certain points we hit rock bottom. Certain objects can only get
 work done by invoking virtual machine primitives. Such primitives are essential primitives

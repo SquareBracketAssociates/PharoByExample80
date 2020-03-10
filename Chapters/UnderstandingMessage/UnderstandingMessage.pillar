@@ -240,8 +240,8 @@ Then we bind the argument ==aClass== to the concrete value ==Boolean==.
 We need parentheses only to send the binary message ==\>\>==, which selects a method from a class, before sending the unary message ==isAbstract== to that method. The result shows us which methods must be implemented by ==Boolean=='s concrete subclasses ==True== and ==False==.
 
 In fact, we could also have written the equivalent but simpler expression: ==Boolean methodDict select: [:each | each isAbstract] thenCollect: [:each | each selector]==. 
-!!!!!!Example.
 
+!!!!!!Example.
 In the message ==aPen color: Color yellow==, there is one ''unary'' message ==yellow== sent to the class ==Color== and a ''keyword'' message ==color:== sent to ==aPen==.
 Unary messages are sent first so the message send ==Color yellow== is sent (1).
 This returns a color object which is passed as argument of the message ==aPen color: aColor== (2).
@@ -267,9 +267,9 @@ Decomposing the execution of aPen color: Color yellow
 ]]]
 
 
-+Binary messages are sent before keyword messages>file://figures/uKeyBin.png|label=fig:uKeyBin|width=35+
++Binary messages are sent before keyword messages.>file://figures/uKeyBin.png|label=fig:uKeyBin|width=35+
 
-+Decomposing Pen new go: 100 \+ 20>file://figures/uunKeyBin.png|label=fig:uunKeyBin|width=40+
++Decomposing Pen new go: 100 \+ 20.>file://figures/uunKeyBin.png|label=fig:uunKeyBin|width=40+
 
 
 !!!!!!Example.
