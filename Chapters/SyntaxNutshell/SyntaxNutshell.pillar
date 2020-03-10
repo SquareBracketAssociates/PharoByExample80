@@ -444,7 +444,7 @@ programming mode).
 ]]]
 
 ==select:== and ==reject:== build new collections, each containing a subset of
-the elements of the itterated collection that satisfies, or not, respectively, the boolean block condition.
+the elements of the iterated collection that satisfies, or not, respectively, the boolean block condition.
 
 ==detect:== returns the first element in the collection that satisfies the condition. 
 
