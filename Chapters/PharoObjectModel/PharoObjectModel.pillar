@@ -143,7 +143,7 @@ another point. The instance variables ==x== and ==y== of the receiver are
 accessed directly by the method body. However, the instance variables of the
 other point must be accessed by sending it the messages ==x== and ==y==.
 
-[[[label=scr:distance|caption=Distance between two points
+[[[label=scr:distance|caption=Distance between two points.
 Point >> distanceTo: aPoint
     "Answer the distance between aPoint and the receiver."
 
@@ -270,7 +270,7 @@ the method must be chosen ''dynamically'', when the message is received.
 3 + 4
 >>> 7         
 ]]]
-[[[example=true|caption=Sending message + with argument 4 to point (1@2)
+[[[example=true|caption=Sending message + with argument 4 to point (1@2).
 (1@2) + 4
 >>> 5@6
 ]]]
@@ -362,7 +362,7 @@ anEllipse defaultColor
 The class ==EllipseMorph== implements ==defaultColor==, so the appropriate
 method is found immediately.
 
-[[[label=scr:defaultColor|caption=A locally implemented method
+[[[label=scr:defaultColor|caption=A locally implemented method.
 EllipseMorph >> defaultColor
      "Answer the default color/fill style for the receiver"
      ^ Color yellow
@@ -374,7 +374,7 @@ is not immediately found, since the class ==EllipseMorph== does not implement
 ==BorderedMorph==, and so on, until an ==openInWorld== method is found in the
 class ==Morph== (see Figure *@fig:openInWorldLookup*).
 
-[[[label=scr:openInWorld|caption=An inherited method
+[[[label=scr:openInWorld|caption=An inherited method.
 Morph >> openInWorld
      "Add this morph to the world."
      self openInWorld: self currentWorld
@@ -395,7 +395,7 @@ When the lookup returns a method, the receiver of the message is bound to ==self
 This is true wherever the method that should be executed is found. 
 Imagine that we send the message ==EllipseMorph new closestPointTo: 100@100== and that the method is defined as in Listing *@scr:closestPoing*. 
 
-[[[label=scr:closestPoing|caption=Another locally implemented method
+[[[label=scr:closestPoing|caption=Another locally implemented method.
 EllipseMorph >> closestPointTo: aPoint
 	^ self intersectionWithLineSegmentFromCenterTo: aPoint
 ]]]
@@ -450,7 +450,7 @@ Again, this is not the case in Pharo, instead you can imagine that a method with
 
 This suggests that ==openInWorld== is equivalent to ==openInWorldReturnSelf==, defined in Listing *@scr:openInWorldReturnSelf*.
 
-[[[label=scr:openInWorldReturnSelf|caption=Explicitly returning ==self==
+[[[label=scr:openInWorldReturnSelf|caption=Explicitly returning ==self==.
 Morph >> openInWorld
     "Add this morph to the world."
     self openInWorld: self currentWorld
@@ -487,7 +487,7 @@ The subclass has no business even trying to initialize inherited instance variab
 
 It is therefore good practice whenever implementing an ==initialize== method to send ==super initialize== before performing any further initialization as shown in Listing *@scr:morphinit*.
 
-[[[label=scr:morphinit|caption=Super initialize
+[[[label=scr:morphinit|caption=Super initialize.
 BorderedMorph >> initialize
     "Initialize the state of the receiver"
 
@@ -526,13 +526,13 @@ the stream the name of the class followed by the string ' new' - the idea is
 that we could execute the resulting string and get back an instance similar to
 the receiver.
 
-[[[label=scr:morphfullPrintOn|caption=A ==self== send
+[[[label=scr:morphfullPrintOn|caption=A ==self== send.
 Morph >> fullPrintOn: aStream
 	aStream nextPutAll: self class name, ' new'
 ]]]
 
 Second we define the method ==constructorString== that sends the message ==fullPrintOn:== (see Listing *@scr:constructorString*).
-[[[label=scr:constructorString|caption=A ==self== send
+[[[label=scr:constructorString|caption=A ==self== send.
 Morph >> constructorString
     ^ String streamContents: [ :s | self fullPrintOn: s  ].
 ]]]
@@ -541,7 +541,7 @@ Finally, we define the method ==fullPrintOn:== on the class ==BorderedMorph==
 superclass of ==EllipseMorph==. This new method extends the superclass behavior:
 it invokes it and adds extra behavior (see Listing *@scr:fullPrintOn*).
 
-[[[label=scr:fullPrintOn|caption=Combining ==super== and ==self== sends
+[[[label=scr:fullPrintOn|caption=Combining ==super== and ==self== sends.
 BorderedMorph >> fullPrintOn: aStream
     aStream nextPutAll: '('.
     super fullPrintOn: aStream.
@@ -708,7 +708,7 @@ add a ==count== class instance variable to the class ==Dog== (i.e. we define it
 on the metaclass ==Dog class==). ==Hyena== will naturally inherit the class
 instance variable ==count== from ==Dog==.
 
-[[[caption=Dogs and Hyenas
+[[[caption=Dogs and Hyenas.
 Object subclass: #Dog
     instanceVariableNames: ''
     classVariableNames: ''
@@ -728,7 +728,7 @@ Dog subclass: #Hyena
 Now suppose we define class methods for ==Dog== to initialize its ==count== to
 ==0==, and to increment it when new instances are created:
 
-[[[caption=Keeping count of new dogs|label=scr:dogCount
+[[[caption=Keeping count of new dogs.|label=scr:dogCount
 Dog class >> initialize
     count := 0.
 ]]]
@@ -816,7 +816,7 @@ Imagine that we would like to implement a class ==WebServer==, and to use the Si
 
 We define the class ==WebServer== as follow.
 
-[[[caption=A sample singleton class, ==WebServer==
+[[[caption=A sample singleton class, ==WebServer==.
 Object subclass: #WebServer
     instanceVariableNames: 'sessions'
     classVariableNames: ''
@@ -826,7 +826,7 @@ Object subclass: #WebServer
 Then, clicking on the ""Class side"" button, we add the (class) instance
 variable ==uniqueInstance==.
 
-[[[caption=The class side of the singleton class
+[[[caption=The class side of the singleton class.
 WebServer class
     instanceVariableNames: 'uniqueInstance'
 ]]]
@@ -836,7 +836,7 @@ addition to the variables that it inherits from ==Behavior==, such as
 ==superclass== and ==methodDict==). 
 It means that the value of this extra instance variable will describe the instance of the class ==WebServer class== i.e., the class ==WebServer==.
 
-[[[example=true|label=scr:instance|caption=New state for classes
+[[[example=true|label=scr:instance|caption=New state for classes.
 Point class allInstVarNames
 >>>  "#(#superclass #methodDict #format #layout #organization #subclasses #name #classPool #sharedPools #environment #category)"
 ]]]
@@ -852,7 +852,7 @@ variable ==uniqueInstance==. Finally the value of ==uniqueInstance== is
 returned. Since ==uniqueInstance== is a class instance variable, this method can
 directly access it.
 
-[[[language=smalltalk|label=scr:uniqueInstance|caption=Class-side accessor method ==uniqueInstance==
+[[[language=smalltalk|label=scr:uniqueInstance|caption=Class-side accessor method ==uniqueInstance==.
 WebServer class >> uniqueInstance
      uniqueInstance ifNil: [ uniqueInstance := self new ].
      ^ uniqueInstance
@@ -1015,7 +1015,7 @@ A class variable is declared in the class definition template. For example, the
 class ==Color== defines a large number of class variables to speed up color
 creation; its definition is shown below in Script *@scr:classDefColor*.
 
-[[[label=scr:classDefColor|caption=Color and its class variables
+[[[label=scr:classDefColor|caption=Color and its class variables.
 Object subclass: #Color
 	instanceVariableNames: 'rgb cachedDepth cachedBitPattern alpha'
 	classVariableNames: 'BlueShift CachedColormaps ColorRegistry ComponentMask ComponentMax GrayToIndexMap GreenShift HalfComponentMask IndexedColors MaskingMap RedShift'
@@ -1050,7 +1050,7 @@ Another solution is to override the class method ==initialize== (we've seen this
 before in the Dog example).
 % in Scripts *@scr:dogCount* and *@scr:dogCount2*).
 
-[[[label=scr:colorClassInit|caption=Initializing the ==Color== class
+[[[label=scr:colorClassInit|caption=Initializing the ==Color== class.
 Color class >> initialize
     ...
     self initializeColorRegistry.
@@ -1079,7 +1079,7 @@ dictionary ==TextConstants==, which contains all the text constants such as
 ==CR== and ==LF==. This dictionary has a key ==#CR== that is bound to the value
 ==Character cr==, i.e., the carriage return character.
 
-[[[label=scr:textPoolDict|caption=Pool dictionaries in the ==Text== class
+[[[label=scr:textPoolDict|caption=Pool dictionaries in the ==Text== class.
 ArrayedCollection subclass: #Text
         instanceVariableNames: 'string runs'
         classVariableNames: ''
@@ -1092,7 +1092,7 @@ dictionary in the method body ''directly'', i.e., by using variable syntax
 rather than an explicit dictionary lookup. For example, we can write the
 following method.
 
-[[[label=scr:textTestCR|caption===Text>>testCR==
+[[[label=scr:textTestCR|caption===Text>>testCR==.
 Text >> testCR
     ^ CR == Character cr
 ]]]
@@ -1137,7 +1137,7 @@ by subclasses. The method ==Magnitude>><== is abstract, and defined as shown in
 the following script.
 %*@scr:MagnitudeLessThan*.
 
-[[[label=scr:MagnitudeLessThan|caption===Magnitude>> <==
+[[[label=scr:MagnitudeLessThan|caption===Magnitude>> <==.
 < aMagnitude
     "Answer whether the receiver is less than the argument."
 
@@ -1146,7 +1146,7 @@ the following script.
 
 By contrast, the method ==>=== is concrete, and is defined in terms of ==<==.
 
-[[[label=scr:MagnitudeGTE|caption===Magnitude>> >===
+[[[label=scr:MagnitudeGTE|caption===Magnitude>> >===.
 >= aMagnitude
     "Answer whether the receiver is greater than or equal to the argument."
 
@@ -1165,7 +1165,7 @@ method definition below).
 ===== and ==hash==; it inherits from ==Magnitude== the methods ==>===, ==<===,
 ==~=== and others.
 
-[[[label=scr:characterLessThan|caption===Character>> <===
+[[[label=scr:characterLessThan|caption===Character>> <===.
 < aCharacter
     "Answer true if the receiver's value < aCharacter's value."
 
@@ -1191,7 +1191,7 @@ This makes it easy for classes to have a unique superclass, yet still share usef
 To define a new trait, select  ==New Trait== in the menu, or replace the subclass creation template by the trait
 creation template, below.
 
-[[[label=scr:tauthor|caption=Defining a new trait
+[[[label=scr:tauthor|caption=Defining a new trait.
 Trait named: #TAuthor
     uses: { }
     package: 'PBE-LightsOut'
@@ -1206,7 +1206,7 @@ Suppose we would like to be able to add an ==author== method to various classes,
 
 We might do this as follows:
 
-[[[label=scr:author|caption=An author method|lang=smalltalk
+[[[label=scr:author|caption=An author method.|lang=smalltalk
 TAuthor >> author
     "Returns author initials"
 
@@ -1217,7 +1217,7 @@ Now we can use this trait in a class that already has its own superclass, for
 instance the ==LOGame== class that we defined in Chapter *: A First Application>../FirstApplication/FirstApplicatioin.pier@cha:firstApp*. 
 We simply modify the class creation template for ==LOGame== to include a ==uses:== keyword argument that specifies that ==TAuthor== should be used.
 
-[[[label=scr:sbegamewithtrait|caption=Using a trait
+[[[label=scr:sbegamewithtrait|caption=Using a trait.
 BorderedMorph subclass: #LOGame
     uses: TAuthor
     instanceVariableNames: 'cells'
@@ -1241,7 +1241,7 @@ It is also possible to ''alias'' methods (with ==@==), providing a new name for 
 %Traits are used in the system kernel. One good example is the class
 %==Behavior==.
 
-%[[[label=scr:behaviorwithtraits|caption=Behavior defined using traits
+%[[[label=scr:behaviorwithtraits|caption=Behavior defined using traits.
 %Object subclass: #Behavior
 %    uses: TPureBehavior @ {#basicAddTraitSelector:withMethod:->#addTraitSelector:withMethod:}
 %    instanceVariableNames: 'superclass methodDict format'
