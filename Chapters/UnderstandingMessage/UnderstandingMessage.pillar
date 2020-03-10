@@ -8,7 +8,7 @@ The Pharo's syntax is closed to the one of Smalltalk, so Smalltalk programmers c
 
 !!!Identifying messages
 
-In Pharo, except for the syntactic elements listed in Chapter *@chapterSyntaxNutshell* (\:= ^ . ; # () {} [ : | ]), everything is a message send.
+In Pharo, except for the syntactic elements listed in Chapter *@cha:syntax* (\:= ^ . ; # () {} [ : | ]), everything is a message send.
 You can define operators like ==\+== for your own classes, but all operators, existing and defined ones, have the same precedence.
 In fact, in Pharo there is no operators! Just messages of a given kind: ''unary'', ''binary'' or ''keywords''.
 Moreover, you cannot change the arity of a message selector. The selector "-" is always the selector of a binary message; there is no way to have a unary ''==\-=='' for unary messages.
