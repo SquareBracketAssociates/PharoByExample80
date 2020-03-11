@@ -416,9 +416,9 @@ What happens if the method we are looking for is not found?
 
 Suppose we send the message ==foo== to our ellipse.
 First the normal method lookup will go through the inheritance chain all the way up to ==Object== (or rather ==ProtoObject==) looking for this method.
-When this method is not found, the virtual machine will cause the object to send ==self doesNotUnderstand: #foo==. (See Figure *@fig:fooNotFound*.)
+When this method is not found, the virtual machine will cause the object to send ==self doesNotUnderstand: #foo== (See Figure *@fig:fooNotFound*).
 
-+Message ==foo== is not understood.>file://figures/fooNotFound.png|label=fig:fooNotFound|width=90+
++Message ==foo== is not understood.>file://figures/fooNotFound.png|label=fig:fooNotFound|width=95+
 
 Now, this is a perfectly ordinary, dynamic message send, so the lookup starts again from the class ==EllipseMorph==, but this time searching for the method ==doesNotUnderstand:==. 
 As it turns out, ==Object== implements ==doesNotUnderstand:==. 
@@ -562,7 +562,7 @@ How exactly is this result obtained through a combination of ==self== and
 ==super== sends? 
 First, ==anEllipse constructorString== will cause the method ==constructorString== to be found in the class ==Morph==, as shown in Figure *@fig:constructorStringLookup*.
 
-+==self== and ==super== sends.>file://figures/constructorStringLookup.png|label=fig:constructorStringLookup|width=90+
++==self== and ==super== sends.>file://figures/constructorStringLookup.png|label=fig:constructorStringLookup|width=95+
 
 The method ==constructorString== of ==Morph== performs a ==self== send of ==fullPrintOn:==.
 The message ==fullPrintOn:== is looked up starting in the class ==EllipseMorph==, and the method ==fullPrintOn:== ==BorderedMorph== is found in ==BorderedMorph== (see Figure *@fig:constructorStringLookup*). 
@@ -607,8 +607,8 @@ They simply operate on different objects (classes in this case). An instance
 variable describes instance state and a method describes instance behavior.
 Similarly, class instance variables are just instance variables defined by a
 metaclass (a class whose instances are classes):
-- Class instance variables describe the state of classes. An example is the superclass instance variable that describes the superclass of a given class.
-- Class methods are just methods defined by a metaclass and that will be executed on classes. Sending the message ==now== to the class ==Date== is defined on the (meta)class ==Date class==. This method is executed with the class ==Date== as receiver.
+- ''Class instance variables'' describe the state of classes. An example is the superclass instance variable that describes the superclass of a given class.
+- ''Class methods'' are just methods defined by a metaclass and that will be executed on classes. Sending the message ==now== to the class ==Date== is defined on the (meta)class ==Date class==. This method is executed with the class ==Date== as receiver.
 
 
 
@@ -620,53 +620,47 @@ However, this is largely irrelevant to you as a programmer: you are concerned wi
 
 For this reason, the browser helps you to browse both class and metaclass as if
 they were a single thing with two "sides": the ''instance side'' and the ''class
-side'', as shown in Figure *@fig:colorInstanceClassSide*. By default, when you
-select a class in the browser, you're browsing the ''instance side'' (i.e., the
-methods that are executed when messages are sent to an ''instance'' of
-==Color==). Clicking on the ""Class side"" button switches you over to the
-''class side'' (the methods that will be executed when messages are sent to the
-''class'' ==Color== itself).
+side'', as shown in Figure *@fig:colorInstanceClassSide*. 
+
+- By default, when you select a class in the browser, you're browsing the ''instance side'' i.e., the methods that are executed when messages are sent to an ''instance'' of ==Color==. 
+- Clicking on the ""Class side"" button switches you over to the ''class side'': the methods that will be executed when messages are sent to the ''class'' ==Color== itself.
 
 For example, ==Color blue== sends the message ==blue== to the class ==Color==.
-You will therefore find the method ==blue== defined on the class side of
+You will therefore find the method ==blue== defined on the ''class side'' of
 ==Color==, not on the instance side.
 
-[[[example=true
-"Class-side method blue (convenient instance creation method)"
-aColor := Color blue.
+[[[example=true|caption=The class method ==blue== (defined on the class-side).
+Color blue
 >>> Color blue
 "Color instances are self-evaluating"
 ]]]
 
-[[[example=true
-"Instance-side accessor method red (returns the red RGB value)"
+[[[example=true|caption=Using the accessor method ==red== (defined on the instance-side).
 Color blue red
 >>> 0.0
 ]]]
-[[[example=true
-"Instance-side accessor method blue (returns the blue RGB value)"
+
+[[[example=true|caption=Using the accessor method ==blue== (defined on the instance-side).
 Color blue blue
 >>> 1.0
 ]]]
 
+!!!!Metaclass creation.
 You define a class by filling in the template proposed on the instance side.
 When you accept this template, the system creates not just the class that you
 defined, but also the corresponding metaclass (which you can then edit by
-clicking on the ""Class side"" button). The only part of the metaclass creation
-template that makes sense for you to edit directly is the list of the
-metaclass's instance variable names.
+clicking on the ""Class side"" button).
+The only part of the metaclass creation template that makes sense for you to edit directly is the list of the metaclass's instance variable names.
 
-Once a class has been created, browsing its instance side (""Class side""
-un-checked) lets you edit and browse the methods that will be possessed by
-instances of that class (and of its subclasses).
+Once a class has been created, browsing its instance side lets you edit and browse the methods that will be possessed by instances of that class (and of its subclasses).
 
 !!!Class methods
-
 Class methods can be quite useful, you can browse ==Color class== for some good
-examples. You will see that there are two kinds of methods defined on a class:
-''instance creation methods'', like ==Color class>>blue==, and those that
-perform a utility function, like ==Color class>>wheel:==. This is typical,
-although you will occasionally find class methods used in other ways.
+examples. 
+You will see that there are two kinds of methods defined on a class:
+''instance creation methods'', like the class method ==blue== in the class ==Color class==, and those that
+perform a utility function, like ==Color class>>wheel:==.
+This is typical, although you will occasionally find class methods used in other ways.
 
 It is convenient to place utility methods on the class side because they can be
 executed without having to create any additional objects first. Indeed, many of
@@ -677,29 +671,28 @@ comment =="(Color wheel: 12) inspect"== and press ==CMD-d==. You will see the
 effect of executing this method.
 
 For those familiar with Java and C\+\+, class methods may seem similar to static
-methods. However, the uniformity of the Pharo object model (where classes are
-just regular objects) means that they are somewhat different, whereas Java
-static methods are really just statically-resolved procedures. Pharo class
-methods are dynamically-dispatched methods. This means that inheritance,
-overriding and super-sends work for class methods in Pharo, whereas they don't
-work for static methods in Java.
+methods. 
+However, the uniformity of the Pharo object model (where classes are
+just regular objects) means that they are somewhat different: Whereas Java
+static methods are really just statically-resolved procedures, Pharo class
+methods are dynamically-dispatched methods. 
+This means that inheritance, overriding and super-sends work for class methods in Pharo, whereas they don't work for static methods in Java.
 
 !!!!Class instance variables
 
 With ordinary instance variables, all the instances of a class have the same set
-of variable names (though each instance has its own private set of values), and
-the instances of its subclasses inherit those names. The story is exactly the
-same with class instance variables: each class has its own private class
-instance variables. A subclass will inherit those class instance variables,
-''but the subclass will have its own private copies of those variables''. Just
-as objects don't share instance variables, neither do classes and their
-subclasses share class instance variables.
+of variables (though each instance has its own private set of values), and
+the instances of its subclasses inherit those variables.
+
+The story is exactly the same with class instance variables: each class has its own private class
+instance variables.
+A subclass will inherit those class instance variables, ''but the subclass will have its own private copies of those variables''. 
+Just as objects don't share instance variables, neither do classes and their subclasses share class instance variables.
 
 For example, you could use a class instance variable called ==count== to keep
-track of how many instances you create of a given class. However, any subclass
-would have its own ==count== variable, so subclass instances would be counted
+track of how many instances you create of a given class. 
+However, any subclass would have its own ==count== variable, so subclass instances would be counted
 separately.
-
 
 !!!Example: Class instance variables and subclasses
 
@@ -708,31 +701,33 @@ add a ==count== class instance variable to the class ==Dog== (i.e. we define it
 on the metaclass ==Dog class==). ==Hyena== will naturally inherit the class
 instance variable ==count== from ==Dog==.
 
-[[[caption=Dogs and Hyenas.
+[[[caption=Dog class definition.
 Object subclass: #Dog
     instanceVariableNames: ''
     classVariableNames: ''
-    package: 'PBE-CIV'
+    package: 'Example'
 ]]]
-[[[
+
+[[[caption=Adding a class instance variable.
 Dog class
     instanceVariableNames: 'count'
 ]]]
-[[[
+
+[[[caption=Hyena class definition.
 Dog subclass: #Hyena
     instanceVariableNames: ''
     classVariableNames: ''
-    package: 'PBE-CIV'
+    package: 'Example'
 ]]]
 
 Now suppose we define class methods for ==Dog== to initialize its ==count== to
 ==0==, and to increment it when new instances are created:
 
-[[[caption=Keeping count of new dogs.|label=scr:dogCount
+[[[caption=Initialize the count of dogs.|label=scr:dogCount
 Dog class >> initialize
     count := 0.
 ]]]
-[[[
+[[[caption=Keeping count of new dogs.
 Dog class >> new
     count := count +1.
     ^ super new
@@ -746,14 +741,12 @@ Now when we create a new ==Dog==, the ==count== value of the class ==Dog== is
 incremented, and so is that of the class ==Hyena== (but the hyenas are counted
 separately).
 
-''Side note:'' Notice the use of ==initialize== on the classes, in the following
-code. In Pharo, when you instantiate an object such as ==Dog new==,
-==initialize== is called automatically as part of the ==new== message send (you
-can see for yourself by browsing ==Behavior>>new==). But with classes, simply
-defining them does not automatically call ==initialize==, and so we have to call
-it explicitly here. By default class initialize methods are automatically
-executed only when classes are loaded. See also the discussion about lazy
-initialization, below.
+''Side note:'' Notice the use of ==initialize== on the classes. 
+In Pharo, when you instantiate an object such as ==Dog new==, ==initialize== is called automatically as part of the ==new== message send (you can see for yourself by browsing the method ==new== in the class ==Behavior==). 
+But with classes, simply defining them does not automatically call ==initialize== because it is not clear to the system if a class is fully working.
+So we have to call ==initialize== explicitly here.
+By default class ==initialize== methods are automatically executed only when classes are loaded.
+See also the discussion about lazy initialization, below.
 
 [[[example=true|label=scr:dogCount2
 Dog initialize.
