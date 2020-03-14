@@ -64,7 +64,7 @@ second-class objects: they are really first-class objects that you can send
 messages to, inspect, and change. This means that Pharo is a truly reflective
 system, which gives a great deal of expressive power to developers.
 
-@@important Classes are objects too. We interact the same way with classes and objects, simpy by sending messages to them.
+@@important Classes are objects too. We interact the same way with classes and objects, simply by sending messages to them.
 
 !!!Every object is an instance of a class
 
