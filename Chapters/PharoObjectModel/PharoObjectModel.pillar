@@ -316,10 +316,10 @@ Joseph Pelrine also states this very nicely:
 
 
 
-!!!Sending a message: a two step process 
+!!!Sending a message: a two steps process 
 
 What exactly happens when an object receives a message?
-This is a two step process: ''method lookup'' and ''method execution''.
+This is a two steps process: ''method lookup'' and ''method execution''.
 
 - ""Lookup."" First, the method having the same name as the message is looked up.
 - ""Method Execution."" Second, the found method is applied to the receiver with the message arguments: When the method is found, the arguments are bound to the parameters of the method, and the virtual machine executes it.
