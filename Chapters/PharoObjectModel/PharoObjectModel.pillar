@@ -21,15 +21,19 @@ This will be extended in Chapter:
 The object model is based on a set of simple rules that are applied ''uniformly'' and systematically without any exception.
 The rules are as follows:
 
-""Rule 1"". Everything is an object.
 
-""Rule 2"". Every object is an instance of a class.
-
-""Rule 3"". Every class has a superclass.
-
-""Rule 4"". Objects react to message sends: Methods are dynamically bound and public. 
-
-""Rule 5"". Classes are objects too and follow exactly the same rules.
+; Rule 1
+: Everything is an object.
+; Rule 2
+: Every object is an instance of a class.
+; Rule 3
+: Every class has a superclass.
+; Rule 4
+: Everything happens by sending messages.
+; Rule 5
+: Method lookup follows the inheritance chain.
+; Rule 6
+: Classes are objects too and follow exactly the same rules.
 
 Let us look at each of these rules in detail.
 
@@ -611,7 +615,6 @@ metaclass (a class whose instances are classes):
 - ''Class methods'' are just methods defined by a metaclass and that will be executed on classes. Sending the message ==now== to the class ==Date== is defined on the (meta)class ==Date class==. This method is executed with the class ==Date== as receiver.
 
 
-
 A class and its metaclass are two separate classes, even though the former is an
 instance of the latter. 
 However, this is largely irrelevant to you as a programmer: you are concerned with defining the behavior of your objects and the classes that create them.
@@ -647,7 +650,7 @@ Color blue blue
 
 !!!!Metaclass creation.
 You define a class by filling in the template proposed on the instance side.
-When you accept this template, the system creates not just the class that you
+When you compile this template, the system creates not just the class that you
 defined, but also the corresponding metaclass (which you can then edit by
 clicking on the ""Class side"" button).
 The only part of the metaclass creation template that makes sense for you to edit directly is the list of the metaclass's instance variable names.

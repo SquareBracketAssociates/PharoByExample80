@@ -31,6 +31,8 @@ Chapter *: The Pharo Object Model>../PharoObjectModel/PharoObjectModel.pier@cha:
 : Everything happens by sending messages.
 ; Rule 5
 : Method lookup follows the inheritance chain.
+; Rule 6
+: Classes are objects too and follow exactly the same rules.
 
 As we mentioned in the introduction to this chapter, a consequence of Rule 1 is
 that ''classes are objects too'', so Rule 2 tells us that classes must also be
@@ -50,18 +52,18 @@ To properly explain classes and metaclasses, we need to extend the rules from
 Chapter *: The Pharo Object Model>../PharoObjectModel/PharoObjectModel.pier@cha:model*
 with the following additional rules.
 
-; Rule 6
-: Every class is an instance of a metaclass.
 ; Rule 7
-: The metaclass hierarchy parallels the class hierarchy.
+: Every class is an instance of a metaclass.
 ; Rule 8
-: Every metaclass inherits from ==Class== and ==Behavior==.
+: The metaclass hierarchy parallels the class hierarchy.
 ; Rule 9
-: Every metaclass is an instance of ==Metaclass==.
+: Every metaclass inherits from ==Class== and ==Behavior==.
 ; Rule 10
+: Every metaclass is an instance of ==Metaclass==.
+; Rule 11
 : The metaclass of ==Metaclass== is an instance of ==Metaclass==.
 
-Together, these 10 rules complete Pharo's object model.
+Together, these 11 rules complete Pharo's object model.
 
 We will first briefly revisit the 5 rules from
 Chapter *: The Pharo Object Model>../PharoObjectModel/PharoObjectModel.pier@cha:model*
