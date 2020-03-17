@@ -91,8 +91,8 @@ file is always coupled with a image file. They work in pair.
 ""4."" The ""image"" file provides a frozen in time snapshot of a running Pharo
 system. This is the file where all objects are stored and as such it's a cross
 platform format. An image file contains the live state of all objects of the
-system (including classes and compiled methods, since they are objects too) at a
-given point. An image is a virtual object container. The file is named for the
+system at a
+given point, including classes and compiled methods since they are objects, too. An image is a virtual object container. The file is named for the
 release (like ==Pharo8.0.image==) and it is synched with the
 ==Pharo8.0.changes== file.
 
@@ -122,7 +122,7 @@ Do whatever works best for your style of working and your operating system.
 
 !!!Launching Pharo
 
-To start Pharo, if you're using Pharo Launcher, select the image you wish to use and press launch.
+To start Pharo, if you are using Pharo Launcher, select the image you wish to use and press launch.
 Or if you are using standalone version do whatever your operating system expects: drag the .image file
 onto the icon of the virtual machine, or double-click the .image file, or at the
 command line type the name of the virtual machine followed by the path to the
