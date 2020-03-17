@@ -1294,7 +1294,6 @@ Trait named: #TGreetable
 
 [[[
 TGreetable >> greeting
-
 	^ 'Hello ', self name
 ]]]
 
@@ -1369,8 +1368,100 @@ TCounting >> initializeTCounting
 
 [[[
 TCounting >> increment 
-	count := count + 1
+	count := count + 1.
+	^ count
 ]]]
+
+[[[
+Object subclass: #Counter
+	uses: TCounting
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'Traits-Example'
+]]]
+
+[[[
+Counter >> initialize
+	self initializeTCounting
+]]]
+
+
+[[[
+Counter new increment; increment
+>>> 2
+]]]
+
+!!! A class can use two traits
+
+[[[
+Trait named: #TSpeakingAbility
+	 uses: {}
+	 package: 'Traits-Example'
+]]]
+ 
+[[[
+TSpeakingAbility >> speak
+	^ 'I''m speaking!'
+]]]
+
+[[[
+Trait named: #TSpeakingAbility
+	 uses: {}
+	 package: 'Traits-Example'
+]]]
+
+[[[
+Object subclass: #Duck
+	uses: TFlyingAbility + TSpeakingAbility 
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'Traits-Example'
+]]]
+
+[[[
+| d |
+d := Duck new.
+d speak
+>>> 'I''m speaking!'
+d fly
+>>> 'I''m flying!'
+]]]
+
+!!! Overriding method take always precedence over traits
+
+[[[
+Duck >> quack
+	^ 'QUACK'
+]]]
+
+[[[
+Duck >> speak
+	^ self quack
+]]]
+
+[[[
+| d |
+d := Duck new.
+d speak
+>>> 'QUACK'
+]]]
+
+!!! Extending a trait
+
+
+!!! Managing conflicts
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
