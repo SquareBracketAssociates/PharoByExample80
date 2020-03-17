@@ -658,8 +658,7 @@ The only part of the metaclass creation template that makes sense for you to edi
 Once a class has been created, browsing its instance side lets you edit and browse the methods that will be possessed by instances of that class (and of its subclasses).
 
 !!!Class methods
-Class methods can be quite useful, you can browse ==Color class== for some good
-examples. 
+Class methods can be quite useful, you can browse ==Color class== for some good examples: 
 You will see that there are two kinds of methods defined on a class:
 ''instance creation methods'', like the class method ==blue== in the class ==Color class==, and those that
 perform a utility function, like ==Color class>>wheel:==.
@@ -681,26 +680,28 @@ static methods are really just statically-resolved procedures, Pharo class
 methods are dynamically-dispatched methods. 
 This means that inheritance, overriding and super-sends work for class methods in Pharo, whereas they don't work for static methods in Java.
 
-!!!!Class instance variables
+!!!Class instance variables
 
-With ordinary instance variables, all the instances of a class have the same set
+With ordinary ''instance'' variables, all the instances of a class have the same set
 of variables (though each instance has its own private set of values), and
 the instances of its subclasses inherit those variables.
 
-The story is exactly the same with class instance variables: each class has its own private class
-instance variables.
-A subclass will inherit those class instance variables, ''but the subclass will have its own private copies of those variables''. 
+The story is exactly the same with ''class'' instance variables: a class is an object instance of another class.
+Therefore the class instance variables are defined on such classes and each class has its own private values for the class instance variables.
+
+Instance variables also works. Class instance variables are inherited:
+A subclass will inherit those class instance variables, ''but a subclass will have its own private copies of those variables''. 
 Just as objects don't share instance variables, neither do classes and their subclasses share class instance variables.
 
-For example, you could use a class instance variable called ==count== to keep
-track of how many instances you create of a given class. 
+For example, you could use a class instance variable called ==count== to keep track of how many instances you create of a given class. 
 However, any subclass would have its own ==count== variable, so subclass instances would be counted
 separately.
+The following section presents an example. 
 
 !!!Example: Class instance variables and subclasses
 
 Suppose we define the class ==Dog==, and its subclass ==Hyena==. Suppose that we
-add a ==count== class instance variable to the class ==Dog== (i.e. we define it
+add a ==count== class instance variable to the class ==Dog== (i.e., we define it
 on the metaclass ==Dog class==). ==Hyena== will naturally inherit the class
 instance variable ==count== from ==Dog==.
 
@@ -730,12 +731,13 @@ Now suppose we define class methods for ==Dog== to initialize its ==count== to
 Dog class >> initialize
     count := 0.
 ]]]
+
 [[[caption=Keeping count of new dogs.
 Dog class >> new
     count := count +1.
     ^ super new
 ]]]
-[[[
+[[[caption=Accessing to count.
 Dog class >> count
     ^ count
 ]]]
@@ -744,8 +746,8 @@ Now when we create a new ==Dog==, the ==count== value of the class ==Dog== is
 incremented, and so is that of the class ==Hyena== (but the hyenas are counted
 separately).
 
-''Side note:'' Notice the use of ==initialize== on the classes. 
-In Pharo, when you instantiate an object such as ==Dog new==, ==initialize== is called automatically as part of the ==new== message send (you can see for yourself by browsing the method ==new== in the class ==Behavior==). 
+!!!!About class ==initialize==. 
+When you instantiate an object such as ==Dog new==, ==initialize== is called automatically as part of the ==new== message send (you can see for yourself by browsing the method ==new== in the class ==Behavior==). 
 But with classes, simply defining them does not automatically call ==initialize== because it is not clear to the system if a class is fully working.
 So we have to call ==initialize== explicitly here.
 By default class ==initialize== methods are automatically executed only when classes are loaded.
@@ -757,20 +759,25 @@ Hyena initialize.
 Dog count
 >>> 0
 ]]]
+
 [[[example=true
 Hyena count
 >>> 0
 ]]]
+
 [[[example=true
 | aDog |
 aDog := Dog new.
 Dog count
 >>> 1  "Incremented"
 ]]]
+
 [[[example=true
 Hyena count
 >>> 0  "Still the same"
 ]]]
+
+!!! Stepping back
 
 Class instance variables are private to a class in exactly the same way that
 instance variables are private to an instance. Since classes and their
@@ -832,11 +839,11 @@ addition to the variables that it inherits from ==Behavior==, such as
 ==superclass== and ==methodDict==). 
 It means that the value of this extra instance variable will describe the instance of the class ==WebServer class== i.e., the class ==WebServer==.
 
-[[[example=true|label=scr:instance|caption=New state for classes.
+[[[example=true|
 Point class allInstVarNames
 >>>  "#(#superclass #methodDict #format #layout #organization #subclasses #name #classPool #sharedPools #environment #category)"
 ]]]
-[[[example=true
+[[[example=true|label=scr:instance|caption=New state for classes.
 WebServer class allInstVarNames
 >>>  "#(#superclass #methodDict #format #layout #organization #subclasses #name #classPool #sharedPools #environment #category #uniqueInstance)"
 ]]]
@@ -844,9 +851,9 @@ WebServer class allInstVarNames
 We can now define a class method named ==uniqueInstance==, as shown below. This
 method first checks whether ==uniqueInstance== has been initialized. If it has
 not, the method creates an instance and assigns it to the class instance
-variable ==uniqueInstance==. Finally the value of ==uniqueInstance== is
-returned. Since ==uniqueInstance== is a class instance variable, this method can
-directly access it.
+variable ==uniqueInstance==. 
+Finally the value of ==uniqueInstance== is returned. 
+Since ==uniqueInstance== is a class instance variable, this method can directly access it.
 
 [[[language=smalltalk|label=scr:uniqueInstance|caption=Class-side accessor method ==uniqueInstance==.
 WebServer class >> uniqueInstance
@@ -895,7 +902,6 @@ it.
 
 
 !!!Shared variables
-
 Now we will look at an aspect of Pharo that is not so easily covered by our five
 rules: shared variables.
 
@@ -914,12 +920,12 @@ us that they are indeed shared between multiple objects.
 !!!!Global variables
 
 In Pharo, all global variables are stored in a namespace called ==Smalltalk globals==,
-which is implemented as an instance of the class ==SystemDictionary==. Global
-variables are accessible everywhere. Every class is named by a global variable.
+which is implemented as an instance of the class ==SystemDictionary==.
+Global variables are accessible everywhere. 
+Every class is named by a global variable.
 In addition, a few globals are used to name special or commonly useful objects.
 
-The variable ==Processor== names an instance of ==ProcessScheduler==, the main
-process scheduler of Pharo.
+The variable ==Processor== names an instance of ==ProcessScheduler==, the main process scheduler of Pharo.
 
 [[[example=true
 Processor class
@@ -955,15 +961,10 @@ Smalltalk globals at: #Smalltalk
 ==World bounds== answers a rectangle that defines the whole screen space; all
 Morphs on the screen are submorphs of ==World==.
 
-""==ActiveHand=="" is the current instance of ==HandMorph==, the graphical
-representation of the cursor. ==ActiveHand=='s submorphs hold anything being
-dragged by the mouse.
-
-""==Undeclared=="" is another dictionary, which contains all the undeclared
-variables. If you write a method that references an undeclared variable, the
-browser will normally prompt you to declare it, for example as a global or as an
-instance variable of the class. However, if you later delete the declaration,
-the code will then reference an undeclared variable. Inspecting ==Undeclared==
+""==Undeclared=="" is another dictionary, which contains all the undeclared variables. 
+If you write a method that references an undeclared variable, the browser will normally prompt you to declare it, for example as a global or as an
+instance variable of the class. 
+However, if you later delete the declaration, the code will then reference an undeclared variable. Inspecting ==Undeclared==
 can sometimes help explain strange behaviour!
 
 !!!!Using globals in your code
@@ -972,7 +973,7 @@ The recommended practice is to strictly limit the use of global variables. It is
 usually better to use class instance variables or class variables, and to
 provide class methods to access them. Indeed, if Pharo were to be implemented
 from scratch today, most of the global variables that are not classes would be
-replaced by singletons.
+replaced by singletons or others.
 
 The usual way to define a global is just to perform ==Do it== on an assignment
 to a capitalized but undeclared identifier. The parser will then offer to
@@ -980,22 +981,20 @@ declare the global for you. If you want to define a global programmatically,
 just execute ==Smalltalk globals at: #AGlobalName put: nil==. To remove it,
 execute ==Smalltalk globals removeKey: #AGlobalName==.
 
-!!!!Class variables
+!!!Class variables: Shared variables
 @sec:classVars
 
 Sometimes we need to share some data amongst all the instances of a class and
 the class itself. 
 This is possible using ''class variables''. 
-The term ''class variable'' indicates that the lifetime of the variable is the same as that of
-the class. 
+The term ''class variable'' indicates that the lifetime of the variable is the same as that of the class. 
 However, what the term does not convey is that these variables are shared amongst all the instances of a class as well as the class itself, as shown in Figure *@fig:privateSharedVar*. 
 Indeed, a better name would have been ''shared variables'' since this expresses more clearly their role, and also warns of the danger of using them, particularly if they are modified.
 
-+Instance and class methods accessing different variables.>file://figures/privateSharedVarColor.png|label=fig:privateSharedVar|width=70+
++Instance and class methods accessing different variables.>file://figures/privateSharedVarColor.png|label=fig:privateSharedVar|width=80+
 
 In Figure *@fig:privateSharedVar* we see that ==rgb== and ==cachedDepth== are
-instance variables of ==Color==, hence only accessible to instances of
-==Color==. 
+instance variables of ==Color==, hence only accessible to instances of ==Color==. 
 We also see that ==superclass==, ==subclass==, ==methodDict== and so
 on are ''class instance variables'', i.e., instance variables only accessible to
 the ==Color== class.
@@ -1038,7 +1037,7 @@ the accessor all the time and never use the class variable directly.
 This furthermore imposes the cost of the accessor send and the initialization test.
 
 [[[label=scr:colorClassInit|caption=Using Lazy initialization.
-   ColorNames ifNil: [self initializeNames].
+   ColorNames ifNil: [ self initializeNames ].
    ^ ColorNames
 ]]]
 
@@ -1062,18 +1061,14 @@ compiled, or when they are edited and re-compiled.
 
 !!!Pool variables
 
-Pool variables are variables that are shared between several classes that may
-not be related by inheritance. 
-Pool variables were originally stored in pool dictionaries; now they should be defined as class variables of dedicated classes
-(subclasses of ==SharedPool==). 
+Pool variables are variables that are shared between several classes that may not be related by inheritance. 
+Pool variables should be defined as class variables of dedicated classes (subclasses of ==SharedPool== as shown below). 
 Our advice is to avoid them; you will need them only in rare and specific circumstances. 
 Our goal here is therefore to explain pool variables just enough so that you can understand them when you are reading code.
 
-A class that accesses a pool variable must mention the pool in its class
-definition. For example, the class ==Text== indicates that it is using the pool
-dictionary ==TextConstants==, which contains all the text constants such as
-==CR== and ==LF==. This dictionary has a key ==#CR== that is bound to the value
-==Character cr==, i.e., the carriage return character.
+A class that accesses a pool variable must mention the pool in its class definition. 
+For example, the class ==Text== indicates that it is using the pool ==TextConstants==, which contains all the text constants such as ==CR== and ==LF==. 
+==TextConstants== defines the variables ==CR== that is bound to the value ==Character cr==, i.e., the carriage return character.
 
 [[[label=scr:textPoolDict|caption=Pool dictionaries in the ==Text== class.
 ArrayedCollection subclass: #Text
@@ -1083,23 +1078,36 @@ ArrayedCollection subclass: #Text
         package: 'Collections-Text'
 ]]]
 
-This allows methods of the class ==Text== to access the ''keys'' of the
-dictionary in the method body ''directly'', i.e., by using variable syntax
-rather than an explicit dictionary lookup. For example, we can write the
-following method.
+This allows methods of the class ==Text== to access the variables of the shared pool in the method body ''directly''.
+For example, we can write the following method. 
+We see that eventhough ==Text== does not define a variable ==CR==, since it declared that it uses the shared pool
+==TextConstants==, it can directly access it. 
 
 [[[label=scr:textTestCR|caption===Text>>testCR==.
 Text >> testCR
     ^ CR == Character cr
 ]]]
 
+Here is how ==TextConstants== is created. 
+==TextConstants== is a special class subclass of ==SharedPool== and it holds class variables.
+
+[[[
+SharedPool subclass: #TextConstants
+	instanceVariableNames: ''
+	classVariableNames: 'BS BS2 Basal Bold CR Centered Clear CrossedX CtrlA CtrlB CtrlC 
+	CtrlD CtrlDigits CtrlE CtrlF CtrlG CtrlH 
+	CtrlI CtrlJ CtrlK CtrlL CtrlM CtrlN CtrlO CtrlOpenBrackets CtrlP CtrlQ CtrlR CtrlS CtrlT 
+	CtrlU CtrlV CtrlW CtrlX CtrlY CtrlZ Ctrla Ctrlb Ctrlc Ctrld Ctrle Ctrlf Ctrlg Ctrlh Ctrli 
+	Ctrlj Ctrlk Ctrll Ctrlm Ctrln Ctrlo Ctrlp Ctrlq Ctrlr Ctrls Ctrlt Ctrlu Ctrlv Ctrlw 
+	Ctrlx Ctrly Ctrlz DefaultBaseline DefaultFontFamilySize DefaultLineGrid DefaultMarginTabsArray 
+	DefaultMask DefaultRule DefaultSpace DefaultTab DefaultTabsArray ESC EndOfRun Enter Italic 
+	Justified LeftFlush LeftMarginTab RightFlush RightMarginTab Space Tab TextSharedInformation'
+	package: 'Text-Core-Base'
+]]]
+
+
 Once again, we recommend that you avoid the use of pool variables and pool
 dictionaries.
-
-
-
-
-
 
 
 
@@ -1167,12 +1175,6 @@ method definition below).
 
     ^self asciiValue < aCharacter asciiValue
 ]]]
-
-
-
-
-
-
 
 !!!Traits
 
