@@ -465,6 +465,6 @@ superclasses.
 
 -Every class is an instance of a metaclass. Metaclasses are implicit. A metaclass is created automatically when you create the class that is its sole instance. A metaclass is simply a class whose unique instance is a class.
 -The metaclass hierarchy parallels the class hierarchy. Method lookup for classes parallels method lookup for ordinary objects, and follows the metaclass's superclass chain.
--Every metaclass inherits from ==Class== and ==Behavior==. Every class ''is a'' ==Class==. Since metaclasses are classes too, they must also inherit from ==Class==. ==Behavior== provides behaviour common to all entities that have instances.
+-Every metaclass inherits from ==Class== and ==Behavior==. Every class ''is a'' ==Class==. Since metaclasses are classes too, they must also inherit from ==Class==. ==Behavior== provides behavior common to all entities that have instances.
 -Every metaclass is an instance of ==Metaclass==. ==ClassDescription== provides everything that is common to ==Class== and ==Metaclass==.
 -The metaclass of ==Metaclass== is an instance of ==Metaclass==. The ''instance-of'' relation forms a closed loop, so ==Metaclass class class== is ==Metaclass==.
