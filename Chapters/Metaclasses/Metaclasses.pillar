@@ -116,7 +116,7 @@ follows:
 >>> SortedCollection
 ]]]
 
-""Rule 4."" Everything happens by sending messagess, so we can deduce that
+""Rule 4."" Everything happens by sending messages, so we can deduce that
 ==withAll:== is a message to ==OrderedCollection== and
 ==asSortedCollection== are messages sent to the ordered collection instance, and
 ==superclass== is a message to ==OrderedCollection== and
