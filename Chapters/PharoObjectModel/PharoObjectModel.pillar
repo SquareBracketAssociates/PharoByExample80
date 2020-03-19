@@ -1380,7 +1380,7 @@ A method originating from a trait acts as if it would have been defined in the c
 Now the user of a trait (be it a class or another trait) can always redefine the method originating from the trait
 and the redefinition takes precedence in the user over the method of trait. 
 
-In the class ==Duck== we can redefine the method ==speak== to do something else than returning the string =='I''m speaking!'==.
+In the class ==Duck== we can redefine the method ==speak== to do something else and for example send the message ==quack==.
 
 [[[
 Duck >> quack
@@ -1407,7 +1407,6 @@ It is also possible to ''alias'' methods (with ==@==), providing a new name for 
 
 %Traits are used in the system kernel. One good example is the class
 %==Behavior==.
-
 %[[[label=scr:behaviorwithtraits|caption=Behavior defined using traits.
 %Object subclass: #Behavior
 %    uses: TPureBehavior @ {#basicAddTraitSelector:withMethod:->#addTraitSelector:withMethod:}
