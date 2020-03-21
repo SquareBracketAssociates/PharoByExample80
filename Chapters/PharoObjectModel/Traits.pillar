@@ -28,6 +28,9 @@ TFlyingAbility >> fly
 	^ 'I''m flying!'
 ]]]
 
+Now we define a class called ==Bird== that uses the trait. 
+It means that the class has a method called ==fly==.
+
 [[[
 Object subclass: #Bird
 	uses: TFlyingAbility
@@ -35,6 +38,8 @@ Object subclass: #Bird
 	classVariableNames: ''
 	package: 'Traits-Example'
 ]]]
+
+Instances of the class ==Bird== know how to answer to  the message ==fly==. 
 
 [[[
 | b |
