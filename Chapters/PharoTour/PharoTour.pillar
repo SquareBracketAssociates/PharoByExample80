@@ -129,7 +129,7 @@ command line type the name of the virtual machine followed by the path to the
 .image file.
 
 - On ""OS X"", double click the ==Pharo8.0.app== bundle in the unzipped download.
-- On ""Linux"", double click (or invoke from the command line) the ==pharo== executable bash script from the unzipped Pharo folder.
+- On ""Linux"", double click (or invoke from the command line) the ==pharo== executable ==Bash== script from the unzipped Pharo folder.
 - On ""Windows"", enter the unzipped Pharo folder and double click ==Pharo.exe==.
 
 In general, Pharo tries to "do the right thing". If you double click on the VM,
