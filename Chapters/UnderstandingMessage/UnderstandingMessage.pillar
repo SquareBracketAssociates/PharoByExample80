@@ -188,8 +188,8 @@ The three kinds of messages each have different precedence, which allows them to
 - Messages of the same kind are evaluated from left to right.
 
 These rules lead to a very natural reading order.
-Now if you want to be sure that your messages are sent in the order that you want you can always put more parentheses as shown in Figure *@fig:uKeyUn*.
-In this  figure, the message ==yellow== is an unary message and the message ==color:== a keyword message, therefore the message send ==Color yellow== is sent first.
+Now if you want to be sure that your messages are sent in the order as you want, you can always put more parentheses as shown in Figure *@fig:uKeyUn*.
+In this figure, the message ==yellow== is an unary message and the message ==color:== a keyword message, therefore the message send ==Color yellow== is sent first.
 However as message sends in parentheses are sent first, putting (unnecessary) parentheses around ==Color yellow== just emphasizes that it will be sent first.
 The rest of the section illustrates each of these points.
 
@@ -198,7 +198,7 @@ The rest of the section illustrates each of these points.
 
 !!!!Unary > Binary > Keywords
 Unary messages are sent first, then binary messages, and finally keyword messages.
-We also say that unary messages have a higher  priority over the other kinds of messages.
+We also say that unary messages have a higher priority over the other kinds of messages.
 
 @@important  ==Unary > Binary > Keyword==
 
@@ -227,7 +227,7 @@ Unfortunately the rules are a bit too simplistic for arithmetic message sends, s
 
 We will dedicate a section to arithmetic inconsistencies.
 
-The following example, which is a bit more complex (!), offers a nice illustration that even complicated expressions can be read in a natural way:
+The following example, which is a bit more complex (!), offers a nice illustration showing that even complicated expressions can be read in a natural way:
 
 [[[
 [:aClass | aClass methodDict keys select: [:aMethod | (aClass>>aMethod) isAbstract ]] value: Boolean 
@@ -282,8 +282,8 @@ Parenthesised messages are sent prior to other messages.
 
 Here are some examples. 
 
-The first example shows that parentheses are not needed when the order is the one we want, ''i.e.'' that result is the same if we write this with or without parentheses.
-Here we compute tangent of 1.5, then we round it and convert it as a string.
+The first example shows that parentheses are not needed when the excution performs in the order we want, ''i.e.'' that result is the same if we write this with or without parentheses.
+Here we compute tangent of 1.5, then we round it and convert it to a string.
 
 [[[example=true
 1.5 tan rounded asString = (((1.5 tan) rounded) asString) 
@@ -302,7 +302,7 @@ The second example shows that ==factorial== is executed prior to the sum and if 
 >>> 5040
 ]]]
 
-Similarly in the following example, we need the parentheses to force sending ==lowMajorScaleOn:== before ==play==.
+Similarly, in the following example, we need the parentheses to forcely send ==lowMajorScaleOn:== before ==play==.
 
 [[[
 (FMSound lowMajorScaleOn: FMSound clarinet) play
@@ -333,7 +333,7 @@ Example of Parentheses.
 ]]]
 
 !!!!From left to right
-Now we know how messages of different kinds or priorities are handled.
+Now we know how message of different kinds or their priorities are handled.
 The final question to be addressed is how messages with the same priority are sent. 
 They are sent from the left to the right. 
 Note that you already saw this behaviour in the example == 1.5 tan rounded asString == where all unary messages are sent from left to right which is equivalent to ==(((1.5 tan) rounded) asString)==.
@@ -350,7 +350,7 @@ This returns a newly created pen to which the second message ==down== is sent, a
 !!!!Arithmetic inconsistencies
 The message composition rules are simple.
 There is no notion of mathematical precedence because arithmetic messages are just messages as any other ones.
-So their result may look in inconsistent when executed them.
+So their result may look inconsistent when executed.
 Here we see the common situations where extra parentheses are needed.
 
 
@@ -401,7 +401,7 @@ They are just binary messages, hence ==\*== does not have priority over ==\+==. 
 +Default execution order.>file://figures/ucompoNoBracketPar.png|width=55+
 
 
-As shown in the previous example the result of this message send is not ==30== but ==110==.
+As shown in the previous example, the result of this message send is not ==30== but ==110==.
 This result is perhaps unexpected but follows directly from the rules used to send messages.
 This is the price to pay for the simplicity of the model.
 To get the correct result, we should use parentheses.
@@ -439,7 +439,7 @@ Note that the first rule stating that unary messages are sent prior to binary an
 
 !!!Hints for identifying keyword messages
 
-Often beginners have problems understanding when they need to add parentheses.
+Often beginners have problems understanding when do they need to add parentheses.
 Let's see how keywords messages are recognized by the compiler.
 
 !!!!Parentheses or not?
@@ -485,22 +485,21 @@ Note that an expression can either be a message send, a variable, a literal, an 
 Hence the conditional branches of ==ifTrue:== or ==ifTrue:ifFalse:== require blocks.
 Following the same principle both the receiver and the argument of a ==whileTrue:== message require the use of square brackets since we do not know how many times either the receiver or the argument should be evaluated.
 
-Parentheses, on the other hand, only affect the order of sending messages.
+Parentheses, on the other hand, are only for affecting the order of sending messages.
 So in ==(expression)==, the ==expression== will ''always'' be evaluated exactly once.
 
 [[[
 [ x isReady ] whileTrue: [ y doSomething ]  "both the receiver and the argument must be blocks"
 4 timesRepeat: [ Beeper beep ]              "the argument is evaluated more than once, so must be a block"
-(x isReady) ifTrue: [ y doSomething ]       "receiver is evaluated once, so is not a block
-                                            argument does not have to be evaluated not even once, 
-											so it is a block"
+(x isReady) ifTrue: [ y doSomething ]       "the receiver is evaluated once so it is not a block but parentheses;
+                                            the argument might not be evaluated even once so it is a block"
 ]]]
 
 !!!Expression sequences
 
 Expressions (''i.e.'', message sends, assignments, ...) separated by periods are evaluated in sequence. Note that there is no period between a variable declaration and the following expression.
 The value of a sequence is the value gained by the evaluation of the last expression in the sequence.
-The values returned by all the expressions except the last one are ignored at the end. 
+The values returned by all the expressions, except the last one, are ignored at the end. 
 Note that the period is a separator and not a terminator. Therefore, a final period is optional.
 
 [[[
@@ -512,7 +511,7 @@ box containsPoint: 40@50
 
 !!!Cascaded messages
 
-Pharo offers a way to send multiple messages to the same receiver, without stating it multiple times, by  using a semicolon separator (==\;==).
+Pharo offers a way to send multiple messages to the same receiver, without stating it multiple times, by using a semicolon separator (==\;==).
 This is called the cascade in Pharo jargon.
 
 Syntactically a cascade is represented as follows:
@@ -522,7 +521,7 @@ aReceiverExpression msg1 ; msg2 ; msg3
 ]]]
 
 !!!!!!Examples. 
-You can program in Pharo without using cascades. It just forces you to repeat the receiver of the message.
+You can program in Pharo without using cascades. It just will force you to repeat the receiver of the messages.
 The following code snippets are equivalent:
 [[[
 Transcript show: 'Pharo is '.
@@ -541,7 +540,7 @@ In fact the receiver of all the cascaded messages is the receiver of the first m
 Note that the object receiving the cascaded messages can itself be the result of a message send.
 In the following example, the first cascaded message is ==setX:setY== since it is followed by a cascade.
 The receiver of the cascaded message ==setX:setY:== is the newly created point resulting from the execution of ==Point new==, and ''not'' ==Point==.
-The subsequent message ==isZero== is sent to that same receiver.
+The subsequent message ==isZero== is then sent to that same receiver.
 
 [[[example=true
 Point new setX: 25 setY: 35; isZero
