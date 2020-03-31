@@ -133,9 +133,8 @@ another object for the values of its instance variables; meta-programming is
 intended for writing tools like the object inspector, whose sole purpose is to
 look inside other objects.)
 
-
 Instance variables can be accessed by name only by the instance methods of the
-class that defines them and also in the methods defined in it's subclasses. This
+class that defines them and also in the methods defined in its subclasses. This
 means that Pharo instance variables are similar to ''protected'' variables in
 C\+\+ and Java. However, we prefer to say that they are private, because it is
 considered bad style in Pharo to access an instance variable directly from a
@@ -182,13 +181,13 @@ There is no static methods in Pharo.
 Methods can access all instance variables of the object.
 Some developers prefer to access instance variables only through accessors.
 This practice has some value, but it also clutters the interface of your classes, and worse, exposes
-it's private state to the world.
+its private state to the world.
 
 To ease class browsing, methods are grouped into ''protocols'' that indicate their intent. 
 Protocols have no semantics from the language viewpoint.
 They are just folders in which methods are stored.
 Some common protocol names have been established by convention, for example, ==accessing== for all
-accessor methods and ==initialization== for establishing a consistent initial state of an -object.
+accessor methods and ==initialization== for establishing a consistent initial state of an object.
 The protocol ==private== is sometimes used to group methods that should not be seen from outside.
 Nothing, however, prevents you from sending a message that is implemented by such a "private" method.
 
@@ -262,7 +261,7 @@ The caller chooses the procedure to execute ''statically'', by name.
 In such a case there is no lookup or dynamicity involved.
 
 In Pharo, we do ''not'' "invoke methods". Instead, we ''send messages.'' 
-This is just a terminology point but it is significant. It implies that it is not the responsibility of the client who selects the method to be executed, but it is the one of the receiver which we send the message to.
+This is just a terminology point but it is significant. It implies that it is not the responsibility of the client to select the method to be executed, but it is the one of the receiver which we send the message to.
 
 When sending a message, we do not decide which method will be executed. Instead,
 we ''tell'' an object to do something for us by sending it a message. A message
@@ -283,7 +282,7 @@ the method must be chosen ''dynamically'', when the message is received.
 As a consequence, we can send the ''same message'' to different objects, each of
 which may have ''its own method'' for responding to that message. We do not tell
 the ==SmallInteger== ==3== or the ==Point== ==(1@2)== how to respond to the
-message ==\+ 4==. Each has its own method for ==\+==, and own hehavior in responding to ==\+ 4==
+message ==\+ 4==. Each has its own method for ==\+==, and own behavior in responding to ==\+ 4==
 accordingly.
 
 !!!! About other computation.
@@ -331,7 +330,7 @@ This is a two-step process: ''method lookup'' and ''method execution''.
 
 The lookup process is quite simple:
 # The class of the receiver looks up the method to use to handle the message.
-# If this class does not have that method defined, it asks to it's superclass and so on, up along the inheritance chain.
+# If this class does not have that method defined, it asks to its superclass and so on, up along the inheritance chain.
 
 It is essentially as simple as that. Nevertheless there are a few questions that
 need some care to answer:
@@ -425,7 +424,7 @@ When this method is not found, the virtual machine will cause the object to send
 
 +Message ==foo== is not understood.>file://figures/fooNotFound.png|label=fig:fooNotFound|width=95+
 
-Now, this is a perfect ordinary, dynamic message send so the lookup method starts again from the class ==EllipseMorph==, except that this time it searches for the method ==doesNotUnderstand:==. 
+Now, this is a perfectly ordinary yet dynamic message send. So the lookup method starts again from the class ==EllipseMorph==, except that this time it searches for the method ==doesNotUnderstand:==. 
 As it turns out, ==Object== implements ==doesNotUnderstand:==
 This method will create a new ==MessageNotUnderstood== object which is capable of starting a Debugger in the current execution context.
 
@@ -462,7 +461,7 @@ Morph >> openInWorld
     ^ self
 ]]]
 
-Why is explicitly writing ==^ self== not a fairly good thing to do? 
+Why is explicitly writing ==^ self== not a very good thing to do? 
 When you return something explicitly, you would be expected to return
 something that is interesting to the sender. 
 When you explicitly return ==self==, you are saying that you expect the sender to use the returned value.
@@ -518,7 +517,7 @@ receiver.
 
 Like ==self==, ==super== represents the receiver of the message. Yes you read it
 right! The only thing that changes is the method lookup. Instead of starting 
-lookup in the class of the receiver, it starts from the ''superclass of the
+lookup in the class of the receiver, it starts in the ''superclass of the
 class of the method where the ==super== send occurs''. 
 
 @@important ==super== represents the receiver of the message and the method lookup starts in the superclass of the class of the method where the ==super== send occurs.
@@ -879,7 +878,7 @@ And indeed, until someone creates a subclass of ==WebServer==, they are the same
 But suppose that ==ReliableWebServer== is a subclass of ==WebServer==, and inherits the ==uniqueInstance== method. 
 We would clearly expect ==ReliableWebServer uniqueInstance== to answer a
 ==ReliableWebServer==. 
-Using ==self== ensures that this will happen, since ==self== will be bound to the respective receiver, here are the classes ==WebServer== and ==ReliableWebServer==. 
+Using ==self== ensures that this will happen, since ==self== will be bound to the respective receiver, here refers to the classes ==WebServer== and ==ReliableWebServer==. 
 Note also that ==WebServer== and ==ReliableWebServer== will have a different value for each of their
 ==uniqueInstance== instance variable.
 
