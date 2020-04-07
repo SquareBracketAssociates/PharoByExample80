@@ -819,7 +819,7 @@ Imagine that we would like to implement a class ==WebServer==, and to use the Si
 
 We define the class ==WebServer== as follow.
 
-[[[caption=A sample singleton class, ==WebServer==.
+[[[
 Object subclass: #WebServer
     instanceVariableNames: 'sessions'
     classVariableNames: ''
@@ -829,7 +829,7 @@ Object subclass: #WebServer
 Then, clicking on the ""Class side"" button, we add the (class) instance
 variable ==uniqueInstance==.
 
-[[[caption=The class side of the singleton class.
+[[[
 WebServer class
     instanceVariableNames: 'uniqueInstance'
 ]]]
@@ -839,7 +839,7 @@ addition to the variables that it inherits from ==Behavior==, such as
 ==superclass== and ==methodDict==). 
 It means that the value of this extra instance variable will describe the instance of the class ==WebServer class== i.e., the class ==WebServer==.
 
-[[[example=true|
+[[[example=true
 Point class allInstVarNames
 >>>  "#(#superclass #methodDict #format #layout #organization #subclasses #name #classPool #sharedPools #environment #category)"
 ]]]
