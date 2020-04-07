@@ -6,6 +6,10 @@ ${inputFile:path=Chapters/Preface/Preface.pillar}$
 ${inputFile:path=Chapters/PharoTour/PharoTour.pillar}$
 ${inputFile:path=Chapters/FirstApplication/FirstApplication.pillar}$
 
+
+
+
+
 %reviewed SD: 4th of march
 ${inputFile:path=Chapters/SyntaxNutshell/SyntaxNutshell.pillar}$
 
@@ -13,19 +17,29 @@ ${inputFile:path=Chapters/SyntaxNutshell/SyntaxNutshell.pillar}$
 ${inputFile:path=Chapters/UnderstandingMessage/UnderstandingMessage.pillar}$
 
 
-%Under review SD: 6th of march
+%reviewed SD: 6th of march
 ${inputFile:path=Chapters/PharoObjectModel/PharoObjectModel.pillar}$
 
+%reviewed SD: 6th of march
+${inputFile:path=Chapters/PharoObjectModel/PharoObjectModel.pillar}$
 
+%To be finished
+${inputFile:path=Chapters/PharoObjectModel/Traits.pillar}$
 
-
+%Under reviewed SD: 7th of April
 ${inputFile:path=Chapters/SUnit/SUnit.pillar}$
+
+
 ${inputFile:path=Chapters/BasicClasses/BasicClasses.pillar}$
 ${inputFile:path=Chapters/Collections/Collections.pillar}$
 ${inputFile:path=Chapters/Streams/Streams.pillar}$
+${inputFile:path=Chapters/Morphic/Morphic.pillar}$
+
 ${inputFile:path=Chapters/Metaclasses/Metaclasses.pillar}$
 ${inputFile:path=Chapters/Reflection/Reflection.pillar}$
 
+%Missing morphic chapter
+%${inputFile:path=Chapters/Reflection/Reflection.pillar}$
 %not sure that I want to have the seaside chapter here. 
 %better do a seaside primer
 % What about iceberg chapter!

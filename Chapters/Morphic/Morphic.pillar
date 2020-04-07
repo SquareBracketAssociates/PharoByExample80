@@ -1,5 +1,4 @@
-{"title":"Morphic"}
-!Morphic
+!!Morphic
 @cha:morphic
 
 Morphic is the name given to Pharo's graphical interface. Morphic is written in
@@ -11,7 +10,7 @@ graphical elements can be assembled and disassembled by the user, at any time.
 (We thank Hilaire Fernandes for permission to base this chapter on his original
 article in French.)
 
-!!The history of Morphic
+!!!The history of Morphic
 
 Morphic was developed by John Maloney and Randy Smith for the Self programming
 language, starting around 1993. Maloney later wrote a new version of Morphic
@@ -72,7 +71,7 @@ the string-like morph, you get an orange rectangle (see Figure
 
 +==Color orange asMorph openInWorld== with our new method.>file://figures/colorOrange.png|width=75|label=fig:colorOrange+
 
-!!Manipulating morphs
+!!!Manipulating morphs
 
 Morphs are objects, so we can manipulate them like any other object in
 Pharo: by sending messages, we can change their properties, create new
@@ -123,7 +122,7 @@ You can see the result on Figure *@fig:joeAndBillResult*
 
 +Bill follows Joe.>file://figures/joeAndBillResult.png|width=75|label=fig:joeAndBillResult+
 
-!!Composing morphs
+!!!Composing morphs
 
 One way of creating new graphical representations is by placing one morph inside
 another. This is called ''composition''; morphs can be composed to any depth.
@@ -153,7 +152,7 @@ actually grab joe, and the two morphs move together: the balloon is ''embedded''
 inside joe. It is possible to embed more morphs inside joe. In addition to doing
 this programmatically, you can also embed morphs by direct manipulation.
 
-!!Creating and drawing your own morphs
+!!!Creating and drawing your own morphs
 
 While it is possible to make many interesting and useful graphical
 representations by composing morphs, sometimes you will need to create something
@@ -314,7 +313,7 @@ CrossMorph >> verticalBar
 	^ self bounds insetBy: crossWidth @ 0
 ]]]
 
-!!Interaction and animation
+!!!Interaction and animation
 
 To build live user interfaces using morphs, we need to be able to interact with
 them using the mouse and keyboard. Moreover, the morphs need to be able
@@ -475,7 +474,7 @@ to the ==handleKeystroke:== method:
 		ifTrue: [ self stopStepping ].
 ]]]
 
-!!Interactors
+!!!Interactors
 
 To prompt the user for input, the ==UIManager== class provides a large number of
 ready to use dialog boxes. For instance, the ==request:initialAnswer:== method
@@ -501,7 +500,7 @@ UIManager default
 Browse the ==UIManager== class and try out some of the interaction methods
 offered.
 
-!!Drag-and-drop
+!!!Drag-and-drop
 
 Morphic also supports drag-and-drop. Let's examine a simple example with two
 morphs, a receiver morph and a dropped morph. The receiver will accept a morph
@@ -618,7 +617,7 @@ morph position: (morph position + (70@0)).
 
 The green morph is rejected and therefore stays attached to the mouse pointer.
 
-!!A complete example
+!!!A complete example
 
 Let's design a morph to roll a die. Clicking on it will display the values of
 all sides of the die in a quick loop, and another click will stop the animation.
@@ -813,7 +812,7 @@ DieMorph >> mouseDown: anEvent
 
 Now the die will roll or stop rolling when we click on it.
 
-!!More about the canvas
+!!!More about the canvas
 
 The ==drawOn:== method has an instance of ==Canvas== as its sole argument; the
 canvas is the area on which the morph draws itself. By using the graphics
@@ -847,7 +846,7 @@ That's all you need to do!
 
 +The die displayed with alpha-transparency>file://figures/multiMorphs.png|width=30|label=fig:multiMorphs+
 
-!!Chapter summary
+!!!Chapter summary
 
 Morphic is a graphical framework in which graphical interface elements can be
 dynamically composed.
