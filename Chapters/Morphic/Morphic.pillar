@@ -1,62 +1,68 @@
 !!Morphic
 @cha:morphic
 
-Morphic is the name given to Pharo's graphical interface. Morphic is written in
-Pharo, so it is fully portable between operating systems. As a consequence,
-Pharo looks exactly the same on Unix, MacOS and Windows. What distinguishes
-Morphic from most other user interface toolkits is that it does not have
-separate modes for ''composing'' and ''running'' the interface: all the
-graphical elements can be assembled and disassembled by the user, at any time.
-(We thank Hilaire Fernandes for permission to base this chapter on his original
-article in French.)
+Morphic is the name given to Pharo's graphical interface.
+Morphic supports two main aspects: on one hand Morphic defines all the low-level graphical entities and related infrastructure (events, drawing,...) and on the other hand Morphic defines all the widgets available in Pharo.  
+Morphic is written in Pharo, so it is fully portable between operating systems. 
+As a consequence, Pharo looks exactly the same on Unix, MacOS and Windows. 
+What distinguishes Morphic from most other user interface toolkits is that it does not have separate modes for ''composing'' and ''running'' the interface: all the graphical elements can be assembled and disassembled by the user, at any time.
+We thank Hilaire Fernandes for permission to base this chapter on his original article in French.
 
 !!!The history of Morphic
 
 Morphic was developed by John Maloney and Randy Smith for the Self programming
-language, starting around 1993. Maloney later wrote a new version of Morphic
-for Squeak, but the basic ideas behind the Self version are still alive and well
-in Pharo Morphic: ''directness'' and ''liveness''. Directness means that the
-shapes on the screen are objects that can be examined or changed directly, that
-is, by clicking on them using a mouse. Liveness means that the user interface
-is always able to respond to user actions: information on the screen is
-continuously updated as the world that it describes changes. A simple example of
-this is that you can detach a menu item and keep it as a button.
+language, starting around 1993. 
+Maloney later wrote a new version of Morphic for Squeak, but the basic ideas behind the Self version are still alive and well
+in Pharo Morphic: ''directness'' and ''liveness''. 
+Directness means that the shapes on the screen are objects that can be examined or changed directly, that
+is, by clicking on them using a mouse. 
+Liveness means that the user interface is always able to respond to user actions: information on the screen is
+continuously updated as the world that it describes changes. 
+A simple example of this is that you can detach a menu item and keep it as a button.
 
-Bring up the World Menu and meta-click once on it to bring up its morphic halo,
-then meta-click again on a menu item you want to detach, to bring up that item's
-halo. (Recall that you should set ==halosEnabled== in the Preferences browser.)
-Now drag that item elsewhere on the screen by grabbing the black handle (see
-Figure *@fig:grabHandle*), as shown in Figure *@fig:detachingMenu*.
+Bring up the World Menu and Option-Command-Shift click once on it to bring up its morphic halo,
+then repeat the operation again on a menu item you want to detach, to bring up that item's
+halo (see Figure *@fig:detachingMenu*).
 
-+The grab handle.>file://figures/grabhandle.png|width=3|label=fig:grabHandle+
+Now drag that item elsewhere on the screen by grabbing the black handle (which looks like a pliers), as shown in Figure *@fig:detachingMenu*.
 
-+Detaching a morph, here the ==Playground== menu item, to make it an independent button. >file://figures/detachingMenu.png|width=20|label=fig:detachingMenu+
++Detaching a morph, here the ==Playground== menu item, to make it an independent button. >file://figures/detachingMenu.png|width=60|label=fig:detachingMenu+
 
-All of the objects that you see on the screen when you run Pharo are ''Morphs'',
-that is, they are instances of subclasses of class ==Morph==. ==Morph== itself
-is a large class with many methods; this makes it possible for subclasses to
-implement interesting behaviour with little code. You can create a morph to
-represent any object, although how good a representation you get depends on the
-object!
+Once dropped the menu item stays detached from the menu and you can interact with it as if it would be in the menu (see Figurefig:detachingMenu2).
 
-To create a morph to represent a string object, execute the following code in a
-Playground.
++Dropping the menu item on the desktop, here the ==Playground== menu item is now an independent button. >file://figures/detachingMenu.png|width=60|label=fig:detachingMenu2+
+
+This example illustrates what we mean by ''directness'' and ''liveness''. 
+This gives a lot of power when developing alternate user interface and prototyping alternate interactions. 
+Some people 
+
+Morphic is a bit showing its age, and the Pharo community is working since several years
+on a possible replacement. Replacing Morphic means to have both
+a new low-level infrastructure and a new widget sets.
+The project is called Bloc and got several iterations. Bloc is about the infrastructure
+and Brick is a set of widgets built on top. 
+But let us have fun with Morphic. 
+
+!!!Morphs
+
+All of the objects that you see on the screen when you run Pharo are ''Morphs'', that is, they are instances of subclasses of class ==Morph==. 
+The class ==Morph== itself is a large class with many methods; this makes it possible for subclasses to
+implement interesting behaviour with little code. 
+You can create a morph to represent any object, although how good a representation you get depends on the object!
+
+To create a morph to represent a string object, execute the following code in a Playground.
 
 [[[language=smalltalk|caption=Creation of a String Morph|label=scr:stringMorph
 'Morph' asMorph openInWorld
 ]]]
 
-This creates a Morph to represent the string =='Morph'==, and then opens it
-(that is, displays it) in the ''world'', which is the name that Pharo gives to
-the screen. You should obtain a graphical element (a ==Morph==), which you can
-manipulate by meta-clicking.
+This creates a Morph to represent the string =='Morph'==, and then opens it (that is, displays it) in the ''world'', which is the name that Pharo gives to  the screen. 
+You should obtain a graphical element (a ==Morph==), which you can manipulate by meta-clicking.
 
-Of course, it is possible to define morphs that are more interesting graphical
-representations than the one that you have just seen. The method ==asMorph== has
-a default implementation in class ==Object== class that just creates a
-==StringMorph==. So, for example, ==Color tan asMorph== returns a StringMorph
-labeled with the result of ==Color tan printString==. Let's change this so
-that we get a coloured rectangle instead.
+Of course, it is possible to define morphs that are more interesting graphical representations than the one that you have just seen.
+The method ==asMorph== has a default implementation in class ==Object== class that just creates a ==StringMorph==. 
+So, for example, ==Color tan asMorph== returns a StringMorph labeled with the result of ==Color tan printString==.
+Let's change this so that we get a coloured rectangle instead.
 
 Open a browser on the ==Color== class and add the following method to it:
 
@@ -65,27 +71,22 @@ Color >> asMorph
 	^ Morph new color: self
 ]]]
 
-Now execute ==Color orange asMorph openInWorld== in a Playground. Instead of
-the string-like morph, you get an orange rectangle (see Figure
-*@fig:colorOrange*)!
+Now execute ==Color orange asMorph openInWorld== in a Playground. 
+Instead of the string-like morph, you get an orange rectangle (see Figure *@fig:colorOrange*)!
+You get the same executing ==(Morph new color: Color orange) openInWorld==
 
-+==Color orange asMorph openInWorld== with our new method.>file://figures/colorOrange.png|width=75|label=fig:colorOrange+
++==(Morph new color: Color orange) openInWorld== or ==Color orange asMorph openInWorld== with our new method.>file://figures/colorOrange.png|width=75|label=fig:colorOrange+
 
 !!!Manipulating morphs
 
-Morphs are objects, so we can manipulate them like any other object in
-Pharo: by sending messages, we can change their properties, create new
+Morphs are objects, so we can manipulate them like any other object in Pharo: by sending messages, we can change their properties, create new
 subclasses of Morph, and so on.
 
-Every morph, even if it is not currently open on the screen, has a position and
-a size. For convenience, all morphs are considered to occupy a rectangular
-region of the screen; if they are irregularly shaped, their position and size
-are those of the smallest rectangular ''box'' that surrounds them, which is
-known as the morph's bounding box, or just its ''bounds''. The ==position==
-method returns a ==Point== that describes the location of the morph's upper left
-corner (or the upper left corner of its bounding box). The origin of the
-coordinate system is the screen's upper left corner, with ''y'' coordinates
-increasing ''down'' the screen and ''x'' coordinates increasing to the right.
+Every morph, even if it is not currently open on the screen, has a position and a size. 
+For convenience, all morphs are considered to occupy a rectangular region of the screen; if they are irregularly shaped, their position and size are those of the smallest rectangular ''box'' that surrounds them, which is known as the morph's bounding box, or just its ''bounds''. 
+The ==position== method returns a ==Point== that describes the location of the morph's upper left
+corner (or the upper left corner of its bounding box).
+The origin of the coordinate system is the screen's upper left corner, with ''y'' coordinates increasing ''down'' the screen and ''x'' coordinates increasing to the right.
 The ==extent== method also returns a point, but this point specifies the width
 and height of the morph rather than a location.
 
