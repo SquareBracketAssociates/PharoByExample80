@@ -356,7 +356,7 @@ To catch keyboard events, we need to take three steps.
 
 Let's extend ==CrossMorph== so that it reacts to keystrokes. 
 First, we need to arrange to be notified when the mouse is over the morph. 
-This will happen if our morph answers ==true== to the ==handlesMouseOver:== message
+This will happen if our morph answers ==true== to the ==handlesMouseOver:== message.
 %|caption=We want to handle ''mouse over'' events|label=scr:mouseEventDeclaration
 [[[language=smalltalk
 CrossMorph >> handlesMouseOver: anEvent
@@ -546,7 +546,9 @@ To change this behaviour, change the color of the ellipse morph to the color
 blue (by sending it the message ==color: Color blue;== right after ==new==).
 Blue morphs should be accepted by the ==ReceiverMorph==.
 
-Let's create a specific subclass of ==Morph==, named ==DroppedMorph==, so we can experiment a bit more:
+Let's create a specific subclass of ==Morph==, named ==DroppedMorph==, so we can experiment a bit more. 
+Let us define a new kind of morph called ==DroppedMorph==.
+
 %|caption=Defining a morph we can drag-and-drop onto ==ReceiverMorph==|label=scr:DragDropMorph
 [[[language=smalltalk
 Morph subclass: #DroppedMorph
@@ -576,7 +578,7 @@ DroppedMorph >> rejectDropMorphEvent: anEvent
 Sending the ==hand== message to an event answers the ''hand'', an instance of ==HandMorph== that represents the mouse pointer and whatever it holds. 
 Here we tell the ==World== that the hand should grab ==self==, the rejected morph.
 
-Create two instances of ==DroppedMorph==, and then drag and drop them onto the receiver.
+Create two instances of ==DroppedMorph== of different colors, and then drag and drop them onto the receiver.
 %|caption=Open a now DroppedMorph|label=scr:newDroppedMorph
 [[[language=smalltalk
 ReceiverMorph new openInWorld.
@@ -591,28 +593,27 @@ The green morph is rejected and therefore stays attached to the mouse pointer.
 
 !!!A complete example
 
-Let's design a morph to roll a die. Clicking on it will display the values of
-all sides of the die in a quick loop, and another click will stop the animation.
+Let's design a morph to roll a die. 
+Clicking on it will display the values of all sides of the die in a quick loop, and another click will stop the animation.
 
 +The die in Morphic>file://figures/die.png|width=30|label=fig:dialogDie+
 
 Define the die as a subclass of ==BorderedMorph== instead of ==Morph==, because
 we will make use of the border.
 
-[[[language=smalltalk|caption=Defining the die morph|label=scr:classDie
+%|caption=Defining the die morph|label=scr:classDie
+[[[language=smalltalk
 BorderedMorph subclass: #DieMorph
 	instanceVariableNames: 'faces dieValue isStopped'
 	classVariableNames: ''
 	package: 'PBE-Morphic'
 ]]]
 
-The instance variable ==faces== records the number of faces on the die; we allow
-dice with up to 9 faces! ==dieValue== records the value of the face that is
-currently displayed, and ==isStopped== is true if the die animation has stopped
-running. To create a die instance, we define the ==faces: n== method on the
-''class'' side of ==DieMorph== to create a new die with ==n== faces.
+The instance variable ==faces== records the number of faces on the die; we allow dice with up to 9 faces! ==dieValue== records the value of the face that is currently displayed, and ==isStopped== is true if the die animation has stopped running. 
+To create a die instance, we define the ==faces: n== method on the ''class'' side of ==DieMorph== to create a new die with ==n== faces.
 
-[[[language=smalltalk|caption=Creating a new die with the number of faces we like|label=scr:facesClass
+%|caption=Creating a new die with the number of faces we like|label=scr:facesClass
+[[[language=smalltalk
 DieMorph class >> faces: aNumber
 	^ self new faces: aNumber
 ]]]
@@ -620,8 +621,8 @@ DieMorph class >> faces: aNumber
 The ==initialize== method is defined on the instance side in the usual way;
 remember that ==new== automatically sends ==initialize== to the newly-created
 instance.
-
-[[[language=smalltalk|caption=Initializing instances of ==DieMorph==|label=scr:initializeDie
+%|caption=Initializing instances of ==DieMorph==|label=scr:initializeDie
+[[[language=smalltalk
 DieMorph >> initialize
 	super initialize.
 	self extent: 50 @ 50.
@@ -639,10 +640,10 @@ DieMorph >> initialize
 
 We use a few methods of ==BorderedMorph== to give a nice appearance to the die:
 a thick border with a raised effect, rounded corners, and a color gradient on
-the visible face. We define the instance method ==faces:== to check for a valid
-parameter as follows:
-
-[[[language=smalltalk|caption=Setting the number of faces of the die|label=scr:numberOfFaces
+the visible face. 
+We define the instance method ==faces:== to check for a valid parameter as follows:
+%|caption=Setting the number of faces of the die|label=scr:numberOfFaces
+[[[language=smalltalk
 DieMorph >> faces: aNumber
 	"Set the number of faces"
 
@@ -651,7 +652,8 @@ DieMorph >> faces: aNumber
 ]]]
 
 It may be good to review the order in which the messages are sent when a die is
-created. For instance, if we start by evaluating ==DieMorph faces: 9==:
+created. 
+For instance, if we start by evaluating ==DieMorph faces: 9==:
 
 -The class method ==DieMorph class >> faces:== sends ==new== to ==DieMorph class==.
 -The method for ==new== (inherited by ==DieMorph class== from ==Behavior==) creates the new instance and sends it the ==initialize== message.
@@ -659,10 +661,9 @@ created. For instance, if we start by evaluating ==DieMorph faces: 9==:
 -==DieMorph class >> new== returns to the class method ==DieMorph class >> faces:==, which then sends the message ==faces: 9== to the new instance.
 -The instance method ==DieMorph >> faces:== now executes, setting the ==faces== instance variable to 9.
 
-Before defining ==drawOn:==, we need a few methods to place the dots on the
-displayed face:
-
-[[[language=smalltalk|caption=Nine methods for placing points on the faces of the die|label=scr:placeDots
+Before defining ==drawOn:==, we need a few methods to place the dots on the displayed face:
+%|caption=Nine methods for placing points on the faces of the die|label=scr:placeDots
+[[[language=smalltalk
 DieMorph >> face1
 	^ {(0.5 @ 0.5)}
 ]]]
@@ -699,14 +700,12 @@ DieMorph >> face9
 	^{0.25@0.25 . 0.75@0.25 . 0.75@0.75 . 0.25@0.75 . 0.25@0.5 . 0.75@0.5 . 0.5@0.5 . 0.5@0.25 . 0.5@0.75}
 ]]]
 
-These methods define collections of the coordinates of dots for each face. The
-coordinates are in a square of size 1x1; we will simply need to scale them to
-place the actual dots.
+These methods define collections of the coordinates of dots for each face.
+The coordinates are in a square of size 1x1; we will simply need to scale them to place the actual dots.
 
-The ==drawOn:== method does two things: it draws the die background with the
-==super==-send, and then draws the dots.
-
-[[[language=smalltalk|caption=Drawing the die morph|label=scr:drawOnDie
+The ==drawOn:== method does two things: it draws the die background with the ==super==-send, and then draws the dots as follows: 
+%|caption=Drawing the die morph|label=scr:drawOnDie
+[[[language=smalltalk
 DieMorph >> drawOn: aCanvas
 	super drawOn: aCanvas.
 	(self perform: ('face', dieValue asString) asSymbol)
@@ -714,14 +713,11 @@ DieMorph >> drawOn: aCanvas
 ]]]
 
 The second part of this method uses the reflective capacities of Pharo.
-Drawing the dots of a face is a simple matter of iterating over the collection
-given by the ==faceX== method for that face, sending the ==drawDotOn:at:==
-message for each coordinate. To call the correct ==faceX== method, we use the
-==perform:== method which sends a message built from a string, ==('face',
-dieValue asString) asSymbol==. You will encounter this use of ==perform:== quite
-regularly.
-
-[[[language=smalltalk|caption=Drawing a single dot on a face|label=scr:drawDotOn
+Drawing the dots of a face is a simple matter of iterating over the collection given by the ==faceX== method for that face, sending the ==drawDotOn:at:== message for each coordinate. 
+To call the correct ==faceX== method, we use the ==perform:== method which sends a message built from a string, ==('face',
+dieValue asString) asSymbol==. 
+%|caption=Drawing a single dot on a face|label=scr:drawDotOn
+[[[language=smalltalk
 DieMorph >> drawDotOn: aCanvas at: aPoint
 	aCanvas
 		fillOval: (Rectangle
@@ -730,22 +726,18 @@ DieMorph >> drawDotOn: aCanvas at: aPoint
 		color: Color black
 ]]]
 
-Since the coordinates are normalized to the ==[0:1]== interval, we scale them to
-the dimensions of our die: ==self extent * aPoint==.
-
-We can already create a die instance from a playground (see result on Figure
-*@fig:die6*):
+Since the coordinates are normalized to the ==[0:1]== interval, we scale them to the dimensions of our die: ==self extent * aPoint==.
+We can already create a die instance from a playground (see result on Figure *@fig:die6*):
 
 [[[language=smalltalk|caption=Create a Die 6|label=scr:die6
 (DieMorph faces: 6) openInWorld.
 ]]]
 
-+A new die 6 with ==(DieMorph faces: 6) openInWorld==>file://figures/die6.png|width=30|label=fig:die6+
++A new die 6 with ==(DieMorph faces: 6) openInWorld==>file://figures/die6.png|width=25|label=fig:die6+
 
-To change the displayed face, we create an accessor that we can use as ==myDie
-dieValue: 5==:
-
-[[[language=smalltalk|caption=Setting the current value of the die|label=scr:dieValue
+To change the displayed face, we create an accessor that we can use as ==myDie dieValue: 5==:
+%|caption=Setting the current value of the die|label=scr:dieValue
+[[[language=smalltalk
 DieMorph >> dieValue: aNumber
 	((aNumber isInteger and: [ aNumber > 0 ]) and: [ aNumber <= faces ])
 		ifTrue: [
@@ -756,8 +748,8 @@ DieMorph >> dieValue: aNumber
 +Result of ==(DieMorph faces: 6) openInWorld; dieValue: 5==.>file://figures/die.png|width=30|label=fig:dieValue5+
 
 Now we will use the animation system to show quickly all the faces:
-
-[[[language=smalltalk|caption=Animating the die|label=scr:stepDie
+%|caption=Animating the die|label=scr:stepDie
+[[[language=smalltalk
 DieMorph >> stepTime
 	^ 100
 ]]]
@@ -768,14 +760,14 @@ DieMorph >> step
 
 Now the die is rolling!
 
-To start or stop the animation by clicking, we will use what we learned
-previously about mouse events. First, activate the reception of mouse events:
-
-[[[language=smalltalk|caption=Handling mouse clicks to start and stop the animation|label=scr:handleMouseDie
+To start or stop the animation by clicking, we will use what we learned previously about mouse events. 
+First, activate the reception of mouse events:
+% |caption=Handling mouse clicks to start and stop the animation|label=scr:handleMouseDie
+[[[language=smalltalk
 DieMorph >> handlesMouseDown: anEvent
 	^ true
 ]]]
-
+Second, we will stop and start alternatively a roll on mouse click. 
 [[[
 DieMorph >> mouseDown: anEvent
 	anEvent redButtonPressed
@@ -787,25 +779,23 @@ Now the die will roll or stop rolling when we click on it.
 !!!More about the canvas
 
 The ==drawOn:== method has an instance of ==Canvas== as its sole argument; the
-canvas is the area on which the morph draws itself. By using the graphics
-methods of the canvas you are free to give the appearance you want to a morph.
-If you browse the inheritance hierarchy of the ==Canvas== class, you will see
-that it has several variants. The default variant of ==Canvas== is
-==FormCanvas==, and you will find the key graphics methods in ==Canvas== and
-==FormCanvas==. These methods can draw points, lines, polygons, rectangles,
-ellipses, text, and images with rotation and scaling.
+canvas is the area on which the morph draws itself. 
+By using the graphics methods of the canvas you are free to give the appearance you want to a morph.
+If you browse the inheritance hierarchy of the ==Canvas== class, you will see that it has several variants. 
+The default variant of ==Canvas== is ==FormCanvas==, and you will find the key graphics methods in ==Canvas== and
+==FormCanvas==. 
+These methods can draw points, lines, polygons, rectangles, ellipses, text, and images with rotation and scaling.
 
-It is also possible to use other kinds of canvas, for example to obtain
-transparent morphs, more graphics methods, antialiasing, and so on. To use these
-features you will need an ==AlphaBlendingCanvas== or a ==BalloonCanvas==. But
-how can you obtain such a canvas in a ==drawOn:== method, when ==drawOn:==
+It is also possible to use other kinds of canvas, for example to obtain transparent morphs, more graphics methods, antialiasing, and so on.
+To use these features you will need an ==AlphaBlendingCanvas== or a ==BalloonCanvas==.
+But how can you obtain such a canvas in a ==drawOn:== method, when ==drawOn:==
 receives an instance of ==FormCanvas== as its argument? Fortunately, you can
 transform one kind of canvas into another.
 
 To use a canvas with a 0.5 alpha-transparency in ==DieMorph==, redefine
 ==drawOn:== like this:
-
-[[[language=smalltalk|caption=Drawing a translucent die|label=scr:translucentDie
+%|caption=Drawing a translucent die|label=scr:translucentDie
+[[[language=smalltalk
 DieMorph >> drawOn: aCanvas
 	| theCanvas |
 	theCanvas := aCanvas asAlphaBlendingCanvas: 0.5.
