@@ -1,4 +1,4 @@
-!! Syntax in a nutshell
+﻿!! Syntax in a nutshell
 @cha:syntax
 
 Pharo adopts a syntax very close to that of its ancestor, Smalltalk. The syntax
@@ -157,9 +157,10 @@ unary message ==close== to the same receiver.
 The basic classes ==Number==, ==Character==, ==String== and ==Boolean== are described in Chapter *: Basic Classes>../BasicClasses/BasicClasses.pillar@cha:basicClasses*.
 
 !!!! For the purists. 
-We named the language elements expressions. At the level of the compiler it is not fully correct. 
-For example returns are not expressions but statements. 
-This is a detail when learning the language and more a concern of the language compiler and designer. 
+We name the language elements expressions. At the level of the compiler it is not fully correct. 
+For example, returns are not expressions but statements. 
+However, this is a detail which concerns more in the aspect of language compiler and designer.
+
 
 
 !!!Pseudo-variables
@@ -219,7 +220,7 @@ Parentheses must be used to alter the order of evaluation as follows:
 
 !!!Sequences and cascades
 
-All expressions may be composed in sequences separated by period, while message sends may be also composed in cascades by semi-colons. A period separated
+All expressions may be composed in sequences separated by period or, when the messages send to the same receiver, it may also be composed in cascades by semi-colons. A period separated
 sequence of expressions causes each expression in the series to be evaluated as a separate ''statement'', one after the other.
 
 [[[example=true
@@ -327,7 +328,7 @@ If you have a block with more than four parameters, you must use
 large number of parameters is often a sign of a design problem.
 
 In blocks there may be also declared local variables, surrounded by vertical bars,
-just like local variable declarations in a method. Local variables are declared after arguments and vertical bar separator, and before the block body. In the following example, ==x== i ==y== are parameters, and ==z== is local variable.
+just like local variable declarations in a method. Local variables are declared after arguments and vertical bar separator, and before the block body. In the following example, ==x== and ==y== are parameters, and ==z== is local variable.
 
 [[[example=true
 [ :x :y |
@@ -337,7 +338,7 @@ just like local variable declarations in a method. Local variables are declared 
 >>> 3
 ]]]
 
-Blocks are actually lexical closures, since they can refer to variables of the
+Blocks are actually lexical closures since they can refer to variables of the
 surrounding environment. The following block refers to the variable ==x== of its
 enclosing environment:
 
@@ -481,7 +482,7 @@ More about collections can be found in Chapter
 
 !!! Method annotations: Primitives and pragmas
 In Pharo methods can be annotated too. Method annotation are delimitated by ==\<== and ==\>==.
-There are used for two main scenarios: execution specific metadata for the primitives of the language and 
+They are used for two main scenarios: execution specific metadata for the primitives of the language and 
 metadata. 
 
 !!!! Primitives
@@ -528,4 +529,4 @@ Once a method has been annotated with a pragma, the annotations can be collected
 - Local variables declarations are delimited by vertical bars. Use ==:= == for assignment. ==\|x\| x := 1 ==
 - Expressions consist of message sends, cascades and assignments, evaluated left to right (and optionally grouped with parentheses). Statements are expressions separated by periods.
 - Block closures are expressions enclosed in square brackets. Blocks may take arguments and can contain temporary variables. The expressions in the block are not evaluated until you send the block a value message with the correct number of arguments. ==[ :x | x + 2 ] value: 4==
-- There is no dedicated syntax for control constructs, just messages whose sends conditionally evaluate blocks.
+- There is no dedicated syntax for control constructs, but only messages send conditionally will evaluate blocks.
