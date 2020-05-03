@@ -187,8 +187,8 @@ As we described, there are three kinds of messages in Pharo with predefined prec
 Here we give a brief overview on message kinds and ways for sending and executing them, while more detailed description is provided in Chapter *: Understanding messages>../UnderstandingMessage/UnderstandingMessage.pillar@chapterUnderstandingMessage*.
 
 #''Unary'' messages take no argument. ==1 factorial== sends the message ==factorial== to the object 1. Unary message selectors consist of alphanumeric characters, and start with a lower case letter.
-#''Binary'' messages take exactly one argument. ==1 \+ 2== sends the message ==\+== with argument 2 to the object 1. Binary message selectors consist of one or more characters from the following
-set: == + - / \ * ~ < > = @ \% \| \& \? ,==
+#''Binary'' messages take exactly one argument. ==1 \+ 2== sends the message ==\+== with argument 2 to the object 1. Binary message selectors consist of one or more characters from the following set: 
+== + - / \ * ~ < > = @ \% \| \& \? ,==
 #''Keyword'' messages take an arbitrary number of arguments. ==2 raisedTo: 6 modulo: 10== sends the message consisting of the message selector ==raisedTo:modulo:== and the arguments 6 and 10 to the object 2. Keyword message selectors consist of a series of alphanumeric keywords, where each keyword starts with a lower-case letter and ends with a colon.
 
 
@@ -228,7 +228,7 @@ Transcript show: 'hello world'.
 Transcript cr
 ]]]
 
-This will send ==cr== to the ==Transcript== object, then send to Trascript the message ==show: 'hello world'==, and finally send it another ==cr==, again.
+This will send ==cr== to the ==Transcript== object, then send to Transcript the message ==show: 'hello world'==, and finally send it another ==cr==, again.
 
 When a series of messages is being sent to the ''same'' receiver, then this can be expressed more succinctly as a ''cascade''. The receiver is specified just
 once, and the sequence of messages is separated by semi-colons as follows:
@@ -327,7 +327,7 @@ If you have a block with more than four parameters, you must use
 large number of parameters is often a sign of a design problem.
 
 In blocks there may be also declared local variables, surrounded by vertical bars,
-just like local variable declarations in a method. Local variables are declared after arguments and vertical bar separator, and before the block body. In the following example, ==x== i ==y== are parameters, and ==z== is local variable.
+just like local variable declarations in a method. Local variables are declared after arguments and vertical bar separator, and before the block body. In the following example, ==x==  ==y== are parameters, and ==z== is local variable.
 
 [[[example=true
 [ :x :y |
