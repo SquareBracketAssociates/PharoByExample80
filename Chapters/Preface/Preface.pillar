@@ -6,6 +6,7 @@ The current version got many edits, modifications and updates to bring the book 
 Maintaining a book to be update to date is not an easy task. This is not just changing a 5.0 into a 8.0. This is a tedious a often boring 
 work. Many aspects of Pharo from a tooling perspective have changed such as the git support with Iceberg. 
 Pharo by Example is not magically updating itself but the result of work. This is why I decided, as one of the original and main author over the years to invite Sebastijan, Gordana and Quentin to be listed as authors of Pharo by Example8.0.
+Altogether we revise parts of the books that were wrong in previous editions and the current version has really improved over Pharo by Example 5.
 
 !!!What is Pharo?
 
