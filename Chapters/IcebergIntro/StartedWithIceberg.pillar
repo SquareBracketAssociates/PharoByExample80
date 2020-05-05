@@ -24,7 +24,7 @@ You are done. Now we can explain calmly.
 
 !!! Architecture
 
-As ==git== is a distributed versioning system, you need a local clone of the repository (usually on your machine). This is to this local repository that your changes will be commited to before being pushed to remote repositories.
+As ==git== is a distributed versioning system, you need a ''local'' clone of the repository. It is usually on your machine. This is to this local repository that your changes will be commited to before being pushed to remote repositories.
 In general you commit to your local clone, and from there you push to remote repositories like  Github or Gitlab, or that of your company.
 Iceberg will do all the operations and more for you.
 
