@@ -1,46 +1,46 @@
-!! Configure nicely your project
+!! Configure your project nicely
 
-Versionning code is just the first part of making sure that you and others can reload your code. 
-We start by showing you how you can commit your code if you did not create your remote repository first. 
-Then we describe how to define a baseline, a kind of project map that you will use to define dependency
-within your project and dependency to other projects. 
-We also show how to add a good .gitignore file.
-In the next chapter we show how to configure your project to get more about services offered within the github ecosystem such as travis-ci to execute automatically your tests.
+Versioning code is just the first part of making sure that you and others can reload your code.
+We start by showing you how you can commit your code if you did not create your remote repository first.
+Then we describe how to define a baseline, a project map that you will use to define dependencies
+within your project and dependencies to other projects.
+We also show how to add a good ==.gitignore== file.
+In the next chapter we will show how to configure your project to get more out of the services offered within the Github ecosystem such as Travis-ci to execute automatically your tests.
 
 +Creating a local repository without pre-existing remote repository.>file://figures/S12-NewRepository.png|width=75|label=NewRepo+
 
-!!! What if I do not have created a remote repository
+!!! What if I did not create a remote repository
 
-At the beginning of this chapter we started by create a remote repository on Github. 
-Then we asked Iceberg to add a project by cloniong from Github. 
+At the beginning of this chapter we started by creating a remote repository on Github.
+Then we asked Iceberg to add a project by cloning it from Github.
 Now you may ask yourself what is the process to publish first your project locally without a pre-existing repository. This is actually simple.
 
-!!!! Create a new repository. 
+!!!! Create a new repository.
 When you add a new repository use the 'New repository' option as shown in *@NewRepo*.
- 
+
 
 
 !!!! Add a remote.
-If you want to then commit to a remote repository, you will have to add a remote repository using the repository browser you can access using the associated menu item or the icon. 
+If you want to commit to a remote repository, you will have to add it using the repository browser. You can access this browser through the associated menu item or the icon.
 The repository browser gives you access to the git repositories associated with your project: you can access, manage branches and also add or remove remote repositories. Figure *@OpeningRepositoryBrowser* shows the repository browser on our project.
 
 +Opening the repository browser let you add and browse branches as well as remote repositories.>file://figures/S13-OpeningRepository.png|width=75|label=OpeningRepositoryBrowser+
 
-Using the 'Add remote' iconic button add a remote by just providing information that you can find in your Github project. Figure *@OpeningRepositoryBrowser* shows it for the sample project.
+Pressing on the 'Add remote' iconic button adds a remote by filling the needed information that you can find in your Github project. Figure *@OpeningRepositoryBrowser* shows it for the sample project.
 
 +Adding a remote using the repository browser of your project.>file://figures/S14-AddingRemote.png|width=75|label=OpeningRepositoryBrowser+
 
 !!!! Push to the remote.
 
-Now you can push your changes and versions to the remote repository using the Push iconic button. 
-Once you have pushed you see that you have one remote as shown in Figure *@PushedFromReport*.
+Now you can push your changes and versions to the remote repository using the Push iconic button.
+Once you have pushed you can see that you have one remote as shown in Figure *@PushedFromReport*.
 
 +Once you pushed you changes to the remote repository.>file://figures/S15-PushedFromReport.png|width=75|label=PushedFromReport+
 
-!!! Defining a BaselineOf
+!!! Defining a ==BaselineOf==
 
-A ''baseline'' is a description of a project's architecture.
-You will express the dependencies between your packages and other projects so that all the dependent projects are loaded without the user having to understand and bother about them.
+A ''baseline'' is a description of the architecture of a project.
+You will express the dependencies between your packages and other projects so that all the dependent projects are loaded without the user having to understand them or the links between them.
 
 A baseline is expressed as a subclass of ==BaselineOf== and packaged in a package named =='BaselineOfXXX'== (where 'XXX' is the name of your project).
 So if you have no dependencies, you can have something like this.
@@ -59,7 +59,7 @@ BaselineOfMyCoolProjectWithPharo >> baseline: spec
     do: [ spec package: 'MyCoolProjectWithPharo' ]
 ]]]
 
-Once you have defined your baseline, you should add its package to your project using the Working copy browser as explained in the previous chapter. You should obtain the following situation shown in Figure *@WithBaseline*.
+Once you have defined your baseline, you should add its package to your project using the working copy browser as explained in the previous chapter. You should obtain the following situation shown in Figure *@WithBaseline*.
 Now, commit it and push your changes to your remote repository.
 
 +Added the baseline package to your project using the Working copy browser.>file://figures/WithBaseline.png|width=75|label=WithBaseline+
@@ -68,15 +68,15 @@ A more elaborated web resources about baseline possibility is available at: *htt
 
 
 !!! Loading from an existing repository
-Once you already have a repository and commited code and  just want to load it into a new Pharo image, there are two ways to go about it.
+Once you have a repository you committed code to and would like to load it into a new Pharo image, there are two ways to work this out.
 
 !!!! Manual load.
 - Add the project as explained in the first chapter
 - Open the working copy browser by double clicking on the project line in the repositories browser.
 - Select a package and manually load it.
 
-!!!! Scripting the load. 
-The second way is to make use of Metacello. However, this will only work if you have already created a ==BaselineOf==. In this case, you can just execute the following snippet: 
+!!!! Scripting the load.
+The second way is to make use of Metacello. However, this will only work if you have already created a ==BaselineOf==. In this case, you can just execute the following snippet:
 
 [[[
 Metacello new
@@ -85,12 +85,12 @@ Metacello new
   load
 ]]]
 
-For projects with metadata, like the one we just created, that's it. 
-Notice that we not only mention the github pass but also added the code folder (here ==src==).
+For projects with metadata, like the one we just created, that's it.
+Notice that we not only mention the Github pass but also added the code folder (here ==src==).
 
 !!! [Optional] Add a nice .gitignore file
 
-Iceberg automatically manages files such .gitignore.
+Iceberg automatically manages files such as .gitignore.
 [[[
 # For Pharo 70 and up
 # http://www.pharo.org
@@ -117,40 +117,28 @@ github-*.zip
 
 !!! Going further:  Understanding the architecture
 
-As git is a distributed versioning, you need a local clone of your repository.
-In general you edit your working copy located on your disc and 
-you commit to your local clone, and from there you push to remote repositories like github. We explain now the specificity of managing Pharo with git. 
+As ==git== is a distributed versioning system, you need a local clone of your repository.
+In general you edit your working copy located on your hard-drive and you commit to your local clone, and from there you push to remote repositories like Github. We explain here the specificity of managing Pharo with git.
 
-Now when coding Pharo, you should understand that you are not directly editing your local working copy, you are modifying objects that represent classes and methods that are living in the Pharo environment. 
-Therefore it is like you have a double working copy: Pharo itself and the git working copy. 
+When coding in Pharo, you should understand that you are not directly editing your local working copy, you are modifying objects that represent classes and methods that are living in the Pharo environment.
+Therefore it is like you have a double working copy: Pharo itself and the ==git== working copy.
 
-When you use Git command lines,  you have to understand that there is the code in the image and the code in the working code (and your local clone). So to update your image, you have to update your git working copy and load code from the working to the image. To save your code you have to save the code to files, add then to your git working copy and commit them to your clone.
+When you use ==git== command lines,  you have to understand that there is the code in the image and the code in the working copy (and your local clone). In order to update your image, you ''first'' have to update your ==git== working copy and ''then'' load code from the working copy to the image. To save your code you have to save the code to files, add them to your git working copy and commit them to your clone.
 
-Now the interesting part is that Iceberg manages all this for you transparently. 
-All the synchronisation between these two working copies is done behind the scene.
+Now the interesting part is that Iceberg manages all this for you transparently.
+All the synchronization between these two working copies is done behind the scene.
 
-Figure *@architecture* shows the architecture of the system. 
+Figure *@architecture* shows the architecture of the system.
 
 - You have your code in the Pharo image.
-- Pharo is acting as a working copy (it contains the contents of the git local repository).
-- Iceberg manages the publication of your code to the git working copy and the git local repository.
+- Pharo is acting as a working copy (it contains the contents of the local ==git== repository).
+- Iceberg manages the publication of your code to the ==git== working copy and the ==git== local repository.
 - Iceberg manages the publication of your code to remote repositories.
-- Iceberg manages the resynchronisation of your image with the git local repository, git remote repositories and the git working copy.
+- Iceberg manages the re-synchronization of your image with the ==git== local repository, ==git== remote repositories and the ==git== working copy.
 
 +@@TO BE REDONE Architecture.>file://figures/architecture.png|width=75|label=architecture+
 
 
 !!! Conclusion
-
-You know now the essential aspects of managing your code with github.
-Iceberg has been designed to guide you so listen to it. 
-Now you are ready to use services offered around GitHub to improve your  quality.
-
-
-
-
-
-
-
 
 
