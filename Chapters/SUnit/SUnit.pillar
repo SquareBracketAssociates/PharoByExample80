@@ -8,7 +8,7 @@ SUnit was originally developed by Kent Beck and subsequently extended by Joseph 
 a resource (discussed below).
 
 This chapter is as short as possible to show you that tests are simple. 
-For a more in depth description of SUnit and different approaches of testing you can read the book: ''Testing in Pharo'' available at *http://books.pharo.org''.
+For a more in depth description of SUnit and different approaches of testing you can read the book: ''Testing in Pharo'' available at *http://books.pharo.org*.
 
 In this chapter we start by discussing why we test, and what makes a good test.
 We then present a series of small examples showing how to use SUnit.
