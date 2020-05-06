@@ -1,17 +1,18 @@
 !! Configure your project nicely
 
 Versioning code is just the first part of making sure that you and others can reload your code.
-We start by showing you how you can commit your code if you did not create your remote repository first.
-Then we describe how to define a baseline, a project map that you will use to define dependencies
+In this chapter we describe how to define a baseline, a project map that you will use to define dependencies
 within your project and dependencies to other projects.
 We also show how to add a good ==.gitignore== file.
 In the next chapter we will show how to configure your project to get more out of the services offered within the Github ecosystem such as Travis-ci to execute automatically your tests.
+
+We start by showing you how you can commit your code if you did not create your remote repository first.
 
 +Creating a local repository without pre-existing remote repository.>file://figures/S12-NewRepository.png|width=75|label=NewRepo+
 
 !!! What if I did not create a remote repository
 
-At the beginning of this chapter we started by creating a remote repository on Github.
+In the previous chapter we started by creating a remote repository on Github.
 Then we asked Iceberg to add a project by cloning it from Github.
 Now you may ask yourself what is the process to publish first your project locally without a pre-existing repository. This is actually simple.
 
@@ -21,17 +22,21 @@ When you add a new repository use the 'New repository' option as shown in *@NewR
 
 
 !!!! Add a remote.
-If you want to commit to a remote repository, you will have to add it using the repository browser. You can access this browser through the associated menu item or the icon.
-The repository browser gives you access to the git repositories associated with your project: you can access, manage branches and also add or remove remote repositories. Figure *@OpeningRepositoryBrowser* shows the repository browser on our project.
+If you want to commit to a remote repository, you will have to add it using the ''Repository'' browser. 
+You can access this browser through the associated menu item or the icon.
+The ''Repository'' browser gives you access to the ==git== repositories associated with your project: you can access, manage branches and also add or remove remote repositories. 
+Figure *@OpeningRepositoryBrowser* shows the repository browser on our project.
 
 +Opening the repository browser let you add and browse branches as well as remote repositories.>file://figures/S13-OpeningRepository.png|width=75|label=OpeningRepositoryBrowser+
 
-Pressing on the 'Add remote' iconic button adds a remote by filling the needed information that you can find in your Github project. Figure *@OpeningRepositoryBrowser* shows it for the sample project.
 
-+Adding a remote using the repository browser of your project.>file://figures/S14-AddingRemote.png|width=75|label=OpeningRepositoryBrowser+
+Pressing on the 'Add remote' iconic button adds a remote by filling the needed information that you can find in your Github project. Figure *@OpeningRepositoryBrowser* shows it for the sample project using SSH and  Figure *@OpeningRepositoryBrowser2* for HTTPS.
+
++Adding a remote using the ''Repository'' browser of your project (SSH version).>file://figures/S14-AddingRemote.png|width=75|label=OpeningRepositoryBrowser+
+
++Adding a remote using the ''Repository'' browser of your project (HTTP version).>file://figures/S14-AddingRemote-HTTP.png|width=75|label=OpeningRepositoryBrowser2+
 
 !!!! Push to the remote.
-
 Now you can push your changes and versions to the remote repository using the Push iconic button.
 Once you have pushed you can see that you have one remote as shown in Figure *@PushedFromReport*.
 
@@ -62,7 +67,7 @@ BaselineOfMyCoolProjectWithPharo >> baseline: spec
 Once you have defined your baseline, you should add its package to your project using the working copy browser as explained in the previous chapter. You should obtain the following situation shown in Figure *@WithBaseline*.
 Now, commit it and push your changes to your remote repository.
 
-+Added the baseline package to your project using the Working copy browser.>file://figures/WithBaseline.png|width=75|label=WithBaseline+
++Added the baseline package to your project using the ''Working copy'' browser.>file://figures/WithBaseline.png|width=75|label=WithBaseline+
 
 A more elaborated web resources about baseline possibility is available at: *https://github.com/pharo-open-documentation/pharo-wiki/*.
 
@@ -123,7 +128,7 @@ In general you edit your working copy located on your hard-drive and you commit 
 When coding in Pharo, you should understand that you are not directly editing your local working copy, you are modifying objects that represent classes and methods that are living in the Pharo environment.
 Therefore it is like you have a double working copy: Pharo itself and the ==git== working copy.
 
-When you use ==git== command lines,  you have to understand that there is the code in the image and the code in the working copy (and your local clone). In order to update your image, you ''first'' have to update your ==git== working copy and ''then'' load code from the working copy to the image. To save your code you have to save the code to files, add them to your git working copy and commit them to your clone.
+When you use ==git== command lines,  you have to understand that there is the code in the image and the code in the working copy (and your local clone).To update your image, you ''first'' have to update your ==git== working copy and ''then'' load code from the working copy to the image. To save your code you have to save the code to files, add them to your git working copy and commit them to your clone.
 
 Now the interesting part is that Iceberg manages all this for you transparently.
 All the synchronization between these two working copies is done behind the scene.
@@ -136,9 +141,11 @@ Figure *@architecture* shows the architecture of the system.
 - Iceberg manages the publication of your code to remote repositories.
 - Iceberg manages the re-synchronization of your image with the ==git== local repository, ==git== remote repositories and the ==git== working copy.
 
-+@@TO BE REDONE Architecture.>file://figures/architecture.png|width=75|label=architecture+
++Architecture.>file://figures/architecture.png|width=75|label=architecture+
 
 
 !!! Conclusion
+We show how to package your code correclty.
+It will help you to reload it.
 
 
