@@ -5,8 +5,8 @@ In this chapter, we will develop a simple game: LightsOut
 (*http://en.wikipedia.org/wiki/Lights_Out_(game)*). Along the way we will show
 most of the tools that Pharo programmers use to construct and debug their
 programs, and show how programs are shared with other developers. We will see
-the browser, the object inspector, the debugger and the Monticello package
-browser.
+the browser, the object inspector, the debugger and the way to version code. 
+
 
 In Pharo you can develop in a traditional way, by defining a class, then its
 instance variables, then its methods. However, in Pharo your development flow
@@ -153,7 +153,8 @@ SimpleSwitchMorph subclass: #LOCell
 
 It is equivalent to the one we mentioned earlier. In this book we only use the
 term ""package"". The Pharo package is also what you will be using to version
-your source code using the TODO:Monticello/Iceberg versioning tool.
+your source code using Iceberg versioning tool: the new tool to manage source code via Git.  
+This book version has two new chapters covering Iceberg and package management (see Chapters *@cha:Iceberg* and *@cha:configure*).
 
 
 !!!Adding methods to a class
@@ -429,28 +430,24 @@ the result of evaluating ==self newCellAt: i at: j.==
 
 !!!Organizing methods into protocols
 
-Before we define any more methods, let's take a quick look at the third pane at
-the top of the browser. In the same way that the first pane of the browser lets
-us categorize classes into packages, the protocol pane lets us categorize
-methods so that we are not overwhelmed by a very long list of method names in
-the method pane. These groups of methods are called "protocols".
+Before we define any more methods, let's take a quick look at the third pane at the top of the browser. 
+In the same way that the first pane of the browser lets us categorize classes into packages, the protocol pane lets us categorize
+methods so that we are not overwhelmed by a very long list of method names in the method pane. 
+These groups of methods are called "protocols".
 
-By default, you will have ==instance side== vitual protocol, 
-which contains all of the methods in the class. 
+By default, you will have ==instance side== virtual protocol, which contains all of the methods in the class. 
 
 If you have followed along with this example, the protocol pane may well contain
 the ==initialization== and ==overrides== protocols. These protocols are added automatically
-when you override ==initialize==. Pharo 8 ""System Browser"" will try to organize the methods 
-automatically, and add them to the appropriate protocol.
+when you override ==initialize==. 
+Pharo 8 ""System Browser"" tries to organize the methods automatically, and add them to the appropriate protocol.
 
-How does the ""System Browser"" know that this is the right protocol? Well, in
-general Pharo can't know exactly, but for example if there is also an
-==initialize== method in the superclass, and it assumes that our ==initialize==
+How does the ""System Browser"" know that this is the right protocol? 
+Well, in general Pharo can't know exactly, but for example if there is also an ==initialize== method in the superclass, and it assumes that our ==initialize==
 method should go in the same protocol as the one that it overrides.
 
-The protocol pane may contain the protocol ""as yet unclassified"". Methods that aren't organized
-into protocols can be found here. You can right-click in the protocol pane and
-select ""categorize all uncategorized"" to fix this, or you can organize manually.
+The protocol pane may contain the protocol ""as yet unclassified"". 
+Methods that aren't organized into protocols can be found here. You can right-click in the protocol pane and select ""categorize all uncategorized"" to fix this, or you can organize manually.
 
 
 !!!!!A typographic convention.
@@ -501,6 +498,7 @@ corresponding method also needs to be defined.
 
 [[[caption=The callback method|label=scr:Toggle
 LOGame >> toggleNeighboursOfCellAt: i at: j
+
 	i > 1
 		ifTrue: [ (cells at: i - 1 at: j) toggleState ].
 	i < self cellsPerSide
