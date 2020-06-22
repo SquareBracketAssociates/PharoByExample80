@@ -19,8 +19,6 @@ Now you may ask yourself what is the process to publish first your project local
 !!!! Create a new repository.
 When you add a new repository use the 'New repository' option as shown in *@NewRepo*.
 
-
-
 !!!! Add a remote.
 If you want to commit to a remote repository, you will have to add it using the ''Repository'' browser. 
 You can access this browser through the associated menu item or the icon.
