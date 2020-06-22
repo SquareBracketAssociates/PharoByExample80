@@ -1,16 +1,13 @@
 %reviewed SD: 4th of march
 ${inputFile:path=Chapters/Preface/Preface.pillar}$
 
-
-
 ${inputFile:path=Chapters/PharoTour/PharoTour.pillar}$
+%Reviewed finished
 
-%under review
 ${inputFile:path=Chapters/FirstApplication/FirstApplication.pillar}$
 
 ${inputFile:path=Chapters/IcebergIntro/StartedWithIceberg.pillar}$ 
 %cha:Iceberg
-
 ${inputFile:path=Chapters/IcebergIntro/FirstConfiguration.pillar}$
 %@cha:configure
 
@@ -38,10 +35,10 @@ ${inputFile:path=Chapters/Streams/Streams.pillar}$
 ${inputFile:path=Chapters/Morphic/Morphic.pillar}$
 
 ${inputFile:path=Chapters/Metaclasses/Metaclasses.pillar}$
+
 ${inputFile:path=Chapters/Reflection/Reflection.pillar}$
 
 %Missing Seaside chapter
 %${inputFile:path=Chapters/Reflection/Reflection.pillar}$
 %not sure that I want to have the seaside chapter here. 
 %better do a seaside primer
-% What about iceberg chapter!
