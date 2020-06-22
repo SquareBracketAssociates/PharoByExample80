@@ -7,7 +7,7 @@ Maintaining a book to be update to date is not an easy task. This is not just ch
 This is a tedious and often boring work. 
 Many aspects of Pharo from a tooling perspective have changed such as the git support with Iceberg. 
 - We cover briefly the new system browser, Calypso. 
-- This book version has two new chapters covering Iceberg and package management (see Chapters *@cha:Iceberg* and *@cha:configure*) - a new book on Pharo and git is available at *http://books.pharo.org*.
+- This book version has two new chapters covering Iceberg and package management (see Chapters *@cha:Iceberg* and *@cha:Configure*) - a new book on Pharo and git is available at *http://books.pharo.org*.
 - We simplified the SUnit chapter, since a companion book is available now at *http://books.pharo.org*/
 - Altogether we revise parts of the books that were wrong such as Morphic chapter, in previous editions and the current version has really improved over Pharo by Example 5.
 

@@ -7,7 +7,6 @@ most of the tools that Pharo programmers use to construct and debug their
 programs, and show how programs are shared with other developers. We will see
 the browser, the object inspector, the debugger and the way to version code. 
 
-
 In Pharo you can develop in a traditional way, by defining a class, then its
 instance variables, then its methods. However, in Pharo your development flow
 can be much more productive than that! You can define instance variables and
@@ -16,6 +15,11 @@ currently executed objects. This chapter will sketch such alternate way and show
 you how you can be really productive.
 
 +The Lights Out game board.>file://figures/gameLO.png|width=30|label=fig:gameLO+
+
+We will code the game but doing so we will make mistakes and we will show you 
+how we recover from these mistakes. So this may be a bit frustrating for you and more
+boring for us to describe but this is a key aspect of programming. 
+We have to show how to handle errors and find bugs.
 
 !!!The Lights Out game
 
@@ -135,26 +139,7 @@ rationale.
 Select the comment button and define a class comment following this template
 
 
-!!!On categories vs. packages
 
-Historically, Pharo packages were implemented as "categories" (a group of
-classes). With the newer versions of Pharo, the term ""category"" is being
-deprecated, and replaced exclusively by ""package"".
-
-If you use an older version of Pharo or an old tutorial, the class template
-will be as follow:
-
-[[[
-SimpleSwitchMorph subclass: #LOCell
-	instanceVariableNames: 'mouseAction'
-	classVariableNames: ''
-	category: 'PBE-LightsOut'
-]]]
-
-It is equivalent to the one we mentioned earlier. In this book we only use the
-term ""package"". The Pharo package is also what you will be using to version
-your source code using Iceberg versioning tool: the new tool to manage source code via Git.  
-This book version has two new chapters covering Iceberg and package management (see Chapters *@cha:Iceberg* and *@cha:configure*).
 
 
 !!!Adding methods to a class
@@ -178,8 +163,8 @@ initialize
 
 Note that the characters =='\'== on line 3 are two separate single quotes with
 nothing between them, not a double quote! ==\'\'== denotes the empty string.
-Another way to create an empty string is ==String new.== Do not forget to
-""accept"" this method definition.
+Another way to create an empty string is ==String new.== Do not forget to compile this method Pharo 
+using the ""accept"" menu item (CMD-s/Option-s).
 
 +The newly-created method ==initialize==.>file://figures/initialize.png|width=100|label=fig:initialize+
 
@@ -238,13 +223,13 @@ new ==LOCell== object and inspecting it: Open a ==Playground==, type the
 expression ==LOCell new==, and ""Inspect"" it (using the menu item with the same
 name).
 
-+The inspector used to examine a ==LOCell== object.>file://figures/inspectLOCell.png|width=100|label=fig:inspectLOCell+
++The inspector used to examine a ==LOCell== object.>file://figures/inspectLOCell.png|width=80|label=fig:inspectLOCell+
 
 The left-hand column of the inspector shows a list of instance variables and the
 value of the instance variable is shown in the right column (see Figure
 *@fig:inspectLOCell*).
 
-+When we click on an instance variable, we inspect its value (another object).>file://figures/inspectBounds.png|width=100|label=fig:inspectBounds+
++When we click on an instance variable, we inspect its value (another object).>file://figures/inspectBounds.png|width=80|label=fig:inspectBounds+
 
 If you click on an instance variable the inspector will open a new pane with the
 detail of the instance variable (see Figure *@fig:inspectBounds*).
@@ -377,7 +362,7 @@ initialize
 	sampleCell := LOCell new.
 	width := sampleCell width.
 	height := sampleCell height.
-	self bounds: (5 @ 5 extent: (width * n) @ (height * n) + (2 * self borderWidth)).
+	self bounds: (50 @ 50 extent: (width * n) @ (height * n) + (2 * self borderWidth)).
 	cells := Array2D new: n tabulate: [ :i :j | self newCellAt: i at: j ]
 ]]]
 
@@ -407,7 +392,7 @@ height to the appropriate temporary variables.
 
 Line 8 sets the bounds of the new object. Without worrying too much about the
 details just yet, believe us that the expression in parentheses creates a square
-with its origin (i.e., its top-left corner) at the point (5,5) and its
+with its origin (i.e., its top-left corner) at the point (50,50) and its
 bottom-right corner far enough away to allow space for the right number of
 cells.
 
@@ -519,7 +504,7 @@ protocol pane to add a new protocol.) To move (re-classify) the method, you can
 simply click on its name and drag it to the newly-created protocol (see Figure
 *@fig:dropProtocol*).
 
-+Drag a method to a protocol.>file://figures/dropProtocol.png|width=100|label=fig:dropProtocol+
++Drag a method to a protocol.>file://figures/dropProtocol.png|width=80|label=fig:dropProtocol+
 
 To complete the Lights Out game, we need to define two more methods in class
 ==LOCell== this time to handle mouse events.
@@ -571,7 +556,7 @@ block to be evaluated, and consequently the state of the cells will toggle.
 
 That's it: the Lights Out game is complete! If you have followed all of the
 steps, you should be able to play the game, consisting of just 2 classes and 7
-methods. In a Playground, type ==LOGame new openInWorld== and ""Do it"" .
+methods. In a Playground, type ==LOGame new openInHand== and ""Do it"" .
 
 The game will open, and you should be able to click on the cells and see how it
 works. Well, so much for theory... When you click on a cell, a debugger will
@@ -649,6 +634,19 @@ LOCell >> mouseMove: anEvent
 
 Finally we are done!
 
+
+!!! In case everything fails
+
+First do not stress. 
+Second if you do not succeed to delete the game. 
+Try to get an inspector on any graphical element of the game using the halos: Option-Shift+Click and choose menu
+and the debug... menu and inspect Morph.
+
+From there you can execute 
+- if you are inspecting the game itself: ==self delete==
+- if you are inspect a game cell: ==self owner delete==. 
+
+
 !!!!! About the debugger.
 
 By default when an error occurs in Pharo, the system displays a debugger.
@@ -667,30 +665,10 @@ your friends probably have their own code in their images, and don't want to
 give that up to use your image. What you need is a way of getting source code
 out of your Pharo image so that other programmers can bring it into theirs.
 
-@@note We'll be discussing the various ways to save and share code in a future chapter, Chapter *: Sharing Code and Source Control>./SharingCode/SharingCode.pillar@cha:sharingCode*. For now, here is an overview of some of the available methods.
+@@note We'll be discussing the various ways to save and share code in a subsequent chapter, Chapter *@cha:Iceberg*. For now, here is an overview of some of the available methods.
 
 +File Out our PBE-LightsOut.>file://figures/fileOut.png|width=60|label=fig:fileOut+
 
-!!!Saving plain code in a file
-
-The simplest way of doing this is by "filing out" the code. The right-click
-menu in the Package pane will give you the option to ==Extra > File Out== the whole of
-package ==PBE-LightsOut==. The resulting file is more or less human readable,
-but is really intended for computers, not humans. You can email this file to
-your friends, and they can file it into their own Pharo images using the file
-list browser.
-
-Right-click on the ==PBE-LightsOut== package and file out the contents (see
-Figure *@fig:fileOut*). You should now find a file named ==PBE-LightsOut.st== in
-the same folder on disk where your image is saved. Have a look at this file with
-a text editor.
-
-+Import your code with the file browser.>file://figures/fileBrowser.png|width=100|label=fig:fileBrowser+
-
-Open a fresh Pharo image and use the ==File Browser== tool (==Tools \-\-> File
-Browser==) to file in the ==PBE-LightsOut.st== fileout (see Figure
-*@fig:fileBrowser*) and ==fileIn==. Verify that the game now works in the new
-image.
 
 !!!Iceberg: Pharo and Git
 
@@ -733,6 +711,51 @@ In this example, we used Iceberg to version our project using git.
 Have in mind that all committed changes, are performed on the local machine.
 To connect your local repository, to remote repository (e.g., GitHub) you need to add it, you can do that by selecting ==Repositories== on the Working copy dialog (Figure *@fig:icebergWorkingCopy*).
 This will be covered later on.
+
+!!!The super awkwark way: Saving plain code in a file
+
+The simplest way of doing this is by "filing out" the code. The right-click
+menu in the Package pane will give you the option to ==Extra > File Out== the whole of
+package ==PBE-LightsOut==. The resulting file is more or less human readable,
+but is really intended for computers, not humans. You can email this file to
+your friends, and they can file it into their own Pharo images using the file
+list browser.
+
+Right-click on the ==PBE-LightsOut== package and file out the contents (see
+Figure *@fig:fileOut*). You should now find a file named ==PBE-LightsOut.st== in
+the same folder on disk where your image is saved. Have a look at this file with
+a text editor.
+
++Import your code with the file browser.>file://figures/fileBrowser.png|width=100|label=fig:fileBrowser+
+
+Open a fresh Pharo image and use the ==File Browser== tool (==Tools \-\-> File
+Browser==) to file in the ==PBE-LightsOut.st== fileout (see Figure
+*@fig:fileBrowser*) and ==fileIn==. Verify that the game now works in the new
+image.
+
+
+!!!On categories vs. packages
+
+Historically, Pharo packages were implemented as "categories" (a group of
+classes). With the newer versions of Pharo, the term ""category"" is being
+deprecated, and replaced exclusively by ""package"".
+
+If you use an older version of Pharo or an old tutorial, the class template
+will be as follow:
+
+[[[
+SimpleSwitchMorph subclass: #LOCell
+	instanceVariableNames: 'mouseAction'
+	classVariableNames: ''
+	category: 'PBE-LightsOut'
+]]]
+
+It is equivalent to the one we mentioned earlier. In this book we only use the
+term ""package"". The Pharo package is also what you will be using to version
+your source code using Iceberg versioning tool: the new tool to manage source code via Git.  
+This book version has two new chapters covering Iceberg and package management (see Chapters *@cha:Iceberg* and *@cha:configure*).
+
+
 
 !!!Chapter summary
 

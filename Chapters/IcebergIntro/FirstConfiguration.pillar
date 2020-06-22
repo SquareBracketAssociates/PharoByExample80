@@ -1,5 +1,5 @@
 !! Configure your project nicely
-
+@cha:Configure
 Versioning code is just the first part of making sure that you and others can reload your code.
 In this chapter we describe how to define a baseline, a project map that you will use to define dependencies
 within your project and dependencies to other projects.
