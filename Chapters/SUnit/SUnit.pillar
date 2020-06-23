@@ -106,16 +106,6 @@ Moreover, test-first development gives us the courage to go fast, because we are
 not afraid that we will forget something important.
 
 Writing tests is not difficult in itself.
-Choosing ''what'' to test is much more difficult. 
-The pragmatic programmers offer the "right-BICEP" principle. It stands for:
-
-- Right: Are the results right?
-- B: Are all the boundary conditions correct?
-- I: Can you check inverse relationships?
-- C: Can you cross-check results using other means?
-- E: Can you force error conditions to happen?
-- P: Are performance characteristics within bounds?
-
 Now let's write our first test, and show you the benefits of using SUnit.
 
 !!!!SUnit by example
@@ -163,7 +153,7 @@ MyExampleSetTest >> setUp
 
 In testing jargon the context is called the ''fixture'' for the test.
 
-!!!Step 3: write some test methods
+!!!Step 3: Write some test methods
 
 Let's create some tests by defining some methods in the class ==MyExampleSetTest==. 
 Each method represents one test.
@@ -293,6 +283,44 @@ another testing framework such as JUnit, much of this will be familiar, since
 all these frameworks have their roots in SUnit. Normally you will use SUnit's
 GUI to run tests, but there are situations where you may not want to use it.
 
+!!!!Using ==assert:equals:==
+
+==assert:equals:== that offers a better report than ==assert:== in case of error.
+For example, the two following tests are equivalent. However, the second one
+will report the value that the test is expecting: this makes easier to
+understand the failure. In this example, we suppose that ==aDateAndTime== is an
+instance variable of the test class.
+
+[[[
+testAsDate
+	self assert: aDateAndTime asDate = ('February 29, 2004' asDate translateTo: 2 hours).
+]]]
+[[[
+testAsDate
+	self
+		assert: aDateAndTime asDate
+		equals: ('February 29, 2004' asDate translateTo: 2 hours).
+]]]
+
+
+!!!!Skipping a test
+
+Sometimes in the middle of a development, you may want to skip a test instead of
+removing it or renaming it to prevent it from running. 
+You can simply invoke the ==TestAsserter== message ==skip== on your test case instance. 
+For example, the following test uses it to define a conditional test.
+
+[[[
+OCCompiledMethodIntegrityTest >> testPragmas
+
+	| newCompiledMethod originalCompiledMethod |
+	(Smalltalk globals hasClassNamed: #Compiler) ifFalse: [ ^ self skip ].
+	...
+]]]
+
+This is handy to make sure that your automated execution of tests is reporting success.
+
+
 !!!!Other assertions
 
 In addition to ==assert:== and ==deny:==, there are several other methods that
@@ -322,7 +350,7 @@ Try running this test. Note that the first argument of the ==should:== and
 !!!!Running a single test
 
 Normally, you will run your tests using the Test Runner or using your code
-browser. If you don't want to launch the Test Runner from the World menu, you
+browser. If you don't want to launch the Test Runner UI from the World menu, you
 can execute ==TestRunner open==. You can also run a single test as follows:
 
 [[[testcase=true
@@ -500,173 +528,6 @@ MyTestResource >> tearDown
 	Transcript show: 'MyTestResource>>tearDown has run.'; cr
 ]]]
 
-!!!Advanced features of SUnit
-
-In addition to ==TestResource==, SUnit contains assertion description strings,
-logging support, the ability to skip tests, and resumable test failures.
-
-!!!!Assertion description strings
-@sec:descriptionStrings
-
-The ==TestAsserter== assertion protocol includes a number of methods that allow
-the programmer to supply a description of the assertion. The description is a
-==String==; if the test case fails, this string will be displayed by the test
-runner. Of course, this string can be constructed dynamically.
-
-[[[
-...
-e := 42.
-self assert: e = 23 description: 'expected 23, got ', e printString
-...
-]]]
-
-The relevant methods in ==TestAsserter== are:
-
-[[[
-assert:description:
-deny:description:
-should:description:
-shouldnt:description:
-]]]
-
-!!!!Using ==assert:equals:==
-
-In addition to ==assert:==, there is also ==assert:equals:== that offers a
-better report in case of error (incidentally, ==assert:equals:== uses
-==assert:description:==).
-
-For example, the two following tests are equivalent. However, the second one
-will report the value that the test is expecting: this makes easier to
-understand the failure. In this example, we suppose that ==aDateAndTime== is an
-instance variable of the test class.
-
-[[[
-testAsDate
-	self assert: aDateAndTime asDate = ('February 29, 2004' asDate translateTo: 2 hours).
-]]]
-[[[
-testAsDate
-	self
-		assert: aDateAndTime asDate
-		equals: ('February 29, 2004' asDate translateTo: 2 hours).
-]]]
-
-!!!!Logging support
-
-The description strings mentioned above may also be logged to a ==Stream==, such
-as the ==Transcript== or a file stream. You can choose whether to log by
-overriding ==isLogging== in your test class; you must also choose where to log
-by overriding ==failureLog== to answer an appropriate stream. By default, the
-==Transcript== is used to log.
-
-!!!!Skipping tests
-
-Sometimes in the middle of a development, you may want to skip a test instead of
-removing it or renaming it to prevent it from running. You can simply invoke the
-==TestAsserter== message ==skip== on your test case instance. For example, the
-following test uses it to define a conditional test.
-
-[[[
-OCCompiledMethodIntegrityTest >> testPragmas
-
-	| newCompiledMethod originalCompiledMethod |
-	(Smalltalk globals hasClassNamed: #Compiler) ifFalse: [ ^ self skip ].
-	...
-]]]
-
-!!!Continuing after a failure
-
-SUnit also allows us to specify whether or not a test should continue after a
-failure. This is a really powerful feature that uses Pharo's exception
-mechanisms. To see what this can be used for, let's look at an example. Consider
-the following test expression:
-
-[[[
-aCollection do: [ :each | self assert: each even ]
-]]]
-
-In this case, as soon as the test finds the first element of the collection that
-isn't ==even==, the test stops. However, we would usually like to continue, and
-see both how many elements, and which elements, aren't ==even== (and maybe also
-log this information). You can do this as follows:
-
-[[[
-aCollection do: [ :each |
-	self
-		assert: each even
-		description: each printString, ' is not even'
-		resumable: true ]
-]]]
-
-This will print out a message on your logging stream for each element that
-fails. It doesn't accumulate failures, i.e, if the assertion fails 10 times in
-your test method, you'll still only see one failure. All the other assertion
-methods that we have seen are not resumable by default;
-==assert: p description: s== is equivalent to
-==assert: p description: s resumable: false==.
-
-!!!A piece of advices on testing
-
-While the mechanics of testing are easy, writing good tests is not. Here is some
-advice on how to design tests.
-
-!!!!Self-contained tests
-
-You do not want to have to change your tests each time you change your code,
-so try to write the tests so that they are self-contained. This can be
-difficult, but pays off in the long term. Writing tests against stable
-interfaces supports this effort.
-
-!!!!Do not over-test
-
-Try to build your tests so that they do not overlap. It is annoying to have many
-tests covering the same functionality, because one bug in the code will then
-break many tests at the same time. This is covered by Black's rule, below.
-
-!!!!Feathers' Rules for Unit tests
-
-Michael Feathers, an agile process consultant and author, writes:
-
-''A test is not a unit test if: it talks to the database, it communicates across
-the network, it touches the file system, it can't run at the same time as any of
-your other unit tests, or you have to do special things to your environment
-(such as editing config files) to run it. Tests that do these things aren't bad.
-Often they are worth writing, and they can be written in a unit test harness.
-However, it is important to be able to separate them from true unit tests so
-that we can keep a set of tests that we can run fast whenever we make our
-changes. Never get yourself into a situation where you don't want to run your
-unit test suite because it takes too long.''
-
-!!!!Unit Tests vs. Acceptance Tests
-
-Unit tests capture one piece of functionality, and as such make it easier to
-identify bugs in that functionality. As far as possible try to have unit tests
-for each method that could possibly fail, and group them per class. However, for
-certain deeply recursive or complex setup situations, it is easier to write
-tests that represent a scenario in the larger application. These are called
-acceptance tests (or integration tests, or functional tests).
-
-Tests that break Feathers' rules may make good acceptance tests. Group
-acceptance tests according to the functionality that they test. For example, if
-you are writing a compiler, you might write acceptance tests that make
-assertions about the code generated for each possible source language statement.
-Such tests might exercise many classes, and might take a long time to run
-because they touch the file system. You can write them using SUnit, but you
-won't want to run them each time you make a small change, so they should be
-separated from the true unit tests.
-
-!!!!Black's Rule of Testing
-
-For every test in the system, you should be able to identify some property for
-which the test increases your confidence. It's obvious that there should be no
-important property that you are not testing. This rule states the less obvious
-fact that there should be no test that does not add value to the system by
-increasing your confidence that a useful property holds. For example, several
-tests of the same property do no good. In fact, they do harm in two ways.
-First, they make it harder to infer the behaviour of the class by reading the
-tests. Second, because one bug in the code might then break many tests, they
-make it harder to estimate how many bugs remain in the code. So, have a property
-in mind when you write a test.
 
 !!!Chapter summary
 
