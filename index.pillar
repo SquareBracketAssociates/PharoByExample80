@@ -4,6 +4,8 @@ ${inputFile:path=Chapters/Preface/Preface.pillar}$
 ${inputFile:path=Chapters/PharoTour/PharoTour.pillar}$
 %Reviewed finished
 
+${inputFile:path=Chapters/Counter/Exo-Counter.pillar}$
+
 ${inputFile:path=Chapters/FirstApplication/FirstApplication.pillar}$
 
 ${inputFile:path=Chapters/IcebergIntro/StartedWithIceberg.pillar}$ 
