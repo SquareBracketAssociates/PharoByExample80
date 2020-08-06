@@ -30,7 +30,9 @@ ${inputFile:path=Chapters/PharoObjectModel/Traits.pillar}$
 ${inputFile:path=Chapters/SUnit/SUnit.pillar}$
 
 ${inputFile:path=Chapters/BasicClasses/BasicClasses.pillar}$
+
 ${inputFile:path=Chapters/Collections/Collections.pillar}$
+
 ${inputFile:path=Chapters/Streams/Streams.pillar}$
 
 %migrated and reviewed SD: 7th of April
