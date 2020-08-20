@@ -4,11 +4,11 @@ To get started in Pharo, we invite you to implement a simple counter by followin
 In this exercise you will learn how to create packages classes, method, instances. 
 You will learn how to define tests and more. 
 This simple tutorial covers most of the important actions that we do when developing in Pharo. 
-You can also watch the companion videos that illustrates this tutorial in a more lively manner.
+You can also watch the companion videos available in the Pharo mooc at *http://mooc.pharo.org*: they illustrate this tutorial in a more lively manner.
 
-Note that the development flow promoted by this little tutorial is ''traditional'' in the sense that you will define a package, a class, ''then'' define its instance variable ''then'' define its methods ''and'' finally execute it. We show also how you can save your code on git hosting services such as github using Iceberg. The companion video follows also such programming development flow. Now in Pharo, developers often follows a ''totally'' different style (that we call live coding or Xtreme TDD) where they execute an expression that raises errors and they code in the debugger and let the system define some instance variables and methods on the fly for them. 
+Note that the development flow promoted by this little tutorial is ''traditional'' in the sense that you will define a package, a class, ''then'' define its instance variable ''then'' define its methods ''and'' finally execute it. We show also how you can save your code on git hosting services such as github using Iceberg.  Now in Pharo, developers often follows a ''totally'' different style (that we call live coding or Xtreme TDD) where they execute an expression that raises errors and they code in the debugger and let the system define some instance variables and methods on the fly for them. 
 
-Once you will have finish this tutorial, you will feel more confident with Pharo and we strongly suggest you to try the other style by following the second video showing such different development practices.
+Once you will have finish this tutorial, you will feel more confident with Pharo and we strongly suggest you to try the other style. 
 
 !!! Our use case
 
@@ -52,7 +52,7 @@ Creating a class requires five steps. They consist basically in editing the clas
 You should get the following class definition.
 
 [[[
-   Object subclass: #Counter
+Object subclass: #Counter
       instanceVariableNames: 'count'
       classVariableNames: ''
       package: 'MyCounter'
@@ -119,8 +119,8 @@ You can now test your new method by typing and evaluating the next expression in
 
 
 [[[
-   Counter new count
-   > nil
+Counter new count
+>>> nil
 ]]]
 
 This expression first creates a new instance of ==Counter==, and then sends the message ==count== to it. It retrieves the current value of the counter. This should return ==nil== (the default value for non-initialised instance variables). Afterwards we will create instances with a reasonable default initialisation value.
@@ -132,10 +132,10 @@ Another method that is normally used besides the accessor method is a so-called 
 The snippets shows that the counter effectively contains its value.
 
 [[[
-   | c |
-   c := Counter new count: 7.
-   c count
-   >>> 7
+| c |
+c := Counter new count: 7.
+c count
+>>> 7
 ]]]
 
 
@@ -148,7 +148,7 @@ Writing tests is an important activity that will support the evolution of your a
 To define a test case we will define a class that inherits from ==TestCase==. Therefore define a class named ==CounterTest== as follows:
 
 [[[
-   TestCase subclass: #CounterTest
+TestCase subclass: #CounterTest
       instanceVariableNames: ''
       classVariableNames: ''
       package: 'Counter'
@@ -254,8 +254,8 @@ To save your changes, you just have to commit them.
 Right now the initial value of our counter is not set as the following expression shows it.
 
 [[[
-   Counter new count
-   >>> nil
+Counter new count
+>>> nil
 ]]]
 
 Let us write a test checking that a newly created instance has 0 as a default value.
@@ -284,15 +284,15 @@ Counter >> initialize
 Now create a new instance of class ==Counter==. Is it initialized by default? The following code should now work without problem:
 
 [[[
-    Counter new increment count
-	>>> 1
+Counter new increment count
+>>> 1
 ]]]
 
 and the following one should return 2
 
 [[[
-   Counter new increment; increment; count
-   >>> 2
+Counter new increment; increment; count
+>>> 2
 ]]]
 
 But better write a test since we will execute it all the time. 
@@ -348,8 +348,8 @@ CounterTest >> testAlternateCreationMethod
 When you open an inspect (putting a ==self halt== inside a method definition) you obtain an inspector or when you select the expression ==Counter new== and print its result (using the Print it menu of the editor) you obtain a simple string =='a Counter'==.
 
 [[[
-   Counter new
-   >>> a Counter
+Counter new
+>>> a Counter
 ]]]
 
 We would like to get a much richer information for example knowing the counter value. Implement the following methods in the protocol ==printing==
