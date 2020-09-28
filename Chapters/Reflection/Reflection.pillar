@@ -160,7 +160,7 @@ the reflective features we have seen so far.
 Here are a few other messages that might be useful to build development tools:
 
 ==isKindOf: aClass== returns true if the receiver is instance of ==aClass== or
-of one of its superclasses. For instance:
+of one of its subclasses. For instance:
 
 [[[testcase=true
 1.5 class
