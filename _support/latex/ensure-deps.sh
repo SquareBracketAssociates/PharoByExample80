@@ -10,7 +10,6 @@ xargs tlmgr install <<DEPS
     footmisc
     gentium-tug
     graphics
-    hyphen-english
     ifetex
     import
     listings

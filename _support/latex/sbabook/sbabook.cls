@@ -333,6 +333,12 @@
     keywordstyle={},
     stringstyle={},
     commentstyle={},
+    numberstyle = \tiny\ttfamily,
+    numberblanklines = false,
+    % numberfirstline = true,
+    firstnumber = 1,
+    stepnumber = 2, % number placement varies from listing to listing…
+    numbersep = 7pt,
 }
 \lstset{style = sbabook}
 
