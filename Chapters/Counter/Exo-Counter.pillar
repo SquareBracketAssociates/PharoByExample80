@@ -204,7 +204,7 @@ Click on the Add package iconic button and select the package MyCounter as shown
 !!!! Commit your changes.
 Once you package is added, Iceberg shows you that you did not commit your code as shown in Figure  *@SaveUncommited*.
 Press the Commit iconic button. Iceberg will show you all the changes that are about to be saved (Figure *@SaveUncommited*).
-Enter a commit message anmd commit
+Enter a commit message and commit
 
 +Now Iceberg shows you that you did not commit your code.>file://figures/Save4-UncommitedChanges.png|label=SaveUncommited+
 
