@@ -609,7 +609,7 @@ the easiest thing to do is to close the debugger window, destroy the running
 instance of the game (with the halo ==CMD-Alt-Shift== and click), and create a
 new one.
 
-Execute ==LOGame new openInWorld== again because if you use the old game
+Execute ==LOGame new openInHand== again because if you use the old game
 instance it will still contain the block with the old logic.
 
 Now the game should work properly... or nearly so. If we happen to move the
