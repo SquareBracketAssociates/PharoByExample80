@@ -357,7 +357,8 @@ We would like to get a much richer information for example knowing the counter v
 [[[
 Counter >> printOn: aStream
    super printOn: aStream.
-   aStream nextPutAll: ' with value: ', count printString.
+   aStream nextPutAll: ' with value: '.
+   aStream print: count
 ]]]
 
 Note that the method ==printOn:== is used when you print an object using print it (See Figure *@figBetterDescription*) or click on ==self== in an inspector.
