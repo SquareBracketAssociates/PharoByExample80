@@ -120,7 +120,7 @@ quality comments.
 !!!!!Method comments.
 People have the tendency to believe that it is not necessary to comment well
 written methods: it is plain wrong and encourages sloppiness. Of course, bad
-code should renamed and refactored. Obviously commenting trivial methods makes
+code should be renamed and refactored. Obviously commenting trivial methods makes
 no sense. A comment should not be the code written in english but an explanation
 of what the method is doing, its context, or the rationale behind its
 implementation. When reading a comment, the reader should be comforted that his
